@@ -1,0 +1,3 @@
+unstructured[pdf]
+boto3
+opencv-python-headless
