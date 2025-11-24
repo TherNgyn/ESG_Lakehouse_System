@@ -1,3 +1,5 @@
 unstructured[pdf]
-boto3
+minio
 opencv-python-headless
+requests
+beautifulsoup4

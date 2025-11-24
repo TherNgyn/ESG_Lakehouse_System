@@ -22,7 +22,6 @@ services:
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
-      # - ./requirement:/opt/airflow/requirement
       - ./datasets:/opt/airflow/datasets
     depends_on:
       - db
