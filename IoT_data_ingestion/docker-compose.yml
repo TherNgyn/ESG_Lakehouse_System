@@ -1,0 +1,296 @@
+services:
+  # ============================================
+  # MinIO - Lakehouse Storage (Bronze/Silver/Gold)
+  # ============================================
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"      # API
+      - "9001:9001"      # Console UI
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - agri
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # MinIO Client - Create buckets on startup
+  minio-client:
+    image: minio/mc:latest
+    container_name: minio-client
+    depends_on:
+      minio:
+        condition: service_healthy
+    networks:
+      - agri
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set myminio http://minio:9000 minioadmin minioadmin;
+      mc mb myminio/lakehouse --ignore-existing;
+      mc mb myminio/bronze --ignore-existing;
+      mc mb myminio/silver --ignore-existing;
+      mc mb myminio/gold --ignore-existing;
+      echo 'MinIO buckets created successfully';
+      exit 0;
+      "
+
+  # ============================================
+  # Message Queue Infrastructure
+  # ============================================
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - agri
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    networks:
+      - agri
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "kafka:29092", "--list"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - agri
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # ============================================
+  # Redis - Real-time Data Store for Grafana
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - agri
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ============================================
+  # IoT Data Pipeline
+  # ============================================
+  simulator:
+    build:
+      context: .
+      dockerfile: ./simulator/Dockerfile
+    container_name: iot-simulator
+    env_file: .env
+    volumes:
+      - ./simulator:/app/scripts
+      - ./.env:/app/.env
+    command: python /app/scripts/iot_simulator.py
+    depends_on:
+      minio:
+        condition: service_healthy
+    networks: 
+      - agri
+    restart: on-failure
+
+  bridge:
+    build:
+      context: .
+      dockerfile: ./bridge/Dockerfile
+    container_name: mqtt-kafka-bridge
+    env_file: .env 
+    volumes:
+      - ./bridge:/app/scripts
+      - ./.env:/app/.env
+    depends_on:
+      kafka:
+        condition: service_healthy 
+    command: python /app/scripts/mqtt_kafka_bridge.py
+    networks:
+      - agri
+    restart: on-failure
+
+  # Kafka → Redis Consumer (Direct streaming to Grafana)
+  kafka-redis-consumer:
+    build:
+      context: .
+      dockerfile: ./consumer/Dockerfile
+    container_name: kafka-redis-consumer
+    env_file: .env
+    volumes:
+      - ./scripts:/app/scripts
+      - ./.env:/app/.env
+    command: python /app/scripts/kafka_redis_consumer.py
+    depends_on:
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - agri
+    restart: on-failure
+
+  mqtt-alert-consumer:
+    build:
+      context: .
+      dockerfile: ./bridge/Dockerfile
+    container_name: mqtt-alert-consumer
+    env_file: .env
+    volumes:
+      - ./scripts:/app/scripts
+      - ./.env:/app/.env
+    command: python /app/scripts/mqtt_alert_consumer.py
+    networks:
+      - agri
+    restart: on-failure
+  
+  actuator-simulator:
+    build:
+      context: .
+      dockerfile: ./bridge/Dockerfile
+    container_name: actuator-simulator
+    env_file: .env
+    volumes:
+      - ./scripts:/app/scripts
+      - ./.env:/app/.env
+    command: python /app/scripts/actuator_simulator.py
+    networks:
+      - agri
+    restart: on-failure
+
+  # ============================================
+  # Spark Processing Layer (Optional - for batch analytics)
+  # ============================================
+  spark-master:
+    image: apache/spark:3.5.1-python3
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ./scripts:/app/scripts
+      - ./data:/app/data
+      - ./models:/opt/bitnami/spark/models
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master
+    ports:
+      - "7078:7077"
+      - "8080:8080"
+    networks:
+      - agri
+
+  spark-worker:
+    image: apache/spark:3.5.1-python3
+    container_name: spark-worker
+    build:
+      context: .
+      dockerfile: ./spark/Dockerfile.model
+    volumes:
+      - ./scripts:/app/scripts
+      - ./data:/app/data
+      - ./models:/opt/bitnami/spark/models
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    networks:
+      - agri
+
+  # ============================================
+  # Application Layer
+  # ============================================
+  api-backend:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    container_name: api-backend
+    env_file: .env
+    ports:
+      - "8000:8000" 
+    depends_on:
+      redis:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    networks:
+      - agri
+    restart: on-failure
+
+  # ============================================
+  # Grafana - Real-time Monitoring Dashboard
+  # ============================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=redis-datasource
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=redis-datasource
+      - GF_LOG_LEVEL=debug
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - agri
+    restart: always
+
+networks:
+  agri:
+    driver: bridge
+
+volumes:
+  minio-data:
+  mongo-data:
+  redis-data:
+  grafana-data:
