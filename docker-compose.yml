@@ -63,10 +63,12 @@ services:
       timeout: 5s
       retries: 5
 
-  # Apache Spark - Data Processing
   spark-master:
+    build:
+      context: ./spark-apps
+      dockerfile: Dockerfile
     image: apache/spark:3.5.1-python3
-    container_name: esg-spark-master
+    container_name: spark-master
     ports:
       - "8080:8080"
       - "7077:7077"
@@ -80,14 +82,17 @@ services:
       - SPARK_MASTER_WEBUI_PORT=8080
     volumes:
       - ./spark-apps:/opt/spark-apps
-      - ./spark-data:/opt/spark-data
+      - ./datasets/csv:/opt/spark-data/input
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master --port 7077
     networks:
       - esg-network
 
   spark-worker-1:
+    build:
+        context: ./spark-apps
+        dockerfile: Dockerfile
     image: apache/spark:3.5.1-python3
-    container_name: esg-spark-worker-1
+    container_name: spark-worker-1
     depends_on:
       - spark-master
     environment:
@@ -101,14 +106,17 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./spark-apps:/opt/spark-apps
-      - ./spark-data:/opt/spark-data
+      - ./datasets/csv:/opt/spark-data/input
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077 --host spark-worker-1 --port 8881 --webui-port 8081
     networks:
       - esg-network
 
   spark-worker-2:
+    build:
+      context: ./spark-apps
+      dockerfile: Dockerfile
     image: apache/spark:3.5.1-python3
-    container_name: esg-spark-worker-2
+    container_name: spark-worker-2
     depends_on:
       - spark-master
     environment:
@@ -122,16 +130,17 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./spark-apps:/opt/spark-apps
-      - ./spark-data:/opt/spark-data
+      - ./datasets/csv:/opt/spark-data/input
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077 --host spark-worker-2 --port 8882 --webui-port 8082
     networks:
       - esg-network
+
   # Đưa vào bronze 
   spark-ingest:
     build:
       context: ./spark-apps
       dockerfile: Dockerfile
-    container_name: esg-spark-ingest   
+    container_name: spark-ingest   
     depends_on:
       spark-master:
         condition: service_started
@@ -147,24 +156,52 @@ services:
       - SPARK_MODE=client
     volumes:
       - ./spark-apps:/opt/spark-apps
-      - ./spark-data:/opt/spark-data
-      - ./datasets:/opt/spark-data/input
+      - ./datasets/csv:/opt/spark-data/input
     working_dir: /opt/spark-apps
-    entrypoint: >
-      /bin/sh -c "
-      echo 'Waiting for Spark Master to be ready...';
-      sleep 60;
-      echo 'Starting ingestion...';
-      /opt/spark/bin/spark-submit
-      --master spark://spark-master:7077
-      --deploy-mode client
-      --num-executors 2
-      --executor-cores 1
-      --executor-memory 1G
-      ingest_data_bronze.py
-      "
+    entrypoint: ["/bin/bash", "./run.sh"]
     networks:
       - esg-network
+
+  spark-silver-transform:
+    build: 
+        context: ./spark-apps
+        dockerfile: Dockerfile
+    container_name: spark-silver-transform
+    depends_on:
+      - spark-ingest
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - LAYER=silver
+    volumes:
+      - ./spark-apps:/opt/spark-apps
+    command: >
+      spark-submit 
+      --master spark://spark-master:7077
+      --packages io.delta:delta-core_2.12:2.4.0,org.apache.hadoop:hadoop-aws:3.3.4
+      /opt/spark-apps/bronze_to_silver.py
+    networks:
+      - esg-network
+    restart: "no"
+  spark-gold-analytics:
+    build: 
+        context: ./spark-apps
+        dockerfile: Dockerfile
+    container_name: spark-gold-analytics
+    depends_on:
+      - spark-silver-transform
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - LAYER=gold
+    volumes:
+      - ./spark-apps:/opt/spark-apps:ro
+    command: >
+      spark-submit 
+      --master spark://spark-master:7077
+      --packages io.delta:delta-core_2.12:2.4.0,org.apache.hadoop:hadoop-aws:3.3.4
+      /opt/spark-apps/gold.py
+    networks:
+      - esg-network
+    restart: "no"
   # Apache Airflow - Orchestration
   airflow-webserver:
     image: apache/airflow:2.8.1-python3.11
@@ -219,7 +256,6 @@ services:
     networks:
       - esg-network
 
-  # Metabase - BI & Visualization
   metabase:
     image: metabase/metabase:latest
     container_name: esg-metabase
@@ -239,7 +275,6 @@ services:
     networks:
       - esg-network
 
-  # Jupyter Notebook - Data Analysis
   jupyter:
     image: jupyter/pyspark-notebook:latest
     container_name: esg-jupyter
