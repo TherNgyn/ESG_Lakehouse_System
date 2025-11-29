@@ -2,12 +2,12 @@ from pathlib import Path
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.providers.standard.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 import sys
 from airflow.decorators import task
 
 sys.path.append('/opt/airflow')
-from scripts.bronze.api import load_files_to_Bronze_Layer, load_extracted_data_to_Bronze_Layer
-from scripts.crawling_pdf_files import crawl_pdfs
+
 default_args = {
     'description' : "A DAG to orchestrate data",
     'start_date': datetime(2025, 10, 20),
@@ -24,4 +24,9 @@ dag = DAG(
     schedule= None
 )
 with dag:
-    task
+    task1 = BashOperator(
+        task_id = "run_spark_job",
+        bash_command = "docker exec spark-master /opt/spark/bin/spark-submit "\
+            "--packages org.apache.hadoop:hadoop-aws:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.262 "\
+            "/opt/spark/spark-apps/bronze_to_silver.py  "
+    )
