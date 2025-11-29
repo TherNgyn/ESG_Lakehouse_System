@@ -1,0 +1,367 @@
+-- =====================================================
+-- POWER BI DAX MEASURES FOR ESG DASHBOARD
+-- =====================================================
+
+-- ============ KEY METRICS ============
+
+-- Overall ESG Score (Current Period)
+ESG Score = 
+AVERAGE(fact_esg_risk_scores[overall_esg_score])
+
+-- ESG Score Previous Year
+ESG Score PY = 
+CALCULATE(
+    [ESG Score],
+    DATEADD(dim_date[full_date], -1, YEAR)
+)
+
+-- Year-over-Year Change
+ESG Score YoY Change = 
+VAR CurrentScore = [ESG Score]
+VAR PreviousScore = [ESG Score PY]
+RETURN
+    IF(
+        NOT(ISBLANK(PreviousScore)),
+        DIVIDE(CurrentScore - PreviousScore, PreviousScore, 0),
+        BLANK()
+    )
+
+-- YoY Change Percentage
+ESG Score YoY % = 
+FORMAT([ESG Score YoY Change], "0.0%")
+
+-- ============ PILLAR SCORES ============
+
+-- Environmental Score
+Environmental Score = 
+AVERAGE(fact_esg_risk_scores[environmental_score])
+
+-- Social Score
+Social Score = 
+AVERAGE(fact_esg_risk_scores[social_score])
+
+-- Governance Score
+Governance Score = 
+AVERAGE(fact_esg_risk_scores[governance_score])
+
+-- ============ RISK CLASSIFICATION ============
+
+-- Risk Level Distribution
+Companies by Risk Level = 
+CALCULATE(
+    DISTINCTCOUNT(fact_esg_risk_scores[company_id]),
+    ALLEXCEPT(fact_esg_risk_scores, fact_esg_risk_scores[risk_level])
+)
+
+-- Risk Category Color
+Risk Level Color = 
+SWITCH(
+    SELECTEDVALUE(fact_esg_risk_scores[risk_level]),
+    "Low Risk", "#10B981",
+    "Medium Risk", "#F59E0B",
+    "High Risk", "#EF4444",
+    "Critical Risk", "#991B1B",
+    "#6B7280"
+)
+
+-- ============ INDUSTRY BENCHMARKING ============
+
+-- Industry Average ESG Score
+Industry Average ESG = 
+CALCULATE(
+    AVERAGE(fact_esg_risk_scores[overall_esg_score]),
+    ALLEXCEPT(dim_company, dim_company[industry])
+)
+
+-- Difference from Industry Average
+ESG vs Industry = 
+[ESG Score] - [Industry Average ESG]
+
+-- Industry Percentile Rank
+Industry Percentile = 
+VAR CompanyScore = [ESG Score]
+VAR IndustryCompanies = 
+    CALCULATETABLE(
+        VALUES(dim_company[company_id]),
+        ALLEXCEPT(dim_company, dim_company[industry])
+    )
+VAR CompaniesBelow = 
+    CALCULATE(
+        COUNTROWS(IndustryCompanies),
+        fact_esg_risk_scores[overall_esg_score] < CompanyScore
+    )
+VAR TotalCompanies = COUNTROWS(IndustryCompanies)
+RETURN
+    DIVIDE(CompaniesBelow, TotalCompanies, 0) * 100
+
+-- ============ KPI ACHIEVEMENT ============
+
+-- Total KPIs Tracked
+Total KPIs = 
+DISTINCTCOUNT(fact_corporate_esg_metrics[kpi_id])
+
+-- KPI Achievement Rate
+KPI Achievement Rate = 
+VAR TotalMetrics = 
+    CALCULATE(
+        SUM(fact_corporate_esg_metrics[metric_value]),
+        fact_corporate_esg_metrics[target_value] > 0
+    )
+VAR TotalTargets = 
+    CALCULATE(
+        SUM(fact_corporate_esg_metrics[target_value]),
+        fact_corporate_esg_metrics[target_value] > 0
+    )
+RETURN
+    DIVIDE(TotalMetrics, TotalTargets, 0)
+
+-- KPIs On Track (>90% achievement)
+KPIs On Track = 
+CALCULATE(
+    COUNTROWS(fact_corporate_esg_metrics),
+    fact_corporate_esg_metrics[achievement_rate] >= 0.90
+)
+
+-- KPIs At Risk (<70% achievement)
+KPIs At Risk = 
+CALCULATE(
+    COUNTROWS(fact_corporate_esg_metrics),
+    fact_corporate_esg_metrics[achievement_rate] < 0.70
+)
+
+-- ============ TREND ANALYSIS ============
+
+-- 3-Year Average ESG Score
+ESG Score 3Y Avg = 
+CALCULATE(
+    AVERAGE(fact_esg_risk_scores[overall_esg_score]),
+    DATESINPERIOD(
+        dim_date[full_date],
+        MAX(dim_date[full_date]),
+        -3,
+        YEAR
+    )
+)
+
+-- ESG Improvement Trend
+ESG Trend = 
+VAR CurrentYear = [ESG Score]
+VAR PreviousYear = [ESG Score PY]
+VAR TwoYearsAgo = 
+    CALCULATE(
+        [ESG Score],
+        DATEADD(dim_date[full_date], -2, YEAR)
+    )
+RETURN
+    SWITCH(
+        TRUE(),
+        CurrentYear > PreviousYear && PreviousYear > TwoYearsAgo, "📈 Strong Upward",
+        CurrentYear > PreviousYear, "↗️ Improving",
+        CurrentYear = PreviousYear, "→ Stable",
+        CurrentYear < PreviousYear && PreviousYear < TwoYearsAgo, "📉 Declining",
+        "↘️ Decreasing"
+    )
+
+-- ============ CARBON METRICS ============
+
+-- Total GHG Emissions (Scope 1+2+3)
+Total GHG Emissions = 
+CALCULATE(
+    SUM(fact_corporate_esg_metrics[metric_value]),
+    dim_kpi[kpi_code] IN {"305-1", "305-2", "305-3"}
+)
+
+-- GHG Reduction vs Baseline
+GHG Reduction % = 
+VAR CurrentEmissions = [Total GHG Emissions]
+VAR BaselineEmissions = 
+    CALCULATE(
+        SUM(fact_corporate_esg_metrics[baseline_value]),
+        dim_kpi[kpi_code] IN {"305-1", "305-2", "305-3"}
+    )
+RETURN
+    DIVIDE(BaselineEmissions - CurrentEmissions, BaselineEmissions, 0)
+
+-- Carbon Intensity (Emissions per Revenue)
+Carbon Intensity = 
+VAR Emissions = [Total GHG Emissions]
+VAR Revenue = SUM(dim_company[market_cap_usd]) -- Simplified
+RETURN
+    DIVIDE(Emissions, Revenue, 0) * 1000000  -- Per million USD
+
+-- ============ RENEWABLE ENERGY ============
+
+-- Renewable Energy %
+Renewable Energy % = 
+CALCULATE(
+    AVERAGE(fact_corporate_esg_metrics[metric_value]),
+    dim_kpi[kpi_code] = "302-1"
+)
+
+-- Total Energy Consumption
+Total Energy Consumption = 
+CALCULATE(
+    SUM(fact_corporate_esg_metrics[metric_value]),
+    dim_kpi[category] = "Energy"
+)
+
+-- ============ SOCIAL METRICS ============
+
+-- Employee Diversity Index
+Diversity Index = 
+CALCULATE(
+    AVERAGE(fact_corporate_esg_metrics[metric_value]),
+    dim_kpi[sub_category] = "Diversity"
+)
+
+-- Gender Pay Gap
+Gender Pay Gap = 
+CALCULATE(
+    AVERAGE(fact_corporate_esg_metrics[metric_value]),
+    dim_kpi[kpi_code] = "405-2"
+)
+
+-- ============ GOVERNANCE METRICS ============
+
+-- Board Independence %
+Board Independence = 
+CALCULATE(
+    AVERAGE(fact_corporate_esg_metrics[metric_value]),
+    dim_kpi[kpi_code] = "102-22"
+)
+
+-- ESG Disclosure Score
+Disclosure Score = 
+CALCULATE(
+    AVERAGE(fact_corporate_esg_metrics[data_quality_score]) * 100,
+    ALLEXCEPT(dim_company, dim_company[company_id])
+)
+
+-- ============ COUNTRY-LEVEL METRICS ============
+
+-- Country ESG Average
+Country ESG Score = 
+AVERAGE(fact_country_esg_indicators[indicator_value])
+
+-- Global Rank
+Country Global Rank = 
+MIN(fact_country_esg_indicators[global_rank])
+
+-- Regional Performance
+Regional Average = 
+CALCULATE(
+    AVERAGE(fact_country_esg_indicators[indicator_value]),
+    ALLEXCEPT(dim_country, dim_country[region])
+)
+
+-- ============ CONDITIONAL FORMATTING ============
+
+-- ESG Score Color (Traffic Light)
+ESG Score Color = 
+VAR Score = [ESG Score]
+RETURN
+    SWITCH(
+        TRUE(),
+        Score >= 75, "#10B981",  -- Green
+        Score >= 50, "#F59E0B",  -- Yellow
+        Score >= 25, "#EF4444",  -- Red
+        "#991B1B"                 -- Dark Red
+    )
+
+-- Achievement Status Icon
+Achievement Icon = 
+VAR Rate = [KPI Achievement Rate]
+RETURN
+    SWITCH(
+        TRUE(),
+        Rate >= 0.95, "✅",
+        Rate >= 0.80, "⚠️",
+        "❌"
+    )
+
+-- ============ DYNAMIC TITLES ============
+
+-- Dashboard Title with Context
+Dashboard Title = 
+"ESG Performance Dashboard - " & 
+SELECTEDVALUE(dim_company[company_name], "All Companies") & 
+" (" & SELECTEDVALUE(dim_date[year], YEAR(TODAY())) & ")"
+
+-- KPI Card Title
+KPI Title = 
+SELECTEDVALUE(dim_kpi[kpi_name]) & 
+" (" & SELECTEDVALUE(dim_kpi[unit_of_measure]) & ")"
+
+-- ============ RANKING MEASURES ============
+
+-- Top ESG Performers (Top 10%)
+Is Top Performer = 
+IF([Industry Percentile] >= 90, "Top 10%", "Other")
+
+-- ESG Leaders Count
+ESG Leaders = 
+CALCULATE(
+    DISTINCTCOUNT(fact_esg_risk_scores[company_id]),
+    fact_esg_risk_scores[overall_esg_score] >= 75
+)
+
+-- ESG Laggards Count
+ESG Laggards = 
+CALCULATE(
+    DISTINCTCOUNT(fact_esg_risk_scores[company_id]),
+    fact_esg_risk_scores[overall_esg_score] < 50
+)
+
+-- ============ MATURITY ASSESSMENT ============
+
+-- ESG Maturity Level
+ESG Maturity = 
+VAR Score = [ESG Score]
+VAR DisclosureQuality = [Disclosure Score]
+RETURN
+    SWITCH(
+        TRUE(),
+        Score >= 80 && DisclosureQuality >= 90, "🏆 Leader",
+        Score >= 70 && DisclosureQuality >= 75, "⭐ Advanced",
+        Score >= 55 && DisclosureQuality >= 60, "📊 Intermediate",
+        Score >= 40, "📈 Developing",
+        "🚀 Beginning"
+    )
+
+-- ============ PORTFOLIO ANALYSIS ============
+
+-- Weighted Average ESG Score (by Market Cap)
+Weighted ESG Score = 
+SUMX(
+    SUMMARIZE(
+        fact_esg_risk_scores,
+        dim_company[company_id],
+        "CompanyESG", [ESG Score],
+        "MarketCap", SUM(dim_company[market_cap_usd])
+    ),
+    [CompanyESG] * [MarketCap]
+) / SUM(dim_company[market_cap_usd])
+
+-- Portfolio ESG Distribution
+Portfolio Distribution = 
+VAR TotalCompanies = DISTINCTCOUNT(fact_esg_risk_scores[company_id])
+VAR HighESG = CALCULATE(TotalCompanies, fact_esg_risk_scores[overall_esg_score] >= 70)
+RETURN
+    DIVIDE(HighESG, TotalCompanies, 0)
+
+-- ============ ALERT MEASURES ============
+
+-- Critical Issues Count
+Critical Issues = 
+CALCULATE(
+    COUNTROWS(fact_esg_risk_scores),
+    fact_esg_risk_scores[risk_level] = "Critical Risk"
+)
+
+-- Needs Attention Flag
+Needs Attention = 
+IF(
+    [ESG Score] < 50 || [Critical Issues] > 0,
+    "⚠️ Action Required",
+    "✓ On Track"
+)
