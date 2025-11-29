@@ -24,16 +24,4 @@ dag = DAG(
     schedule= None
 )
 with dag:
-    # task_0 = PythonOperator(
-    #     task_id = "Craw_pdf_files",
-    #     python_callable= crawl_pdfs
-    # )
-    task_1 =PythonOperator(
-        task_id ="Load_pdf_files_to_Bronze_Layer",
-        python_callable= load_files_to_Bronze_Layer
-    )
-    task_2 = PythonOperator(
-        task_id = 'load_extracted_data_to_Bronze_Layer',
-        python_callable= load_extracted_data_to_Bronze_Layer
-    )
-task_2
+    task
