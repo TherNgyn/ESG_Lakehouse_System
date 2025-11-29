@@ -11,6 +11,7 @@ services:
     volumes:
       - ./postgres/data:/var/lib/postgresql/data
       - ./postgres/airflow_init.sql:/docker-entrypoint-initdb.d/airflow_init.sql
+      
   airflow:
     container_name: airflow
     build: 

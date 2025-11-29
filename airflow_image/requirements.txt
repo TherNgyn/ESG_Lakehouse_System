@@ -1,5 +1,3 @@
-unstructured[pdf]
 minio
-opencv-python-headless
 requests
 beautifulsoup4
