@@ -42,7 +42,6 @@ services:
     networks:
       - esg-network
 
-  # PostgreSQL - Metadata và Gold Layer
   postgres:
     image: postgres:15-alpine
     container_name: esg-postgres
@@ -82,6 +81,9 @@ services:
       - SPARK_MASTER_WEBUI_PORT=8080
     volumes:
       - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/configs          # ← Added
+      - ./utils:/opt/utils              # ← Added
+      - ./scripts:/opt/scripts          # ← Added
       - ./datasets/csv:/opt/spark-data/input
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master --port 7077
     networks:
@@ -106,6 +108,9 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/configs          # ← Added
+      - ./utils:/opt/utils              # ← Added
+      - ./scripts:/opt/scripts          # ← Added
       - ./datasets/csv:/opt/spark-data/input
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077 --host spark-worker-1 --port 8881 --webui-port 8081
     networks:
@@ -130,12 +135,15 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/configs          # ← Added
+      - ./utils:/opt/utils              # ← Added
+      - ./scripts:/opt/scripts          # ← Added
       - ./datasets/csv:/opt/spark-data/input
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077 --host spark-worker-2 --port 8882 --webui-port 8082
     networks:
       - esg-network
 
-  # Đưa vào bronze 
+  # Ingest to Bronze
   spark-ingest:
     build:
       context: ./spark-apps
@@ -156,12 +164,16 @@ services:
       - SPARK_MODE=client
     volumes:
       - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/configs          # ← Added
+      - ./utils:/opt/utils              # ← Added
+      - ./scripts:/opt/scripts          # ← Added
       - ./datasets/csv:/opt/spark-data/input
     working_dir: /opt/spark-apps
     entrypoint: ["/bin/bash", "./run.sh"]
     networks:
       - esg-network
 
+  # Transform Bronze → Silver
   spark-silver-transform:
     build: 
         context: ./spark-apps
@@ -174,14 +186,30 @@ services:
       - LAYER=silver
     volumes:
       - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/spark-apps/configs         # ← Added
+      - ./utils:/opt/utils              # ← Added
+      - ./scripts:/opt/scripts          # ← Added
+    working_dir: /opt/spark-apps
     command: >
-      spark-submit 
+      /bin/bash -c "
+      /opt/spark/bin/spark-submit 
       --master spark://spark-master:7077
-      --packages io.delta:delta-core_2.12:2.4.0,org.apache.hadoop:hadoop-aws:3.3.4
+      --deploy-mode client
+      --driver-memory 2g
+      --executor-memory 2g
+      --jars /opt/spark/jars/spark-excel_2.12-3.3.1_0.18.5.jar
+      --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000
+      --conf spark.hadoop.fs.s3a.access.key=admin
+      --conf spark.hadoop.fs.s3a.secret.key=admin123456
+      --conf spark.hadoop.fs.s3a.path.style.access=true
+      --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
       /opt/spark-apps/bronze_to_silver.py
+      "
     networks:
       - esg-network
     restart: "no"
+    
+  # Aggregate Silver → Gold
   spark-gold-analytics:
     build: 
         context: ./spark-apps
@@ -193,16 +221,30 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
       - LAYER=gold
     volumes:
-      - ./spark-apps:/opt/spark-apps:ro
+      - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/configs          # ← Added
+      - ./utils:/opt/utils              # ← Added
+      - ./scripts:/opt/scripts          # ← Added
+    working_dir: /opt/spark-apps
     command: >
-      spark-submit 
+      /bin/bash -c "
+      /opt/spark/bin/spark-submit 
       --master spark://spark-master:7077
-      --packages io.delta:delta-core_2.12:2.4.0,org.apache.hadoop:hadoop-aws:3.3.4
+      --deploy-mode client
+      --driver-memory 2g
+      --executor-memory 2g
+      --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000
+      --conf spark.hadoop.fs.s3a.access.key=admin
+      --conf spark.hadoop.fs.s3a.secret.key=admin123456
+      --conf spark.hadoop.fs.s3a.path.style.access=true
+      --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
       /opt/spark-apps/gold.py
+      "
     networks:
       - esg-network
     restart: "no"
-  # Apache Airflow - Orchestration
+
+  # Apache Airflow
   airflow-webserver:
     image: apache/airflow:2.8.1-python3.11
     container_name: esg-airflow-webserver
@@ -223,7 +265,7 @@ services:
       - ./plugins:/opt/airflow/plugins
       - ./scripts:/opt/airflow/scripts
     ports:
-      - "8081:8080"
+      - "8888:8080"                     # ← Changed from 8081
     command: >
       bash -c "
       airflow db init &&
@@ -279,18 +321,17 @@ services:
     image: jupyter/pyspark-notebook:latest
     container_name: esg-jupyter
     ports:
-      - "8888:8888"
+      - "8889:8888"                     # ← Changed from 8888
     environment:
       - JUPYTER_ENABLE_LAB=yes
       - GRANT_SUDO=yes
     volumes:
       - ./notebooks:/home/jovyan/work
-      - ./spark-data:/home/jovyan/data
+      - ./datasets:/home/jovyan/data    # ← Changed from spark-data
     command: start-notebook.sh --NotebookApp.token='esg123'
     networks:
       - esg-network
 
-  # dbt - Data Transformation
   dbt:
     image: ghcr.io/dbt-labs/dbt-postgres:1.7.latest
     container_name: esg-dbt
