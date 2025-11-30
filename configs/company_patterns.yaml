@@ -1,0 +1,12 @@
+companies:
+  - id: 1
+    name: "Nestle"
+    sheets:
+      - sheet: "Environment disclosures"
+        data_address: "'Environment disclosures'!A8"  # <-- Thêm dấu ngoặc kép
+      - sheet: "Social dislosures"
+        data_address: "'Social dislosures'!A8"       # <-- Thêm dấu ngoặc kép
+      - sheet: "Governance disclosures"
+        data_address: "'Governance disclosures'!A8"   # <-- Thêm dấu ngoặc kép
+    s3_pattern: "s3a://bronze/raw/KPI/company=Nestle/*.xlsx"
+    config_file: "configs/nestle.yaml"
