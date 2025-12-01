@@ -15,21 +15,23 @@ spark.sparkContext.setLogLevel("ERROR")
 
 
 # 3 loại df tương tự như: ESG_score, ESG_risk, ESG_rank
-ESG_rank_df = spark.read \
-    .option("header", "true") \
-    .option("inferSchema", "true") \
-    .option("encoding", "UTF-8") \
-    .csv("s3a://bronze/raw/ESG_rank/**/*.csv")
-ESG_risk_df = spark.read \
-    .option("header", "true") \
-    .option("inferSchema", "true") \
-    .option("encoding", "UTF-8") \
-    .csv("s3a://bronze/raw/ESG_risk/**/*.csv")
-ESG_score_df = spark.read \
-    .option("header", "true") \
-    .option("inferSchema", "true") \
-    .option("encoding", "UTF-8") \
-    .csv("s3a://bronze/raw/ESG_score/**/*.csv")
+# ESG_rank_df = spark.read \
+#     .option("header", "true") \
+#     .option("inferSchema", "true") \
+#     .option("encoding", "UTF-8") \
+#     .csv("s3a://bronze/raw/ESG_rank/**/*.csv")
+ESG_risk_df = spark.read.csv(
+    "s3a://bronze/raw/ESG_risk/**/*.csv",
+    header=True,
+    inferSchema=True,
+    multiLine=True,   # QUAN TRỌNG: đọc nhiều dòng trong một ô
+    escape='"',       # QUAN TRỌNG: xử lý dấu ngoặc kép
+)
+# ESG_score_df = spark.read \
+#     .option("header", "true") \
+#     .option("inferSchema", "true") \
+#     .option("encoding", "UTF-8") \
+#     .csv("s3a://bronze/raw/ESG_score/**/*.csv")
 
 
 
@@ -112,6 +114,11 @@ def processing_esg_score(df):
             End as bribery,
 
             Case 
+                when Strike is Null or Strike < 0 then -1
+                else Strike
+            End as strike,
+
+            Case 
                 when Recycling_Initiatives is Null or Recycling_Initiatives < 0 then -1
                 else Recycling_Initiatives
             End as recycling_initiatives
@@ -122,18 +129,94 @@ def processing_esg_score(df):
             and  Gov_score is not Null and  Gov_score >= 0 and  Gov_score <= 100
             and  Social_score is not Null and  Social_score >= 0 and Social_score <= 100
             '''
-        spark.sql(query).show(n=1000, truncate= False, )
+        spark.sql(query).show(n=20, truncate= False, )
         return spark.sql(query)
     except Exception as e:
         print("An error occurred:",)
 
 def processing_esg_rank(df):
+    print(50*"=")
+    print("Starting function transfrom ESG_rank_df")
+    print(50*"=")
+    try:
+        df.createOrReplaceTempView("table")
+        # loại những column thừa
+        filtered_query = '''
+    SELECT 
+        `name`,
+        industry,
+        environment_grade,
+        environment_level,
+        social_grade,
+        social_level,
+        governance_grade,
+        governance_level,
+        environment_score,
+        social_score,
+        governance_score,
+        total_score,
+        last_processing_date,
+        total_grade,
+        total_level
+    FROM table
+    '''
 
-    pass
-def processing_esg_risk():
-    pass
+        spark.sql(filtered_query).createOrReplaceTempView("table")
+
+        transform_query = '''
+        select distinct
+        lower(trim(`name`)) as `company_name`,
+        lower(trim(industry)) as industry,
+        environment_grade,
+        social_grade,
+        governance_grade,
+        lower(environment_level) as environment_level,
+        lower(social_level) as social_level,
+        lower(governance_level) as governance_level,
+        environment_score / 10 as environment_score,
+        social_score / 10 as social_score,
+        governance_score / 10 as governance_score,
+        year(TO_DATE('19-04-2022', 'dd-MM-yyyy')) AS year,
+        total_grade,
+        lower(trim(total_level)) as total_level
+        from table  
+        where 
+            environment_score >= 100 and environment_score <= 1000
+        and social_score >= 100 and social_score <= 1000
+        and governance_score >= 100 and governance_score <= 1000
+    '''
+
+        spark.sql(transform_query).show(n=20, truncate= False, )
+        print(50*"=")
+        print("transfroming ESG_rank_df successfully!!!!")
+        print(50*"=")
+        return spark.sql(transform_query)
+    except Exception as e:
+        print(50*"=")
+        print("An errorr occured",  e)
+        print(50*"=")
 
 
 
-processing_esg_score(ESG_score_df)  
+def processing_esg_risk(df):
+    print(50*"=")
+    print("Starting function transfrom ESG_risk_df")
+    print(50*"=")
+    try:
+        
+        print(50*"=")
+        print("Transfroming ESG_risk_df successfully!!!")
+        print(50*"=")
+        # return spark.sql(transform_query)
+    except Exception as e:
+        print(50*"=")
+        print("An errorr occured",  e)
+        print(50*"=")
+
+
+
+# processing_esg_score(ESG_score_df)  
+# processing_esg_rank(ESG_rank_df)
+processing_esg_risk(ESG_risk_df)
+
 spark.stop()
