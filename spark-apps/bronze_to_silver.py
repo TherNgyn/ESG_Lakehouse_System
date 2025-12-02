@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from datetime import datetime
 
 #  Cấu hình Spark kết nối với MinIO
 
@@ -15,23 +16,24 @@ spark.sparkContext.setLogLevel("ERROR")
 
 
 # 3 loại df tương tự như: ESG_score, ESG_risk, ESG_rank
-# ESG_rank_df = spark.read \
-#     .option("header", "true") \
-#     .option("inferSchema", "true") \
-#     .option("encoding", "UTF-8") \
-#     .csv("s3a://bronze/raw/ESG_rank/**/*.csv")
+
+ESG_rank_df = spark.read \
+    .option("header", "true") \
+    .option("inferSchema", "true") \
+    .option("encoding", "UTF-8") \
+    .csv("s3a://bronze/raw/ESG_rank/**/*.csv")
 ESG_risk_df = spark.read.csv(
     "s3a://bronze/raw/ESG_risk/**/*.csv",
     header=True,
     inferSchema=True,
-    multiLine=True,   # QUAN TRỌNG: đọc nhiều dòng trong một ô
-    escape='"',       # QUAN TRỌNG: xử lý dấu ngoặc kép
+    multiLine=True,   
+    escape='"',       
 )
-# ESG_score_df = spark.read \
-#     .option("header", "true") \
-#     .option("inferSchema", "true") \
-#     .option("encoding", "UTF-8") \
-#     .csv("s3a://bronze/raw/ESG_score/**/*.csv")
+ESG_score_df = spark.read \
+    .option("header", "true") \
+    .option("inferSchema", "true") \
+    .option("encoding", "UTF-8") \
+    .csv("s3a://bronze/raw/ESG_score/**/*.csv")
 
 
 
@@ -114,9 +116,9 @@ def processing_esg_score(df):
             End as bribery,
 
             Case 
-                when Strike is Null or Strike < 0 then -1
-                else Strike
-            End as strike,
+                when Strikes is Null or Strikes < 0 then -1
+                else Strikes
+            End as strikes,
 
             Case 
                 when Recycling_Initiatives is Null or Recycling_Initiatives < 0 then -1
@@ -130,9 +132,10 @@ def processing_esg_score(df):
             and  Social_score is not Null and  Social_score >= 0 and Social_score <= 100
             '''
         spark.sql(query).show(n=20, truncate= False, )
-        return spark.sql(query)
+        ingest_date = datetime.now().strftime("%Y-%m-%d")
+        spark.sql(query).write.mode("overwrite").parquet(f"s3a://silver/cleaned/ESG_score/ingestdate={ingest_date}/")
     except Exception as e:
-        print("An error occurred:",)
+        print("An error occurred:", e)
 
 def processing_esg_rank(df):
     print(50*"=")
@@ -190,7 +193,10 @@ def processing_esg_rank(df):
         print(50*"=")
         print("transfroming ESG_rank_df successfully!!!!")
         print(50*"=")
-        return spark.sql(transform_query)
+        ingest_date = datetime.now().strftime("%Y-%m-%d")
+
+        return spark.sql(transform_query).write.mode("overwrite").parquet(f"s3a://silver/cleaned/ESG_rank/ingestdate={ingest_date}/")
+
     except Exception as e:
         print(50*"=")
         print("An errorr occured",  e)
@@ -203,11 +209,71 @@ def processing_esg_risk(df):
     print("Starting function transfrom ESG_risk_df")
     print(50*"=")
     try:
+        df.createOrReplaceTempView('table')
+        query = '''
+        select distinct
+        lower(trim(name)) as name, -- xoa khoang cach thua, lower
+        lower(trim(sector)) as sector, -- xoa khoang cach thua, lower
+        lower(trim(industry)) as industry, -- xoa khoang cach thua, lower
+        Case
+            when full_time_employees < 0 or full_time_employees is null then -1
+            else full_time_employees
+        End as employees,
+        Case 
+            when environment_risk_score < 0 then -1
+            else environment_risk_score
+        End as environment_risk_score,
+        Case 
+            when social_risk_score < 0 then -1
+            else social_risk_score
+        End  as social_risk_score,
+        Case 
+            when governance_risk_score < 0 then -1
+            else governance_risk_score
+        End as governance_risk_score,
+
+        Case    
+            when controversy_level is null then -1
+            else lower( split(controversy_level, ' ')[0])
+        End as controversy_level,
+        Case 
+            when esg_risk_percentile is null then -1
+            else regexp_replace(esg_risk_percentile, "[^a-zA-Z]", "")
+        End as esg_risk_percentile,
         
+        Case 
+            when esg_risk_level is null then -1
+            else lower(trim(esg_risk_level))
+        End as esg_risk_level
+
+        from 
+        (select 
+            Name as name,
+            Sector as sector,
+            Industry as industry,
+            `Full Time Employees` as full_time_employees,
+            `Environment Risk Score` as environment_risk_score,
+            `Social Risk Score` as social_risk_score,
+            `Governance Risk Score` as governance_risk_score,
+            `Controversy Level` as controversy_level,
+            `ESG Risk Percentile` as esg_risk_percentile,
+            `ESG Risk Level` as esg_risk_level
+        from table) as t
+
+        where  
+            environment_risk_score is not null 
+        and social_risk_score is not null
+        and governance_risk_score is not null
+        '''
+
+        spark.sql(query).show(truncate= False)
         print(50*"=")
         print("Transfroming ESG_risk_df successfully!!!")
         print(50*"=")
-        # return spark.sql(transform_query)
+        ingest_date = datetime.now().strftime("%Y-%m-%d")
+
+        spark.sql(query).write.mode("overwrite").parquet(f"s3a://silver/cleaned/ESG_risk/ingestdate={ingest_date}/")
+
     except Exception as e:
         print(50*"=")
         print("An errorr occured",  e)
@@ -215,8 +281,10 @@ def processing_esg_risk(df):
 
 
 
-# processing_esg_score(ESG_score_df)  
+processing_esg_score(ESG_score_df)  
 # processing_esg_rank(ESG_rank_df)
-processing_esg_risk(ESG_risk_df)
+# processing_esg_risk(ESG_risk_df)
+
+
 
 spark.stop()
