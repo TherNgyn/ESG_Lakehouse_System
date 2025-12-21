@@ -6,6 +6,7 @@ venv/.env
 
 # Data files
 *.csv
+tests/Fortune500_ESG_Metrics_2021-2023.csv
 
 # Spark output
 output/
