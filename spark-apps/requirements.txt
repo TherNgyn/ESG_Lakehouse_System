@@ -1,0 +1,6 @@
+pandas
+pyarrow
+openpyxl
+great-expectations
+delta-spark==2.4.0
+boto3

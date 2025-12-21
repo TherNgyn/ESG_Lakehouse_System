@@ -1,0 +1,90 @@
+files:
+  lukoil:
+    file_path: "Lukoil_KPI.xlsx"
+    file_type: "excel"
+    company_name: "LUKOIL"
+    encoding: "utf-8"
+    skip_rows: 3
+    years: [2023, 2024]
+    
+    sheet_mapping:
+      "Climate": "Environmental"
+      "Energy": "Environmental"
+      "IMS": "IMS"
+      "Water ": "Environmental"
+      "Emissions ": "Environmental"
+      "Land and waste": "Environmental"
+      "Industrial safety": "Social"
+      "Occupational safety": "Social"
+      "Employees": "Social"
+      "Corp. governance": "Governance"
+    
+    header_indicators:
+      - "indicator"
+      - "uom"
+    
+    column_mapping:
+      metric: "indicator"
+      unit: "uom"
+
+  cheniere:
+    file_path: "Cheniere_KPI.xlsx"
+    file_type: "excel"
+    company_name: "Cheniere"
+    encoding: "utf-8"
+    years: [2020, 2021, 2022, 2023, 2024]
+    
+    sheet_mapping:
+      "Full KPIs": "All Indicators"
+    
+    header_indicators:
+      - "metric"
+      - "unit"
+    
+    column_mapping:
+      metric: "Metric"
+      unit: "Unit"
+
+  bradesco:
+    file_path: "Bradesco_KPI.xlsx"
+    file_type: "excel"
+    company_name: "Bradesco"
+    encoding: "auto" 
+    skip_rows: 6
+    years: [2019, 2020, 2021, 2022, 2023, 2024]
+    
+    sheet_mapping:
+      "Environmental": "Environmental"
+      "Social": "Social"
+      "Governance": "Governance"
+      
+    header_indicators:
+      - "theme"
+      - "indicator"
+      - "unit"
+      
+    column_mapping:
+      theme: "Theme"
+      metric: "Indicator"
+      unit: "Unit"
+      metric_ref: "Metric"
+
+  nestle:
+    file_path: "Nestle_KPI.xlsx"
+    file_type: "excel"
+    company_name: "Nestle"
+    encoding: "utf-8"
+    years: [2021, 2022, 2023, 2024]
+    
+    sheet_mapping:
+      Environment disclosures: "Environmental"
+      Social disclosures: "Social"
+      Governance disclosures: "Governance"
+    
+    header_indicators:
+      - "indicator"
+      - "unit"
+    
+    column_mapping:
+      metric: "Indicator"
+      unit: "Unit"

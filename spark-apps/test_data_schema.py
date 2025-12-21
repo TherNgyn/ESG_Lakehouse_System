@@ -37,6 +37,9 @@ def test_silver_layer(spark, silver_path):
         # 5. Sample data
         print("\n>>> Sample data (5 rows):")
         df.show(5, truncate=False)
+        # print tail 
+        print("\n>>> Sample data (last 5 rows):")
+        df.show(df.count() - 5, truncate=False)
         
         # 6. Data quality checks
         print("\n>>> DATA QUALITY CHECKS:")
@@ -159,21 +162,20 @@ def export_sample_data(spark, silver_path, output_path, num_rows=100):
     """
     Export sample data to CSV for inspection
     """
-    print(f"\n>>> Exporting {num_rows} sample records to CSV...")
-    
+    print(f"\n>>> Exporting FULL dataset to CSV...")
+
     try:
         df = spark.read.parquet(silver_path)
-        
-        # Export sample
-        df.limit(num_rows) \
-            .coalesce(1) \
+
+        # Export full dataset
+        df.coalesce(1) \
             .write \
             .mode('overwrite') \
             .option('header', 'true') \
             .csv(output_path)
-        
-        print(f"  ✅ Exported to: {output_path}")
-        
+
+        print(f"  ✅ Exported full dataset to: {output_path}")
+
     except Exception as e:
         print(f"  ❌ Export failed: {str(e)}")
 

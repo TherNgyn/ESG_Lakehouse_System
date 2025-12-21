@@ -1,15 +1,15 @@
 services:
   minio:
     image: minio/minio:latest
-    container_name: esg-minio
+    container_name: minio
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "${MINIO_API_PORT}:9000"
+      - "${MINIO_CONSOLE_PORT}:9001"
     environment:
-      MINIO_ROOT_USER: admin
-      MINIO_ROOT_PASSWORD: admin123456
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
-      - minio-data:/data
+      - minio-data:/data 
     command: server /data --console-address ":9001"
     networks:
       - esg-network
@@ -21,320 +21,178 @@ services:
       
   minio-client:
     image: minio/mc:latest
-    container_name: esg-minio-client
+    container_name: minio-client
     depends_on:
       minio:
         condition: service_healthy
     entrypoint: >
       /bin/sh -c "
       sleep 15;
-      /usr/bin/mc alias set myminio http://minio:9000 admin admin123456;
-      /usr/bin/mc mb myminio/bronze --ignore-existing;
-      /usr/bin/mc mb myminio/silver --ignore-existing;
-      /usr/bin/mc mb myminio/gold --ignore-existing;
-      /usr/bin/mc mb myminio/metadata --ignore-existing;
+      /usr/bin/mc alias set myminio http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+      /usr/bin/mc mb myminio/bronze --ignore-existing || true;
+      /usr/bin/mc mb myminio/silver --ignore-existing || true;
+      /usr/bin/mc mb myminio/gold --ignore-existing || true;
+      /usr/bin/mc mb myminio/metadata --ignore-existing || true;
       /usr/bin/mc anonymous set download myminio/bronze;
       /usr/bin/mc anonymous set download myminio/silver;
       /usr/bin/mc anonymous set download myminio/gold;
       echo 'Buckets created successfully';
-      sleep infinity
+      sleep infinity;
       "
+    networks:
+      - esg-network
+      
+  spark-master:
+    build: ./spark-apps
+    image: spark-custom:3.5.3-python3
+    container_name: spark-master
+    hostname: spark-master
+    ports:
+      - "${SPARK_UI_PORT}:8080"
+      - "7077:7077"
+      - "4040:4040"
+    environment:
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_WEBUI_PORT=8080
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT}
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - ./spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/spark-apps/configs
+      - ./utils:/opt/utils
+      - ./scripts:/opt/scripts
+      - ./datasets:/opt/spark-data/input
+    networks:
+      - esg-network
+
+  spark-worker:
+    build: ./spark-apps
+    image: spark-custom:3.5.3-python3
+    container_name: spark-worker
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    environment:
+      - SPARK_WORKER_CORES=${SPARK_WORKER_CORES:-4}
+      - SPARK_WORKER_MEMORY=${SPARK_WORKER_MEMORY:-6g}
+      - SPARK_EXECUTOR_MEMORY=5g
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT}
+    volumes:
+      - ./spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/spark-apps/configs
+      - ./utils:/opt/utils
+      - ./scripts:/opt/scripts
+      - ./datasets:/opt/spark-data/input
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    networks:
+      - esg-network
+
+  spark-submit:
+    build: ./spark-apps
+    image: spark-custom:3.5.3-python3
+    container_name: spark-submit
+    hostname: spark-submit
+    depends_on:
+      spark-master:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - ./spark-apps:/opt/spark-apps
+      - ./configs:/opt/spark-apps/configs
+      - ./utils:/opt/utils
+      - ./scripts:/opt/scripts
+      - ./datasets:/opt/spark-data/input
+    working_dir: /opt/spark-apps
+    environment:
+      - PYSPARK_PYTHON=python3
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    command: tail -f /dev/null
+    networks:
+      - esg-network
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: selenium-chrome
+    ports:
+      - "4444:4444"
+      - "7900:7900" 
+    shm_size: "2gb"
+    networks:
+      - esg-network
+
+  airflow:
+    image: apache/airflow:2.9.3-python3.11
+    container_name: airflow
+    depends_on:
+      - postgres
+      - spark-master
+      - minio
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./spark-apps:/opt/airflow/spark-apps
+      - ./airflow/logs:/opt/airflow/logs
+    ports:
+      - "${AIRFLOW_PORT}:8080"
+    command: standalone
     networks:
       - esg-network
 
   postgres:
-    image: postgres:15-alpine
-    container_name: esg-postgres
-    ports:
-      - "5432:5432"
+    image: postgres:16-alpine
+    container_name: postgres
     environment:
-      POSTGRES_USER: esg_user
-      POSTGRES_PASSWORD: esg_password
-      POSTGRES_DB: esg_lakehouse
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "${POSTGRES_PORT}:5432"
     networks:
       - esg-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U esg_user -d esg_lakehouse"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  spark-master:
-    build:
-      context: ./spark-apps
-      dockerfile: Dockerfile
-    image: apache/spark:3.5.1-python3
-    container_name: spark-master
-    ports:
-      - "8080:8080"
-      - "7077:7077"
-      - "4040:4040"
-    environment:
-      - SPARK_MODE=master
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
-      - SPARK_MASTER_WEBUI_PORT=8080
-    volumes:
-      - ./spark-apps:/opt/spark-apps
-      - ./configs:/opt/configs          # ← Added
-      - ./utils:/opt/utils              # ← Added
-      - ./scripts:/opt/scripts          # ← Added
-      - ./datasets/csv:/opt/spark-data/input
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master --port 7077
-    networks:
-      - esg-network
-
-  spark-worker-1:
-    build:
-        context: ./spark-apps
-        dockerfile: Dockerfile
-    image: apache/spark:3.5.1-python3
-    container_name: spark-worker-1
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=2G
-      - SPARK_WORKER_CORES=2
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
-    volumes:
-      - ./spark-apps:/opt/spark-apps
-      - ./configs:/opt/configs          # ← Added
-      - ./utils:/opt/utils              # ← Added
-      - ./scripts:/opt/scripts          # ← Added
-      - ./datasets/csv:/opt/spark-data/input
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077 --host spark-worker-1 --port 8881 --webui-port 8081
-    networks:
-      - esg-network
-
-  spark-worker-2:
-    build:
-      context: ./spark-apps
-      dockerfile: Dockerfile
-    image: apache/spark:3.5.1-python3
-    container_name: spark-worker-2
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=2G
-      - SPARK_WORKER_CORES=2
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
-    volumes:
-      - ./spark-apps:/opt/spark-apps
-      - ./configs:/opt/configs          # ← Added
-      - ./utils:/opt/utils              # ← Added
-      - ./scripts:/opt/scripts          # ← Added
-      - ./datasets/csv:/opt/spark-data/input
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077 --host spark-worker-2 --port 8882 --webui-port 8082
-    networks:
-      - esg-network
-
-  # Ingest to Bronze
-  spark-ingest:
-    build:
-      context: ./spark-apps
-      dockerfile: Dockerfile
-    container_name: spark-ingest   
-    depends_on:
-      spark-master:
-        condition: service_started
-      spark-worker-1:
-        condition: service_started
-      spark-worker-2:
-        condition: service_started
-      minio:
-        condition: service_healthy
-      minio-client:
-        condition: service_started
-    environment:
-      - SPARK_MODE=client
-    volumes:
-      - ./spark-apps:/opt/spark-apps
-      - ./configs:/opt/configs          # ← Added
-      - ./utils:/opt/utils              # ← Added
-      - ./scripts:/opt/scripts          # ← Added
-      - ./datasets/csv:/opt/spark-data/input
-    working_dir: /opt/spark-apps
-    entrypoint: ["/bin/bash", "./run.sh"]
-    networks:
-      - esg-network
-
-  # Transform Bronze → Silver
-  spark-silver-transform:
-    build: 
-        context: ./spark-apps
-        dockerfile: Dockerfile
-    container_name: spark-silver-transform
-    depends_on:
-      - spark-ingest
-    environment:
-      - SPARK_MASTER=spark://spark-master:7077
-      - LAYER=silver
-    volumes:
-      - ./spark-apps:/opt/spark-apps
-      - ./configs:/opt/spark-apps/configs         # ← Added
-      - ./utils:/opt/utils              # ← Added
-      - ./scripts:/opt/scripts          # ← Added
-    working_dir: /opt/spark-apps
-    command: >
-      /bin/bash -c "
-      /opt/spark/bin/spark-submit 
-      --master spark://spark-master:7077
-      --deploy-mode client
-      --driver-memory 2g
-      --executor-memory 2g
-      --jars /opt/spark/jars/spark-excel_2.12-3.3.1_0.18.5.jar
-      --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000
-      --conf spark.hadoop.fs.s3a.access.key=admin
-      --conf spark.hadoop.fs.s3a.secret.key=admin123456
-      --conf spark.hadoop.fs.s3a.path.style.access=true
-      --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
-      /opt/spark-apps/bronze_to_silver.py
-      "
-    networks:
-      - esg-network
-    restart: "no"
-    
-  # Aggregate Silver → Gold
-  spark-gold-analytics:
-    build: 
-        context: ./spark-apps
-        dockerfile: Dockerfile
-    container_name: spark-gold-analytics
-    depends_on:
-      - spark-silver-transform
-    environment:
-      - SPARK_MASTER=spark://spark-master:7077
-      - LAYER=gold
-    volumes:
-      - ./spark-apps:/opt/spark-apps
-      - ./configs:/opt/configs          # ← Added
-      - ./utils:/opt/utils              # ← Added
-      - ./scripts:/opt/scripts          # ← Added
-    working_dir: /opt/spark-apps
-    command: >
-      /bin/bash -c "
-      /opt/spark/bin/spark-submit 
-      --master spark://spark-master:7077
-      --deploy-mode client
-      --driver-memory 2g
-      --executor-memory 2g
-      --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000
-      --conf spark.hadoop.fs.s3a.access.key=admin
-      --conf spark.hadoop.fs.s3a.secret.key=admin123456
-      --conf spark.hadoop.fs.s3a.path.style.access=true
-      --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
-      /opt/spark-apps/gold.py
-      "
-    networks:
-      - esg-network
-    restart: "no"
-
-  # Apache Airflow
-  airflow-webserver:
-    image: apache/airflow:2.8.1-python3.11
-    container_name: esg-airflow-webserver
-    depends_on:
-      - postgres
-    environment:
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://esg_user:esg_password@postgres:5432/esg_lakehouse
-      - AIRFLOW__CORE__FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
-      - AIRFLOW__CORE__LOAD_EXAMPLES=false
-      - AIRFLOW__WEBSERVER__SECRET_KEY=esg_secret_key_change_this
-      - _AIRFLOW_WWW_USER_USERNAME=admin
-      - _AIRFLOW_WWW_USER_PASSWORD=admin
-    volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
-      - ./scripts:/opt/airflow/scripts
-    ports:
-      - "8888:8080"                     # ← Changed from 8081
-    command: >
-      bash -c "
-      airflow db init &&
-      airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com || true &&
-      airflow webserver
-      "
-    networks:
-      - esg-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-
-  airflow-scheduler:
-    image: apache/airflow:2.8.1-python3.11
-    container_name: esg-airflow-scheduler
-    depends_on:
-      - airflow-webserver
-    environment:
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://esg_user:esg_password@postgres:5432/esg_lakehouse
-      - AIRFLOW__CORE__FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-    volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
-      - ./scripts:/opt/airflow/scripts
-    command: airflow scheduler
-    networks:
-      - esg-network
-
-  metabase:
-    image: metabase/metabase:latest
-    container_name: esg-metabase
-    depends_on:
-      - postgres
-    ports:
-      - "3000:3000"
-    environment:
-      MB_DB_TYPE: postgres
-      MB_DB_DBNAME: esg_lakehouse
-      MB_DB_PORT: 5432
-      MB_DB_USER: esg_user
-      MB_DB_PASS: esg_password
-      MB_DB_HOST: postgres
-    volumes:
-      - metabase-data:/metabase-data
-    networks:
-      - esg-network
-
   jupyter:
     image: jupyter/pyspark-notebook:latest
-    container_name: esg-jupyter
+    container_name: jupyter
     ports:
-      - "8889:8888"                     # ← Changed from 8888
+      - "${JUPYTER_PORT}:8888"
     environment:
       - JUPYTER_ENABLE_LAB=yes
       - GRANT_SUDO=yes
     volumes:
       - ./notebooks:/home/jovyan/work
-      - ./datasets:/home/jovyan/data    # ← Changed from spark-data
+      - ./datasets:/home/jovyan/data    
     command: start-notebook.sh --NotebookApp.token='esg123'
     networks:
       - esg-network
 
   dbt:
-    image: ghcr.io/dbt-labs/dbt-postgres:1.7.latest
-    container_name: esg-dbt
+    image: ghcr.io/dbt-labs/dbt-postgres:1.8.latest
+    container_name: dbt
     depends_on:
       - postgres
     volumes:
@@ -345,15 +203,47 @@ services:
     networks:
       - esg-network
 
+  trino:
+    image: trinodb/trino:478
+    container_name: trino
+    hostname: trino
+    ports:
+      - "${TRINO_PORT}:8080"
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog
+      - ./trino/config:/etc/trino/config
+    networks:
+      - esg-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/info"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  metricflow:
+    build: ./metricflow
+    container_name: metricflow
+    depends_on:
+      trino:
+        condition: service_healthy
+    environment:
+      MF_WAREHOUSE: trino
+      MF_TRINO_HOST: trino
+      MF_TRINO_PORT: 8080
+      MF_TRINO_USER: user
+      MF_TRINO_CATALOG: hive
+      MF_TRINO_SCHEMA: public
+    volumes:
+      - ./dbt-project:/workspace/dbt
+    working_dir: /workspace/dbt
+    command: ["metricflow", "serve", "--host", "0.0.0.0", "--port", "8080"]
+    networks:
+      - esg-network
+  
 volumes:
   minio-data:
-    driver: local
   postgres-data:
-    driver: local
-  metabase-data:
-    driver: local
-  spark-ivy-cache:
-    driver: local
+  powerbi-gateway-data:
 
 networks:
   esg-network:

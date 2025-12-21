@@ -1,0 +1,817 @@
+company_name,wba_id,isin,total_score,governance_strategy_score,ecosystems_biodiversity_score,social_community_score,total_rank,governance_strategy_rank,ecosystems_biodiversity_rank,social_community_rank,hq_region,hq_country,sector,industry,year_benchmarked
+Shiseido Company,PT_01593,NaN,36.6,35.0,33.2,42.5,34,201,20,57,East Asia & Pacific,Japan,Personal and household products,Personal and household products,2024
+Kao Corporation,PT_00991,JP3205800000,38.6,51.3,34.2,40.5,25,29,18,65,East Asia & Pacific,Japan,Personal and household products,Personal and household products,2024
+Wilmar International,PT_01940,SG1T56930848,41.6,50.0,27.0,61.1,16,40,58,5,East Asia & Pacific,Singapore,Food and agriculture,Agricultural products,2023
+L'Oreal,PT_01093,NaN,39.9,47.5,29.9,52.5,19,52,34,23,Europe & Central Asia,France,Personal and household products,Personal and household products,2024
+Diageo,PT_00552,GB0002374006,40.1,45.0,26.9,58.8,18,71,61,9,Europe & Central Asia,United Kingdom,Food and agriculture,Food production,2023
+Kering,PT_00999,FR0000121485,55.4,80.0,47.6,57.8,1,1,1,12,Europe & Central Asia,France,Apparel and footwear,Apparel and footwear,2022
+DSM,PT_00581,NaN,31.0,35.0,27.0,35.5,67,201,58,92,Europe & Central Asia,Netherlands,Food and agriculture,Agricultural products,2023
+Danone,PT_00523,FR0000120644,46.3,47.5,38.5,58.1,5,52,7,11,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Sibanye Stillwater,PT_02251,CNE100000502,36.8,56.3,36.8,28.9,32,20,8,151,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+Nueva Pescanova,PT_01314,NaN,32.7,56.3,28.4,28.9,57,20,48,151,Europe & Central Asia,Spain,Food and agriculture,Food production,2023
+Firmenich,PT_00684,NaN,37.0,41.3,27.3,50.5,30,114,55,26,Europe & Central Asia,Switzerland,Food and agriculture,Agricultural products,2023
+Siam Cement (SCG),PT_01599,NaN,31.5,56.3,30.4,23.1,64,20,30,231,East Asia & Pacific,Thailand,Construction materials and supplies,Construction materials and supplies,2022
+Sacyr,PT_02196,CNE100000502,35.7,51.3,39.4,23.6,37,29,5,224,Europe & Central Asia,Spain,Construction and engineering,Construction and engineering,2022
+Polyus,PT_02248,CNE100000502,34.0,43.8,36.3,26.5,48,103,11,182,Europe & Central Asia,Russian Federation,Metals and mining,Metals and mining,2022
+PVH,PT_01449,US6936561009,32.8,36.3,26.5,41.3,56,192,65,59,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Evonik,PT_00651,NaN,33.0,41.3,26.6,39.7,53,114,64,66,Europe & Central Asia,Germany,Food and agriculture,Chemicals,2023
+Bayer,PT_00223,NaN,44.9,72.8,32.2,53.6,8,4,22,21,Europe & Central Asia,Germany,Food and agriculture,Chemicals,2023
+Hyundai Engineering and Construction,PT_02123,CNE100000502,32.9,50.0,28.4,33.1,55,40,48,113,East Asia & Pacific,"Korea, Rep.",Construction and engineering,Construction and engineering,2022
+Merck KGaA,PT_01156,NaN,33.5,41.3,33.7,30.0,51,114,19,146,Europe & Central Asia,Germany,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+UPM-Kymmene,PT_01859,FI0009005987,43.7,38.8,44.1,45.0,10,163,2,42,Europe & Central Asia,Finland,Paper and forest,Paper and forest,2023
+Marks & Spencer,PT_01124,NaN,32.7,33.8,22.1,49.0,57,239,117,29,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2024
+Anheuser-Busch InBev,PT_00110,BE0974293251,35.1,35.0,29.5,44.0,40,201,39,47,Europe & Central Asia,Belgium,Food and agriculture,Food production,2023
+Teck Resources,PT_02207,CNE100000502,40.2,57.5,23.7,59.0,17,17,98,8,North America,Canada,Metals and mining,Metals and mining,2022
+Nestlé,PT_01245,CH0038863350,54.1,75.5,39.4,68.4,2,2,5,1,Europe & Central Asia,Switzerland,Food and agriculture,Food production,2023
+Carlsberg,PT_00318,NaN,33.4,40.0,24.7,44.2,52,133,81,45,Europe & Central Asia,Denmark,Food and agriculture,Food production,2023
+Norsk Hydro,PT_01299,NO0005052605,45.7,35.0,36.8,64.2,6,201,8,3,Europe & Central Asia,Norway,Metals and mining,Metals and mining,2022
+Charoen Pokphand Group,PT_00343,NaN,43.6,61.3,31.1,55.9,11,11,26,16,East Asia & Pacific,Thailand,Food and agriculture,Food production,2023
+Vale,PT_01868,BRVALEACNOR0,43.5,62.5,28.6,59.2,12,9,46,7,Latin America & Caribbean,Brazil,Metals and mining,Metals and mining,2022
+Givaudan,PT_00751,CH0010645932,44.2,51.3,30.9,62.2,9,29,29,4,Europe & Central Asia,Switzerland,Food and agriculture,Chemicals,2023
+Sanofi,PT_01533,NaN,36.7,30.0,36.7,39.4,33,278,10,70,Europe & Central Asia,France,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+POSCO,PT_01416,AU000000NUF3,32.3,40.0,27.3,37.0,59,133,55,83,East Asia & Pacific,"Korea, Rep.",Metals and mining,Metals and mining,2022
+Symrise,PT_01712,NaN,31.9,33.8,25.8,40.7,62,239,66,64,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+CEMEX,PT_00329,NaN,34.8,70.0,20.1,43.7,42,5,150,49,Latin America & Caribbean,Mexico,Construction materials and supplies,Construction materials and supplies,2022
+Sainsbury's,PT_01519,NaN,33.8,57.5,23.1,41.0,49,17,103,61,Europe & Central Asia,United Kingdom,Food and agriculture,Food retailers,2023
+Hennes & Mauritz (H&M),PT_00808,US4016171054,31.1,43.8,21.2,41.5,65,103,133,58,Europe & Central Asia,Sweden,Apparel and footwear,Apparel and footwear,2022
+Novartis,PT_01304,CH0012005267,39.6,46.3,35.7,42.9,21,56,14,55,Europe & Central Asia,Switzerland,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Mowi,PT_01202,NO0003054108,35.7,40.0,35.1,34.8,37,133,15,100,Europe & Central Asia,Norway,Food and agriculture,Food production,2023
+Unilever,PT_01841,US9024941034,52.0,65.5,40.6,64.3,3,6,4,2,Europe & Central Asia,United Kingdom,Food and agriculture,Personal and household products,2023
+PepsiCo,PT_01384,AU000000NUF3,37.8,51.3,23.9,54.3,27,29,96,18,North America,United States,Food and agriculture,Food production,2023
+Gildan Activewear,PT_00749,CA3759161035,35.4,41.3,26.7,46.8,39,114,62,34,North America,Canada,Apparel and footwear,Apparel and footwear,2022
+OCP,PT_01325,AU000000NUF3,43.2,50.0,31.5,58.8,13,40,24,9,Middle East & North Africa,Morocco,Food and agriculture,Agricultural products,2023
+Kirin,PT_01010,US4943681035,32.1,41.3,29.8,32.0,61,114,37,124,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Bridgestone,PT_00275,NaN,33.0,23.8,23.4,51.8,53,402,100,24,East Asia & Pacific,Japan,Tyres and rubber,Tyres and rubber,2022
+FMC,PT_00698,US3024913036,33.6,51.3,28.5,34.6,50,29,47,102,North America,United States,Food and agriculture,Agricultural products,2023
+Glencore,PT_00752,JE00B4T3BW64,34.4,53.0,19.1,50.9,43,28,175,25,Europe & Central Asia,Switzerland,Metals and mining,Metals and mining,2022
+Yara,PT_01974,NO0010208051,36.9,56.3,25.8,46.6,31,20,66,37,Europe & Central Asia,Norway,Food and agriculture,Agricultural products,2023
+Fast Retailing,PT_00666,NaN,39.2,51.3,34.8,41.2,23,29,17,60,East Asia & Pacific,Japan,Apparel and footwear,Apparel and footwear,2022
+Industria de Diseño Textil (Inditex),PT_00899,SE0000652216,37.4,46.3,25.2,52.8,28,56,75,22,Europe & Central Asia,Spain,Apparel and footwear,Apparel and footwear,2022
+The Hershey Company,PT_01780,US4278661081,35.9,41.3,21.3,56.7,36,114,129,14,North America,United States,Food and agriculture,Food production,2023
+Reckitt,PT_01468,GB00B24CGK77,34.2,18.8,29.8,47.4,46,478,37,32,Europe & Central Asia,United Kingdom,Personal and household products,Personal and household products,2024
+Thai Union Group,PT_01774,TH0450010Y08,39.5,61.3,30.1,45.2,22,11,32,41,East Asia & Pacific,Thailand,Food and agriculture,Food production,2023
+The Coca-Cola Company,PT_00447,US4016171054,31.1,30.0,20.0,48.8,65,278,152,30,North America,United States,Food and agriculture,Food production,2023
+Kerry Group,PT_01001,IE0004906560,39.8,61.3,31.2,44.7,20,11,25,44,Europe & Central Asia,Ireland,Food and agriculture,Food production,2023
+Anglo American,PT_00109,GB00B1XZS820,37.3,51.3,22.3,55.2,29,29,113,17,Europe & Central Asia,United Kingdom,Metals and mining,Metals and mining,2022
+Meiji,PT_01149,NaN,34.3,40.0,31.1,37.0,45,133,26,83,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+ACCIONA,PT_00013,ES0125220311,42.5,73.8,25.8,56.1,14,3,66,15,Europe & Central Asia,Spain,Construction and engineering,Construction and engineering,2022
+Mondi,PT_01197,GB00B1CRLC47,42.1,61.3,43.7,31.8,15,11,3,125,Europe & Central Asia,United Kingdom,Containers and packaging,Containers and packaging,2022
+Stora Enso,PT_01675,FI0009005961,32.3,35.0,24.1,44.1,59,201,88,46,Europe & Central Asia,Finland,Paper and forest,Paper and forest,2023
+Gap,PT_00733,US3647601083,34.1,36.3,29.3,40.8,47,192,42,63,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Holcim,PT_01049,NaN,38.4,42.3,30.0,50.0,26,113,33,27,Europe & Central Asia,Switzerland,Construction materials and supplies,Construction materials and supplies,2022
+Suzano Papel e Celulose,PT_01702,NaN,34.9,35.0,22.7,53.9,41,201,109,20,Latin America & Caribbean,Brazil,Paper and forest,Paper and forest,2023
+Heineken,PT_00831,US4016171054,34.4,42.5,22.8,49.2,43,111,107,28,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+Rio Tinto,PT_01489,NaN,45.6,65.3,35.0,54.3,7,7,16,18,Europe & Central Asia,United Kingdom,Metals and mining,Metals and mining,2022
+Newmont,PT_02127,CNE100000502,46.6,57.3,35.8,59.3,4,19,13,6,North America,United States,Metals and mining,Metals and mining,2022
+Ajinomoto Group,PT_00057,JP3119600009,39.1,62.5,36.1,34.5,24,9,12,103,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Fonterra,PT_00702,NZFCGE0001S7,36.1,63.8,29.5,35.2,35,8,39,96,East Asia & Pacific,New Zealand,Food and agriculture,Food production,2023
+Ahold Delhaize,PT_00047,NL0011794037,31.8,45.0,18.9,46.8,63,71,180,34,Europe & Central Asia,Netherlands,Food and agriculture,Food retailers,2023
+Alcoa,PT_00064,US0138721065,30.9,35.0,24.9,38.6,68,201,79,75,North America,United States,Metals and mining,Metals and mining,2022
+Gold Fields,PT_02208,CNE100000502,28.8,35.0,16.3,45.8,95,201,238,39,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+Newcrest Mining,PT_02246,CNE100000502,28.9,51.3,24.0,27.6,92,29,95,166,East Asia & Pacific,Australia,Metals and mining,Metals and mining,2022
+South32,PT_01639,NaN,30.9,46.3,24.1,35.3,68,56,88,94,East Asia & Pacific,Australia,Metals and mining,Metals and mining,2022
+Asahi Group,PT_00138,NaN,29.5,35.0,25.3,33.7,84,201,74,107,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Sodexo,PT_01630,NaN,25.4,46.3,15.3,32.8,136,56,260,115,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Musim Mas,PT_01215,NaN,29.5,28.8,23.2,39.7,84,310,101,66,East Asia & Pacific,Singapore,Food and agriculture,Agricultural products,2023
+Owens Corning,PT_01358,AU000000NUF3,29.8,41.3,29.9,24.8,80,114,34,206,North America,United States,Construction materials and supplies,Construction materials and supplies,2022
+JDE Peet's,PT_00945,IL0002810146,28.2,45.0,20.3,33.8,99,71,145,106,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+Essity,PT_00642,SE0009922164,27.2,17.5,24.1,35.9,118,519,88,88,Europe & Central Asia,Sweden,Personal and household products,Personal and household products,2024
+Walmart,PT_01905,NaN,26.5,38.8,21.2,29.7,126,163,133,147,North America,United States,Food and agriculture,Food retailers,2023
+Grupo Mexico,PT_00792,MXP370841019,26.4,35.0,17.3,37.2,129,201,217,81,Latin America & Caribbean,Mexico,Metals and mining,Metals and mining,2022
+Polymetal,PT_02209,CNE100000502,30.8,31.3,28.9,33.5,71,276,44,112,Europe & Central Asia,Cyprus,Metals and mining,Metals and mining,2022
+Pernod Ricard,PT_01387,AU000000NUF3,29.9,37.5,17.0,47.1,78,191,223,33,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Zijin Mining,PT_01997,CNE100000502,25.6,56.3,16.8,26.9,133,20,226,177,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Saipem,PT_02197,CNE100000502,30.7,46.3,29.0,27.1,72,56,43,172,Europe & Central Asia,Italy,Construction and engineering,Construction and engineering,2022
+Ecolab,PT_00597,US2788651006,30.9,40.0,31.0,27.1,68,133,28,172,North America,United States,Chemicals,Chemicals,2022
+Keurig Dr Pepper,PT_01002,US49271V1008,29.6,35.0,19.2,43.6,83,201,171,51,North America,United States,Food and agriculture,Food production,2023
+VF Corporation,PT_01880,US9182041080,28.2,11.3,14.2,57.0,99,599,286,13,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Ferrovial,PT_00673,NaN,27.7,30.0,29.4,24.0,109,278,41,219,Europe & Central Asia,Spain,Construction and engineering,Construction and engineering,2022
+CMPC,PT_00442,NaN,28.9,40.0,30.3,22.1,92,133,31,245,Latin America & Caribbean,Chile,Paper and forest,Paper and forest,2023
+Coles Group,PT_00450,NaN,28.0,45.0,14.0,42.9,103,71,294,55,East Asia & Pacific,Australia,Food and agriculture,Retail,2023
+Sekisui House,PT_01559,NaN,26.5,38.8,29.9,16.1,126,163,34,379,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Kellogg's,PT_00997,US4878361082,28.0,41.3,13.4,45.5,103,114,318,40,North America,United States,Food and agriculture,Food production,2023
+Puma,PT_01447,DE0006969603,28.3,41.3,14.5,44.9,97,114,279,43,Europe & Central Asia,Germany,Apparel and footwear,Apparel and footwear,2022
+Next,PT_01261,CNE000000VB0,27.6,23.8,18.2,44.0,111,402,197,47,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2022
+Rewe Group,PT_01484,NaN,26.6,23.8,16.4,43.7,123,402,235,49,Europe & Central Asia,Germany,Food and agriculture,Food retailers,2023
+Berry Global,PT_00243,NaN,28.0,35.0,27.5,25.9,103,201,53,186,North America,United States,Containers and packaging,Containers and packaging,2022
+GSK,PT_00798,GB0009252882,29.3,51.3,24.5,28.0,88,29,85,162,Europe & Central Asia,United Kingdom,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Pfizer,PT_01397,AU000000NUF3,29.9,47.3,21.1,36.6,78,55,136,85,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Sime Darby Plantation,PT_01606,NaN,30.0,33.8,20.6,43.3,76,239,141,52,East Asia & Pacific,Malaysia,Food and agriculture,Paper and forest products,2023
+NLMK Group,PT_01307,DK0060534915,29.5,46.3,27.6,25.8,84,56,52,187,Europe & Central Asia,Russian Federation,Metals and mining,Metals and mining,2022
+Suntory,PT_01698,NaN,27.6,33.8,20.8,35.9,111,239,140,88,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Henkel,PT_00836,US4016171054,27.6,45.0,27.4,20.8,111,71,54,265,Europe & Central Asia,Germany,Chemicals,Chemicals,2022
+Svenska Cellulosa,PT_01704,NaN,26.6,45.0,24.4,22.6,123,71,87,236,Europe & Central Asia,Sweden,Paper and forest,Paper and forest,2023
+Sumitomo Forestry,PT_01687,NaN,25.8,35.0,19.4,32.1,131,201,167,121,East Asia & Pacific,Japan,Paper and forest,Paper and forest,2023
+Thai Beverage,PT_01771,TH0902010006,26.5,35.0,25.0,25.5,126,201,77,194,East Asia & Pacific,Thailand,Food and agriculture,Food production,2023
+Levi Strauss & Co.,PT_01071,US52736R1023,26.6,47.5,25.5,19.9,123,52,73,290,North America,United States,Apparel and footwear,Apparel and footwear,2022
+FrieslandCampina,PT_00719,NaN,29.2,61.3,21.1,29.0,89,11,136,150,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+Beiersdorf,PT_00235,NaN,27.2,30.0,28.1,24.6,118,278,50,212,Europe & Central Asia,Germany,Personal and household products,Personal and household products,2024
+Hermes International,PT_00841,US4016171054,27.1,36.3,25.8,25.3,120,192,66,195,Europe & Central Asia,France,Apparel and footwear,Apparel and footwear,2022
+Smurfit Kappa Group,PT_01624,NaN,28.3,40.0,27.1,25.3,97,133,57,195,Europe & Central Asia,Ireland,Containers and packaging,Containers and packaging,2022
+CRH,PT_00493,DE0006062144,27.1,60.5,16.2,30.5,120,16,239,138,Europe & Central Asia,Ireland,Construction materials and supplies,Construction materials and supplies,2022
+Fuji Oil,PT_00723,JP3816400000,27.3,45.0,22.3,27.9,117,71,113,164,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Johnson & Johnson,PT_00972,US4781601046,30.2,45.0,25.6,31.3,75,71,72,130,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Air Liquide,PT_00052,FR0000120073,27.8,46.3,15.9,39.2,107,56,243,73,Europe & Central Asia,France,Chemicals,Chemicals,2022
+Michelin,PT_01168,NaN,29.7,41.3,24.1,33.7,82,114,88,107,Europe & Central Asia,France,Tyres and rubber,Tyres and rubber,2022
+Ferrero,PT_00672,NaN,27.4,28.8,19.4,39.5,115,310,167,69,Europe & Central Asia,Luxembourg,Food and agriculture,Food production,2023
+Barrick Gold,PT_02176,CNE100000502,27.5,28.8,14.9,46.7,114,310,272,36,North America,Canada,Metals and mining,Metals and mining,2022
+Lundin Mining,PT_02721,CNE100000502,27.8,46.3,21.4,30.3,107,56,127,141,North America,Canada,Metals and mining,Metals and mining,2024
+Cargill,PT_00317,NaN,28.2,23.8,26.7,32.2,99,402,62,120,North America,United States,Food and agriculture,Food production,2023
+Daiwa House Group,PT_00516,NaN,27.7,45.0,33.1,12.1,109,71,21,475,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Kraft Heinz,PT_01030,US5007541064,26.7,40.0,17.4,35.9,122,133,214,88,North America,United States,Food and agriculture,Food production,2023
+Tesco,PT_01765,GB0008847096,30.3,45.0,18.4,43.1,74,71,193,53,Europe & Central Asia,United Kingdom,Food and agriculture,Food retailers,2023
+Amorepacific Group,PT_00098,KR7002790004,28.9,40.0,25.0,30.5,92,133,77,138,East Asia & Pacific,"Korea, Rep.",Personal and household products,Personal and household products,2024
+Pirelli & C,PT_01409,AU000000NUF3,25.7,30.0,20.3,32.4,132,278,145,119,Europe & Central Asia,Italy,Tyres and rubber,Tyres and rubber,2022
+Target,PT_01731,US87612E1064,29.0,38.8,27.0,28.3,91,163,58,158,North America,United States,Other,Retail,2024
+Lululemon Athletica,PT_01103,NaN,28.8,40.0,21.8,35.3,95,133,119,94,North America,Canada,Apparel and footwear,Apparel and footwear,2022
+BASF,PT_00220,NaN,29.8,55.3,27.9,22.6,80,26,51,236,Europe & Central Asia,Germany,Food and agriculture,Chemicals,2023
+Nornickel,PT_01298,RU0007288411,30.0,45.0,23.8,33.7,76,71,97,107,Europe & Central Asia,Russian Federation,Metals and mining,Metals and mining,2022
+METRO,PT_01163,NaN,25.5,23.8,24.8,27.4,134,402,80,169,Europe & Central Asia,Germany,Food and agriculture,Food retailers,2023
+Adidas,PT_00022,NaN,25.5,23.8,11.3,48.5,134,402,380,31,Europe & Central Asia,Germany,Apparel and footwear,Apparel and footwear,2022
+Archer Daniels Midland,PT_00131,NaN,27.9,46.3,21.7,30.2,106,56,122,142,North America,United States,Food and agriculture,Food production,2023
+Vedanta Resources,PT_01875,NaN,28.2,45.0,24.5,27.1,99,71,85,172,Europe & Central Asia,United Kingdom,Metals and mining,Metals and mining,2022
+AstraZeneca,PT_00152,NaN,27.4,46.3,24.1,24.8,115,56,88,206,Europe & Central Asia,United Kingdom,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+General Mills,PT_00739,US3703341046,29.2,28.8,23.0,39.3,89,310,104,71,North America,United States,Food and agriculture,Food production,2023
+Colgate-Palmolive,PT_00451,NaN,29.5,30.0,28.8,30.4,84,278,45,140,North America,United States,Personal and household products,Personal and household products,2024
+Mondelez International,PT_01196,US6092071058,30.7,35.0,19.8,46.0,72,201,155,38,North America,United States,Food and agriculture,Food production,2023
+Sumitomo Corporation,PT_01686,NaN,25.9,53.8,20.5,23.2,130,27,143,230,East Asia & Pacific,Japan,Other,Conglomerates,2024
+DOW,PT_00577,US2605571031,24.0,41.3,18.8,25.3,160,114,181,195,North America,United States,Chemicals,Chemicals,2022
+AngloGold Ashanti,PT_02238,CNE100000502,25.3,21.3,18.6,37.5,137,472,189,79,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+Indorama Ventures,PT_00897,SE0000652216,22.4,50.0,13.3,25.6,198,40,321,191,East Asia & Pacific,Thailand,Chemicals,Chemicals,2022
+Nufarm,PT_01315,AU000000NUF3,22.4,30.0,21.5,20.8,198,278,124,265,East Asia & Pacific,Australia,Food and agriculture,Agricultural products,2023
+Dabur,PT_00506,DE0006062144,22.9,45.0,21.2,16.6,188,71,133,361,South Asia,India,Personal and household products,Personal and household products,2024
+LANXESS,PT_01056,DE0005470405,24.7,33.8,20.0,28.3,148,239,152,158,Europe & Central Asia,Germany,Chemicals,Chemicals,2022
+Orkla,PT_01350,AU000000NUF3,23.6,28.8,16.8,32.1,172,310,226,121,Europe & Central Asia,Norway,Food and agriculture,Food production,2023
+Metsaliitto Osuuskunta (Metsä Group),PT_01164,NaN,23.5,36.3,19.0,25.6,174,192,176,191,Europe & Central Asia,Finland,Paper and forest,Paper and forest,2023
+Merck & Co,PT_01155,NaN,23.2,46.0,18.3,21.6,182,70,194,254,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+The Clorox Company,PT_01777,US1890541097,24.7,40.0,24.7,18.6,148,133,81,314,North America,United States,Personal and household products,Personal and household products,2024
+Burberry ,PT_00288,NaN,24.0,30.0,14.1,37.2,160,278,290,81,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2022
+Wm Morrison Supermarkets,PT_01946,GB0006043169,24.3,27.5,14.5,38.4,157,356,279,76,Europe & Central Asia,United Kingdom,Food and agriculture,Food retailers,2023
+Kimberly-Clark,PT_01007,US4943681035,23.4,30.0,22.4,22.3,177,278,112,241,North America,United States,Personal and household products,Personal and household products,2024
+Aldi South Group,PT_00066,DEXXXXXALDI0,23.8,28.8,13.9,37.3,167,310,299,80,Europe & Central Asia,Germany,Food and agriculture,Food retailers,2023
+Woolworths Group,PT_01949,NaN,24.7,38.8,10.8,40.9,148,163,401,62,East Asia & Pacific,Australia,Food and agriculture,Food retailers,2023
+Air Products and Chemicals,PT_00054,US0091581068,23.8,38.8,21.8,20.8,167,163,119,265,North America,United States,Chemicals,Chemicals,2022
+Arla Foods,PT_00136,NaN,24.9,12.5,19.6,38.2,145,554,163,78,Europe & Central Asia,Denmark,Food and agriculture,Food production,2023
+ACS Group,PT_00019,NaN,22.4,36.3,15.6,27.6,198,192,249,166,Europe & Central Asia,Spain,Construction and engineering,Construction and engineering,2022
+Kinross Gold,PT_02203,CNE100000502,23.9,27.5,17.4,32.6,162,356,214,118,North America,Canada,Metals and mining,Metals and mining,2022
+Groupe Casino,PT_02072,CNE100000502,24.8,35.0,15.6,35.2,146,201,249,96,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Natura & Co,PT_01237,BRNTCOACNOR5,23.3,31.3,19.8,25.6,179,276,155,191,Latin America & Caribbean,Brazil,Personal and household products,Personal and household products,2024
+Procter & Gamble,PT_01431,US7427181091,25.0,23.8,25.8,24.5,144,402,66,213,North America,United States,Personal and household products,Personal and household products,2024
+Mitr Phol Sugar Corp,PT_01180,NaN,23.2,20.0,18.7,31.7,182,476,183,127,East Asia & Pacific,Thailand,Food and agriculture,Food production,2023
+International Flavors & Fragrances,PT_00920,SE0000652216,24.6,45.0,15.0,31.3,152,71,270,130,North America,United States,Food and agriculture,Food production,2023
+Syngenta Group,PT_02083,CNE100000502,23.7,27.5,19.5,28.8,170,356,165,154,East Asia & Pacific,China,Food and agriculture,Agricultural products,2023
+United Company Rusal,PT_02084,CNE100000502,22.4,45.0,22.2,13.7,198,71,115,445,Europe & Central Asia,Russian Federation,Metals and mining,Metals and mining,2022
+The Estée Lauder Companies,PT_01778,US5184391044,25.1,35.0,24.6,21.8,140,201,84,252,North America,United States,Personal and household products,Personal and household products,2024
+Arkema,PT_00135,NaN,23.4,40.0,22.9,17.4,177,133,106,339,Europe & Central Asia,France,Chemicals,Chemicals,2022
+Heidelberg Materials,PT_00829,US4016171054,22.3,36.0,13.8,30.2,203,200,305,142,Europe & Central Asia,Germany,Construction materials and supplies,Construction materials and supplies,2022
+Harmony Gold,PT_02376,CNE100000502,22.8,50.0,19.2,17.4,190,40,171,339,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+Grupo Bimbo,PT_00785,MXP495211262,23.3,30.0,23.0,21.1,179,278,104,260,Latin America & Caribbean,Mexico,Food and agriculture,Food production,2023
+Falabella,PT_02408,CNE100000502,22.3,46.3,14.0,25.8,203,56,294,187,Latin America & Caribbean,Chile,Food and agriculture,Food retailers,2024
+Ralph Lauren Corporation,PT_01461,US7512121010,23.5,30.0,17.0,30.9,174,278,223,135,North America,United States,Apparel and footwear,Apparel and footwear,2022
+McCormick,PT_01141,NaN,23.9,30.0,25.2,19.4,162,278,75,296,North America,United States,Food and agriculture,Food production,2023
+Sociedad Quimica y Minera,PT_01628,NaN,23.7,38.8,12.8,34.8,170,163,337,100,Latin America & Caribbean,Chile,Food and agriculture,Agricultural products,2023
+DS Smith,PT_00580,GB0008220112,22.6,23.8,23.5,20.6,194,402,99,270,Europe & Central Asia,United Kingdom,Containers and packaging,Containers and packaging,2022
+BRF,PT_00274,NaN,23.1,41.3,18.1,23.6,184,114,202,224,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Solvay,PT_01634,NaN,23.1,50.0,18.0,20.1,184,40,205,281,Europe & Central Asia,Belgium,Chemicals,Chemicals,2022
+Mosaic,PT_01201,US61945C1036,22.7,50.0,15.3,23.4,192,40,260,229,North America,United States,Food and agriculture,Metals and mining,2023
+Nutrien,PT_01316,AU000000NUF3,25.3,45.0,23.2,20.6,137,71,101,270,North America,Canada,Food and agriculture,Agricultural products,2023
+Barry Callebaut,PT_00219,NaN,22.7,36.3,13.9,31.1,192,192,299,133,Europe & Central Asia,Switzerland,Food and agriculture,Food production,2023
+Evraz,PT_00653,NaN,23.9,41.3,21.1,21.4,162,114,136,256,Europe & Central Asia,United Kingdom,Metals and mining,Metals and mining,2022
+Covestro,PT_00488,DE0006062144,23.0,30.0,12.8,36.2,186,278,337,87,Europe & Central Asia,Germany,Chemicals,Chemicals,2022
+Mars,PT_01126,NaN,22.4,17.5,21.3,26.1,198,519,129,184,North America,United States,Food and agriculture,Food production,2023
+Jeronimo Martins,PT_00957,IL0002810146,24.8,41.3,19.0,27.2,146,114,176,171,Europe & Central Asia,Portugal,Food and agriculture,Food retailers,2023
+ICL,PT_00933,IL0002810146,25.1,41.3,22.7,22.3,140,114,109,241,Middle East & North Africa,Israel,Food and agriculture,Agricultural products,2023
+Starbucks,PT_01660,NaN,22.9,23.8,19.7,27.7,188,402,160,165,North America,United States,Food and agriculture,Food retailers,2023
+China Steel,PT_00400,NaN,24.5,50.0,31.7,3.0,155,40,23,642,East Asia & Pacific,"Taiwan, China",Metals and mining,Metals and mining,2022
+Golden Agri-Resources,PT_00761,MU0117U00026,24.3,33.8,14.6,35.8,157,239,277,91,East Asia & Pacific,Singapore,Food and agriculture,Food production,2023
+Fortescue,PT_02273,CNE100000502,22.6,48.0,16.4,21.9,194,51,235,249,East Asia & Pacific,Australia,Metals and mining,Metals and mining,2022
+Freeport-McMoRan,PT_00717,TW0001301000,24.6,30.0,11.5,43.1,152,278,377,53,North America,United States,Metals and mining,Metals and mining,2022
+Campbell's,PT_00306,NaN,24.7,40.0,21.7,23.1,148,133,122,231,North America,United States,Food and agriculture,Food production,2023
+Under Armour,PT_01838,US9024941034,23.6,33.8,14.0,34.5,172,239,294,103,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Cementos Argos,PT_00783,NaN,23.5,40.0,18.3,25.0,174,133,194,202,Latin America & Caribbean,Colombia,Construction materials and supplies,Construction materials and supplies,2022
+Eastman Chemical,PT_00590,US2774321002,25.2,30.0,24.1,25.1,139,278,88,200,North America,United States,Chemicals,Chemicals,2022
+Aurubis,PT_00162,NaN,25.1,33.8,19.6,30.1,140,239,163,145,Europe & Central Asia,Germany,Metals and mining,Metals and mining,2022
+Aker Solutions,PT_02188,CNE100000502,23.9,35.0,19.8,25.8,162,201,155,187,Europe & Central Asia,Norway,Construction and engineering,Construction and engineering,2022
+Compass Group,PT_00465,NaN,24.2,38.8,15.1,32.7,159,163,266,117,Europe & Central Asia,United Kingdom,Food and agriculture,Food retailers,2023
+Metalurgica Gerdau,PT_01159,NaN,23.0,46.3,17.8,21.8,186,56,207,252,Latin America & Caribbean,Brazil,Metals and mining,Metals and mining,2022
+Nissui Corporation,PT_01277,JP3718800000,22.8,28.8,20.4,24.3,190,310,144,215,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Linde,PT_01079,IE00BZ12WP82,22.6,33.8,11.0,36.4,194,239,396,86,Europe & Central Asia,Ireland,Chemicals,Chemicals,2022
+Taisei Corporation,PT_01718,JP3443600006,24.5,35.0,18.2,30.2,155,201,197,142,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+JSW Group,PT_00979,INE019A01038,23.8,46.3,18.7,22.6,167,56,183,236,South Asia,India,Metals and mining,Metals and mining,2022
+McCain Foods,PT_01140,NaN,23.3,41.3,18.3,24.0,179,114,194,219,North America,Canada,Food and agriculture,Food production,2023
+Roche,PT_01492,NaN,22.5,25.0,15.9,31.7,197,374,243,127,Europe & Central Asia,Switzerland,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Bolton Group,PT_02434,CNE100000502,23.9,35.0,19.2,26.8,162,201,171,179,Europe & Central Asia,Italy,Food and agriculture,Food production,2023
+BHP Group,PT_00251,NaN,25.1,25.0,16.1,39.3,140,374,240,71,East Asia & Pacific,Australia,Metals and mining,Metals and mining,2022
+Carrefour,PT_00321,NaN,24.6,42.5,17.8,28.0,152,111,207,162,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Lindt & Sprüngli,PT_01080,CH0010570759,20.6,18.8,13.1,33.0,240,478,330,114,Europe & Central Asia,Switzerland,Food and agriculture,Food production,2023
+Loblaw,PT_02169,CNE100000502,20.3,38.8,11.0,27.5,248,163,396,168,North America,Canada,Food and agriculture,Food retailers,2023
+Otsuka,PT_01354,AU000000NUF3,20.1,12.5,15.2,31.0,255,554,263,134,East Asia & Pacific,Japan,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+BayWa,PT_00226,NaN,21.0,30.0,13.2,29.6,232,278,326,148,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Molson Coors,PT_01195,NaN,21.0,25.0,18.6,23.1,232,374,189,231,North America,United States,Food and agriculture,Food production,2023
+CF Industries,PT_00339,NaN,21.1,38.8,18.0,18.8,227,163,205,308,North America,United States,Food and agriculture,Agricultural products,2023
+Schwarz Gruppe,PT_01553,NaN,22.1,17.5,21.9,24.3,208,519,118,215,Europe & Central Asia,Germany,Food and agriculture,Food retailers,2023
+Webuild,PT_02201,CNE100000502,22.0,33.8,10.6,35.2,210,239,406,96,Europe & Central Asia,Italy,Construction and engineering,Construction and engineering,2022
+Minerva,PT_01177,NaN,19.6,23.8,12.7,28.9,266,402,343,151,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Tapestry,PT_01729,US8760301072,21.5,30.0,22.6,16.4,220,278,111,367,North America,United States,Apparel and footwear,Apparel and footwear,2022
+FGV,PT_00675,MYL5222OO004,21.4,38.8,9.1,33.6,223,163,461,111,East Asia & Pacific,Malaysia,Food and agriculture,Agricultural products,2023
+Akzo Nobel,PT_00059,NL0013267909,20.8,18.8,9.6,39.2,237,478,443,73,Europe & Central Asia,Netherlands,Chemicals,Chemicals,2022
+OJI Holdings Corporation,PT_01332,AU000000NUF3,19.5,30.0,19.0,15.9,269,278,176,381,East Asia & Pacific,Japan,Paper and forest,Paper and forest,2023
+Asahi Kasei Corporation,PT_00140,NaN,19.4,23.8,21.5,14.4,271,402,124,421,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+Hankook Tire & Technology,PT_00816,US4016171054,19.9,45.0,16.0,15.9,262,71,242,381,East Asia & Pacific,"Korea, Rep.",Tyres and rubber,Tyres and rubber,2022
+SABIC,PT_02186,CNE100000502,19.3,46.3,15.3,14.6,272,56,260,418,Middle East & North Africa,Saudi Arabia,Chemicals,Chemicals,2022
+Itochu,PT_00936,IL0002810146,20.3,23.8,20.6,18.4,248,402,141,325,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+CMOC,PT_02240,CNE100000502,20.2,33.8,9.2,32.1,250,239,457,121,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Asia Cement Corporation,PT_00143,NaN,21.5,51.3,18.7,13.9,220,29,183,439,East Asia & Pacific,"Taiwan, China",Construction materials and supplies,Construction materials and supplies,2022
+Nisshin Seifun Group,PT_01281,JP3718800000,20.7,18.8,20.2,22.3,238,478,148,241,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Sumitomo Chemical,PT_02002,CNE100000502,20.0,28.8,19.0,18.1,258,310,176,326,East Asia & Pacific,Japan,Food and agriculture,Chemicals,2023
+Astellas Pharma,PT_00151,NaN,20.2,35.0,18.7,16.6,250,201,183,361,East Asia & Pacific,Japan,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Aldi Nord,PT_00065,NaN,20.9,23.8,13.6,31.3,234,402,313,130,Europe & Central Asia,Germany,Food and agriculture,Food retailers,2023
+Takeda,PT_01724,JP3463000004,19.7,17.5,22.2,16.9,264,519,115,352,East Asia & Pacific,Japan,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Associated British Foods,PT_00150,NaN,21.5,38.8,19.7,17.4,220,163,160,339,Europe & Central Asia,United Kingdom,Food and agriculture,Apparel and footwear,2023
+Klabin,PT_02212,CNE100000502,21.7,35.0,13.8,28.8,215,201,305,154,Latin America & Caribbean,Brazil,Paper and forest,Paper and forest,2023
+Halcyon Agri,PT_02223,CNE100000502,20.4,38.8,10.1,29.3,245,163,426,149,East Asia & Pacific,Singapore,Tyres and rubber,Tyres and rubber,2022
+Teva Pharmaceuticals,PT_01768,IL0006290147,21.7,40.0,16.8,22.1,215,133,226,245,Middle East & North Africa,Israel,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Avery Dennison Corporation,PT_00166,NaN,21.1,25.0,21.3,19.3,227,374,129,299,North America,United States,Containers and packaging,Containers and packaging,2022
+Kroger,PT_01031,US5010441013,20.5,45.0,11.4,24.8,243,71,379,206,North America,United States,Food and agriculture,Food retailers,2023
+Auchan,PT_00159,NaN,21.8,35.0,14.1,28.6,214,201,290,156,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Nutreco,PT_02074,CNE100000502,19.5,35.0,16.5,17.8,269,201,233,331,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+BioMar,PT_01551,NaN,21.1,17.5,14.3,35.0,227,519,285,99,Europe & Central Asia,Denmark,Food and agriculture,Food production,2023
+Mitsui,PT_01184,NaN,21.6,28.8,17.8,24.5,219,310,207,213,East Asia & Pacific,Japan,Food and agriculture,Conglomerates,2023
+Weyerhaeuser,PT_01931,US9621661043,20.4,35.0,18.1,18.1,245,201,202,326,North America,United States,Paper and forest,Paper and forest,2023
+Decathlon,PT_00532,NaN,20.1,25.0,21.8,15.6,255,374,119,389,Europe & Central Asia,France,Apparel and footwear,Apparel and footwear,2022
+Tyson Foods,PT_01830,US9024941034,19.6,33.8,16.6,18.6,266,239,232,314,North America,United States,Food and agriculture,Food production,2023
+Albemarle Corporation,PT_02126,CNE100000502,20.9,35.0,12.5,28.4,234,201,350,157,North America,United States,Metals and mining,Metals and mining,2022
+Interholco,PT_02221,CNE100000502,22.1,12.5,13.5,39.6,208,554,316,68,Europe & Central Asia,Switzerland,Paper and forest,Paper and forest,2023
+Hyundai Steel,PT_00881,KR7004020004,21.2,33.8,15.6,24.8,226,239,249,206,East Asia & Pacific,"Korea, Rep.",Metals and mining,Metals and mining,2022
+Saint-Gobain,PT_01520,NaN,22.0,25.0,17.3,28.3,210,374,217,158,Europe & Central Asia,France,Construction materials and supplies,Construction materials and supplies,2022
+Hindalco Industries,PT_00847,INE038A01020,21.3,40.0,19.8,16.1,225,133,155,379,South Asia,India,Metals and mining,Metals and mining,2022
+Nike,PT_01270,US6541061031,21.7,25.0,19.7,23.5,215,374,160,227,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Ferragamo,PT_01523,NaN,19.7,40.0,13.0,22.1,264,133,332,245,Europe & Central Asia,Italy,Apparel and footwear,Apparel and footwear,2022
+Hugo Boss,PT_00868,INE038A01020,22.0,25.0,13.6,34.0,210,374,313,105,Europe & Central Asia,Germany,Apparel and footwear,Apparel and footwear,2022
+Nomad Foods,PT_02177,CNE100000502,20.7,35.0,13.8,25.8,238,201,305,187,Europe & Central Asia,United Kingdom,Food and agriculture,Food production,2023
+Olam International,PT_01334,AU000000NUF3,20.2,33.8,9.6,31.5,250,239,443,129,East Asia & Pacific,Singapore,Food and agriculture,Food production,2023
+Wesfarmers,PT_02407,CNE100000502,22.2,45.0,6.0,38.4,205,71,543,76,East Asia & Pacific,Australia,Other,Conglomerates,2024
+Grupo Arcor,PT_00782,NaN,20.0,27.5,22.8,12.6,258,356,107,469,Latin America & Caribbean,Argentina,Food and agriculture,Food production,2023
+Sappi,PT_01537,NaN,21.9,45.0,14.8,23.6,213,71,274,224,Sub-Saharan Africa,South Africa,Paper and forest,Paper and forest,2023
+Viterra,PT_02070,CNE100000502,20.0,45.0,10.3,25.1,258,71,419,200,Europe & Central Asia,Netherlands,Food and agriculture,Agricultural products,2023
+Unicharm Corporation,PT_01839,US9024941034,19.6,41.3,21.3,8.2,266,114,129,568,East Asia & Pacific,Japan,Personal and household products,Personal and household products,2024
+Severstal,PT_01567,NaN,20.4,40.0,20.2,12.9,245,133,148,464,Europe & Central Asia,Russian Federation,Metals and mining,Metals and mining,2022
+Johnson Matthey,PT_00974,GB00BZ4BQC70,20.6,40.0,18.6,15.9,240,133,189,381,Europe & Central Asia,United Kingdom,Chemicals,Chemicals,2022
+Graphic Packaging International,PT_00767,US3886891015,20.2,41.3,16.9,16.7,250,114,225,357,North America,United States,Containers and packaging,Containers and packaging,2022
+Novozymes,PT_01308,DK0060336014,20.0,28.8,15.0,24.3,258,310,270,215,Europe & Central Asia,Denmark,Food and agriculture,Chemicals,2023
+Ingredion,PT_00910,SE0000652216,22.2,18.8,17.6,30.9,205,478,212,135,North America,United States,Food and agriculture,Food production,2023
+Bonduelle,PT_00267,NaN,19.9,35.0,18.7,15.6,262,201,183,389,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Implats,PT_02245,CNE100000502,21.1,50.0,16.4,16.9,227,40,235,352,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+VINCI,PT_01886,FR0000125486,20.5,23.8,17.6,23.8,243,402,212,222,Europe & Central Asia,France,Construction and engineering,Construction and engineering,2022
+GS Engineering & Construction,PT_00797,KR7006360002,20.2,45.0,19.5,11.2,250,71,165,499,East Asia & Pacific,"Korea, Rep.",Construction and engineering,Construction and engineering,2022
+Bristol Myers Squibb,PT_00279,NaN,20.1,40.0,16.5,17.8,255,133,233,331,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Bunge,PT_00287,NaN,22.2,36.3,16.8,24.9,205,192,226,204,North America,United States,Food and agriculture,Food production,2023
+Yum! Brands,PT_01983,NO0010208051,20.9,28.8,19.8,19.3,234,310,155,299,North America,United States,Food and agriculture,Food retailers,2023
+Conagra Brands,PT_00467,NaN,21.7,17.5,24.7,18.6,215,519,81,314,North America,United States,Food and agriculture,Food production,2023
+UPL,PT_01858,INE628A01036,21.4,45.0,7.4,33.7,223,71,506,107,South Asia,India,Food and agriculture,Agricultural products,2023
+Hanesbrands,PT_00814,US4016171054,21.1,12.5,15.8,32.8,227,554,247,115,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Danish Crown,PT_00522,NaN,20.6,18.8,21.1,20.6,240,478,136,270,Europe & Central Asia,Denmark,Food and agriculture,Food production,2023
+Umicore,PT_01836,US9024941034,18.7,45.0,11.1,20.1,284,71,391,281,Europe & Central Asia,Belgium,Chemicals,Chemicals,2022
+Nippon Steel Corporation,PT_01276,JP3381000003,18.9,18.8,25.8,8.2,279,478,66,568,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+GrainCorp,PT_00766,AU000000GNC9,16.6,33.8,9.1,21.6,338,239,461,254,East Asia & Pacific,Australia,Food and agriculture,Food production,2023
+Nichirei,PT_01266,JP3665200006,18.7,43.8,15.6,13.4,284,103,249,451,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Metinvest,PT_01161,NaN,18.1,38.8,13.9,16.4,299,163,299,367,Europe & Central Asia,Ukraine,Metals and mining,Metals and mining,2022
+Northam Platinum,PT_02247,CNE100000502,17.3,45.0,14.2,11.2,321,71,286,499,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+Novo Nordisk,PT_01306,DK0060534915,17.8,12.5,8.0,35.4,306,554,493,93,Europe & Central Asia,Denmark,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+LOTTE Chemical,PT_02181,CNE100000502,17.5,51.3,13.8,9.7,318,29,305,540,East Asia & Pacific,"Korea, Rep.",Chemicals,Chemicals,2022
+Boskalis,PT_02195,CNE100000502,17.6,45.0,7.3,22.8,313,71,511,235,Europe & Central Asia,Netherlands,Construction and engineering,Construction and engineering,2022
+Shoprite,PT_01594,NaN,18.3,45.0,14.4,13.7,296,71,283,445,Sub-Saharan Africa,South Africa,Food and agriculture,Food retailers,2023
+Semen Indonesia,PT_01561,NaN,17.1,40.0,13.3,13.6,329,133,321,447,East Asia & Pacific,Indonesia,Construction materials and supplies,Construction materials and supplies,2022
+K+S,PT_00985,DE000KSAG888,18.6,45.0,7.7,24.8,286,71,499,206,Europe & Central Asia,Germany,Food and agriculture,Agricultural products,2023
+Ingka Holding,PT_00909,SE0000652216,17.9,39.0,13.2,16.9,302,162,326,352,Europe & Central Asia,Netherlands,Other,Retail,2024
+JFE Holdings,PT_00959,IL0002810146,17.3,23.8,10.5,25.3,321,402,409,195,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+Kernel,PT_01000,LU0327357389,19.1,33.8,14.5,20.4,276,239,279,277,Europe & Central Asia,Ukraine,Food and agriculture,Food production,2023
+Eli Lilly and Company,PT_00614,US5324571083,18.4,25.0,24.1,6.7,291,374,88,594,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Jacobs Solutions,PT_00946,IL0002810146,16.8,23.8,12.7,20.6,332,402,343,270,North America,United States,Construction and engineering,Construction and engineering,2022
+Stantec,PT_01658,NaN,17.9,28.8,17.1,14.9,302,310,221,408,North America,Canada,Construction and engineering,Construction and engineering,2022
+Toyo Seikan,PT_01810,JP3613400005,17.7,25.0,11.9,23.8,309,374,365,222,East Asia & Pacific,Japan,Containers and packaging,Containers and packaging,2022
+ASICS,PT_00145,NaN,16.7,35.0,12.6,15.9,336,201,346,381,East Asia & Pacific,Japan,Apparel and footwear,Apparel and footwear,2022
+American Eagle Outfitters,PT_00089,US02553E1064,18.1,23.8,18.1,15.9,299,402,202,381,North America,United States,Apparel and footwear,Apparel and footwear,2022
+thyssenkrupp,PT_01784,DE0007500001,17.8,25.0,11.2,25.3,306,374,387,195,Europe & Central Asia,Germany,Metals and mining,Metals and mining,2022
+Barilla,PT_00217,NaN,17.9,23.8,17.8,15.6,302,402,207,389,Europe & Central Asia,Italy,Food and agriculture,Food production,2023
+Brown-Forman,PT_02164,CNE100000502,17.2,28.8,15.6,14.9,326,310,249,408,North America,United States,Food and agriculture,Food production,2023
+Hormel Foods,PT_00860,INE038A01020,18.4,32.5,9.3,26.9,291,269,454,177,North America,United States,Food and agriculture,Food production,2023
+Tiger Brands,PT_01787,ZAE000071080,17.7,28.8,14.2,18.6,309,310,286,314,Sub-Saharan Africa,South Africa,Food and agriculture,Food production,2023
+Post,PT_01417,AU000000NUF3,18.4,25.0,17.1,17.8,291,374,221,331,North America,United States,Food and agriculture,Food production,2023
+Goodyear Tire & Rubber,PT_00763,US3825501014,18.8,40.0,9.5,24.9,281,133,447,204,North America,United States,Tyres and rubber,Tyres and rubber,2022
+Tata Steel,PT_02079,CNE100000502,17.4,41.3,10.4,18.8,320,114,414,308,South Asia,India,Metals and mining,Metals and mining,2022
+SSP Group,PT_01652,NaN,18.9,45.0,7.3,26.5,279,71,511,182,Europe & Central Asia,United Kingdom,Food and agriculture,Food retailers,2023
+3M Company,PT_00001,US88579Y1010,17.7,18.8,14.8,21.9,309,478,274,249,North America,United States,Chemicals,Chemicals,2022
+ArcelorMittal,PT_00130,NaN,18.8,31.5,14.1,20.9,281,275,290,263,Europe & Central Asia,Luxembourg,Metals and mining,Metals and mining,2022
+Taiwan Cement,PT_01719,TW0001101004,17.6,45.0,11.7,15.9,313,71,372,381,East Asia & Pacific,"Taiwan, China",Construction materials and supplies,Construction materials and supplies,2022
+Bouygues Group,PT_00272,NaN,16.6,28.8,14.0,15.6,338,310,294,389,Europe & Central Asia,France,Construction and engineering,Construction and engineering,2022
+Cipla ,PT_00426,NaN,17.1,40.0,12.2,15.6,329,133,360,389,South Asia,India,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+PSA International,PT_02235,CNE100000502,17.8,50.0,13.0,11.7,306,40,332,493,East Asia & Pacific,Singapore,Freight and logistics,Freight and logistics,2024
+International Paper,PT_00921,SE0000652216,19.2,50.0,11.1,19.3,273,40,391,299,North America,United States,Containers and packaging,Containers and packaging,2022
+Greenyard,PT_00775,US3886891015,19.2,28.8,15.5,21.1,273,310,257,260,Europe & Central Asia,Belgium,Food and agriculture,Food production,2023
+Aeon,PT_00031,NaN,16.8,30.0,8.2,24.8,332,278,485,206,East Asia & Pacific,Japan,Food and agriculture,Food retailers,2023
+WestRock,PT_01929,US96145D1054,18.5,30.0,18.5,13.6,287,278,192,447,North America,United States,Containers and packaging,Containers and packaging,2022
+DIC Corporation,PT_00553,JP3493400000,17.2,28.8,19.4,8.9,326,310,167,556,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+Ma'aden,PT_02249,CNE100000502,19.2,45.0,14.1,16.7,273,71,290,357,Middle East & North Africa,Saudi Arabia,Metals and mining,Metals and mining,2022
+Yum China,PT_01982,NO0010208051,17.3,38.8,16.7,9.7,321,163,230,540,East Asia & Pacific,China,Food and agriculture,Food retailers,2023
+McDonald's,PT_01142,NaN,18.0,28.8,7.1,30.8,301,310,515,137,North America,United States,Food and agriculture,Food retailers,2023
+PhosAgro,PT_01402,AU000000NUF3,18.5,30.0,15.4,18.6,287,278,259,314,Europe & Central Asia,Russian Federation,Food and agriculture,Agricultural products,2023
+LVMH Moet Hennessy - Louis Vuitton,PT_01106,NaN,17.6,18.8,11.3,27.1,313,478,380,172,Europe & Central Asia,France,Apparel and footwear,Apparel and footwear,2022
+ForFarmers,PT_00707,NL0011832811,16.9,40.0,8.5,20.8,331,133,478,265,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+Boral,PT_00270,NaN,19.1,35.0,17.2,15.6,276,201,220,389,East Asia & Pacific,Australia,Construction materials and supplies,Construction materials and supplies,2022
+Astra Agro Lestari,PT_02073,CNE100000502,18.5,43.8,13.3,16.4,287,103,321,367,East Asia & Pacific,Indonesia,Food and agriculture,Food production,2023
+DuPont,PT_00584,US26614N1028,18.3,35.0,11.3,22.6,296,201,380,236,North America,United States,Chemicals,Chemicals,2022
+Coty,PT_00484,US2220702037,16.6,12.5,16.7,18.1,338,554,230,326,North America,United States,Personal and household products,Personal and household products,2024
+Titan Cement,PT_01789,BE0974338700,17.6,25.0,14.6,19.3,313,374,277,299,Europe & Central Asia,Belgium,Construction materials and supplies,Construction materials and supplies,2022
+Prada,PT_01425,AU000000NUF3,16.8,23.8,15.2,16.6,332,402,263,361,Europe & Central Asia,Italy,Apparel and footwear,Apparel and footwear,2022
+Antofagasta,PT_02239,CNE100000502,17.3,28.8,8.1,27.1,321,310,490,172,Europe & Central Asia,United Kingdom,Metals and mining,Metals and mining,2022
+Skanska,PT_01619,NaN,16.8,25.0,13.5,18.6,332,374,316,314,Europe & Central Asia,Sweden,Construction and engineering,Construction and engineering,2022
+Page Industries,PT_02406,CNE100000502,19.0,43.8,21.5,5.2,278,103,124,618,South Asia,India,Apparel and footwear,Apparel and footwear,2022
+Sigma Alimentos,PT_02068,CNE100000502,17.7,23.8,15.1,19.4,309,402,266,296,Latin America & Caribbean,Mexico,Food and agriculture,Food production,2023
+Dr Reddy's Laboratories ,PT_00578,US2605571031,17.5,28.8,13.8,18.8,318,310,305,308,South Asia,India,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Uni-President,PT_01846,TW0001216000,18.4,33.8,19.9,9.9,291,239,154,536,East Asia & Pacific,"Taiwan, China",Food and agriculture,Food retailers,2023
+Yokohama Rubber,PT_01978,NO0010208051,18.3,23.8,18.8,15.2,296,402,181,403,East Asia & Pacific,Japan,Tyres and rubber,Tyres and rubber,2022
+Megmilk Snow Brand,PT_01148,NaN,17.3,18.8,13.2,23.1,321,478,326,231,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Marfrig,PT_01122,NaN,17.6,18.8,21.4,11.2,313,478,127,499,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Daiichi Sankyo ,PT_00512,JP3475350009,17.2,23.8,18.2,12.9,326,402,197,464,East Asia & Pacific,Japan,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Sherwin-Williams,PT_02184,CNE100000502,16.7,25.0,16.1,14.1,336,374,240,425,North America,United States,Chemicals,Chemicals,2022
+Votorantim Cimentos,PT_02080,CNE100000502,18.8,27.5,18.7,15.6,281,356,183,389,Latin America & Caribbean,Brazil,Construction materials and supplies,Construction materials and supplies,2022
+Sumitomo Metal Mining,PT_02121,CNE100000502,17.9,40.0,19.4,6.4,302,133,167,604,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+Sika,PT_02185,CNE100000502,18.5,45.0,10.6,20.1,287,71,406,281,Europe & Central Asia,Switzerland,Chemicals,Chemicals,2022
+African Rainbow Minerals,PT_02374,CNE100000502,18.4,33.8,17.8,13.1,291,239,207,461,Sub-Saharan Africa,South Africa,Metals and mining,Metals and mining,2022
+Sobeys,PT_02118,CNE100000502,14.3,22.5,14.7,10.4,406,453,276,513,North America,Canada,Food and agriculture,Food retailers,2023
+TreeHouse Foods,PT_01819,TH0212A10Z07,16.2,25.0,15.9,12.9,352,374,243,464,North America,United States,Food and agriculture,Food production,2023
+DP World,PT_02231,CNE100000502,14.5,23.8,12.9,13.1,396,402,334,461,Middle East & North Africa,United Arab Emirates,Freight and logistics,Freight and logistics,2024
+Arconic,PT_00132,NaN,14.3,6.3,12.9,19.9,406,618,334,290,North America,United States,Metals and mining,Metals and mining,2022
+Indofood,PT_02069,CNE100000502,16.3,43.8,10.0,15.0,349,103,429,407,East Asia & Pacific,Indonesia,Food and agriculture,Food production,2023
+Aditya Birla Fashion and Retail,PT_02257,CNE100000502,16.5,33.8,13.7,13.9,342,239,312,439,South Asia,India,Apparel and footwear,Apparel and footwear,2024
+Magnit,PT_01115,NaN,14.5,33.8,7.4,17.9,396,239,506,330,Europe & Central Asia,Russian Federation,Food and agriculture,Food retailers,2023
+Nordstrom,PT_01292,JP3718800000,16.2,23.8,6.8,28.1,352,402,524,161,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Suedzucker,PT_01682,DE0007297004,14.8,35.0,10.1,14.1,386,201,426,425,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Ball Corporation,PT_00185,NaN,15.8,0.0,12.9,26.8,369,657,334,179,North America,United States,Containers and packaging,Containers and packaging,2022
+Ardagh Group,PT_00133,NaN,14.4,23.8,11.9,14.6,401,402,365,418,Europe & Central Asia,Luxembourg,Containers and packaging,Containers and packaging,2022
+Amaggi Group,PT_00080,NaN,14.7,18.8,10.4,19.9,390,478,414,290,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Hutchison Port,PT_02230,CNE100000502,14.4,28.8,5.5,21.9,401,310,558,249,East Asia & Pacific,Singapore,Freight and logistics,Freight and logistics,2024
+Bumitama Agri,PT_02436,CNE100000502,16.0,30.0,9.1,21.2,361,278,461,259,East Asia & Pacific,Indonesia,Food and agriculture,Food production,2023
+Fomento de Construcciones y Contratas,PT_00700,ES0122060314,16.4,35.0,9.8,19.4,345,201,437,296,Europe & Central Asia,Spain,Construction and engineering,Construction and engineering,2022
+Del Monte Pacific,PT_00537,VGG270541169,15.2,33.8,10.4,15.2,379,239,414,403,North America,United States,Food and agriculture,Food production,2023
+Hengan International,PT_00834,US4016171054,14.6,33.8,12.8,9.7,392,239,337,540,East Asia & Pacific,China,Personal and household products,Personal and household products,2024
+Saur,PT_01544,NaN,14.8,23.8,12.7,14.4,386,402,343,421,Europe & Central Asia,France,Other,Utilities,2024
+Sealed Air,PT_02172,CNE100000502,14.4,18.8,13.4,14.1,401,478,318,425,North America,United States,Containers and packaging,Containers and packaging,2022
+Quanta Services,PT_01456,US74762E1029,14.4,23.8,8.4,20.1,401,402,480,281,North America,United States,Construction and engineering,Construction and engineering,2022
+Packaging Corporation of America (PCA),PT_01366,AU000000NUF3,15.9,23.8,13.2,17.1,365,402,326,346,North America,United States,Containers and packaging,Containers and packaging,2022
+James Hardie Industries,PT_00947,IL0002810146,14.5,30.0,10.6,14.1,396,278,406,425,Europe & Central Asia,Ireland,Construction materials and supplies,Construction materials and supplies,2022
+Marubeni Corporation,PT_01129,NaN,16.2,38.8,9.7,17.4,352,163,440,339,East Asia & Pacific,Japan,Food and agriculture,Conglomerates,2023
+Mitsubishi Corporation,PT_01181,NaN,15.7,30.0,12.4,15.2,371,278,354,403,East Asia & Pacific,Japan,Food and agriculture,Conglomerates,2023
+Subsea 7,PT_02199,CNE100000502,14.8,25.0,9.2,19.3,386,374,457,299,Europe & Central Asia,United Kingdom,Construction and engineering,Construction and engineering,2022
+Ternium,PT_01763,US8808901081,14.6,12.5,12.6,18.6,392,554,346,314,Europe & Central Asia,Luxembourg,Metals and mining,Metals and mining,2022
+Aspen Pharmacare,PT_00147,NaN,15.1,38.8,7.2,17.8,381,163,514,331,Sub-Saharan Africa,South Africa,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Saputo,PT_01538,NaN,15.1,12.5,20.3,8.2,381,554,145,568,North America,Canada,Food and agriculture,Food production,2023
+Grupo Nutresa,PT_00793,COT04PA00028,15.3,12.5,11.6,22.4,377,554,374,240,Latin America & Caribbean,Colombia,Food and agriculture,Food production,2023
+JM Smucker,PT_00970,US8326964058,15.0,18.8,11.2,19.3,384,478,387,299,North America,United States,Food and agriculture,Food production,2023
+Nordzucker,PT_01293,DE0007866303,15.1,0.0,15.6,20.6,381,657,249,270,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Gilead Sciences,PT_00750,US3755581036,14.2,12.5,11.7,18.8,408,554,372,308,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Balfour Beatty,PT_00184,NaN,15.9,30.0,9.6,20.1,365,278,443,281,Europe & Central Asia,United Kingdom,Construction and engineering,Construction and engineering,2022
+Continental,PT_00472,NaN,16.1,17.5,9.5,26.0,359,519,447,185,Europe & Central Asia,Germany,Tyres and rubber,Tyres and rubber,2022
+Corteva Agriscience,PT_00479,US22052L1044,15.8,23.8,13.4,16.4,369,402,318,367,North America,United States,Food and agriculture,Agricultural products,2023
+Huntsman Corporation,PT_00873,US4470111075,16.0,18.8,12.6,20.3,361,478,346,280,North America,United States,Chemicals,Chemicals,2022
+Seven & I,PT_01565,NaN,16.4,17.5,6.3,31.8,345,519,534,125,East Asia & Pacific,Japan,Food and agriculture,Food retailers,2023
+Nucor Corporation,PT_01313,US6703461052,15.4,28.8,14.5,11.5,375,310,279,495,North America,United States,Metals and mining,Metals and mining,2022
+Shree Cement,PT_01597,NaN,14.4,38.8,11.0,9.9,401,163,396,536,South Asia,India,Construction materials and supplies,Construction materials and supplies,2022
+Royal BAM Group,PT_00186,NaN,15.2,40.0,8.8,15.1,379,133,472,406,Europe & Central Asia,Netherlands,Construction and engineering,Construction and engineering,2022
+Transocean,PT_02373,CNE100000502,14.6,18.8,8.7,22.1,392,478,474,245,Europe & Central Asia,Switzerland,Other,Oil and gas,2024
+Norgesgruppen,PT_01296,NaN,15.9,12.5,15.1,18.6,365,554,266,314,Europe & Central Asia,Norway,Food and agriculture,Food retailers,2023
+M Dias Branco,PT_01109,NaN,14.8,30.0,9.4,17.1,386,278,451,346,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+UltraTech Cement,PT_02104,CNE100000502,16.5,25.0,11.3,21.3,342,374,380,257,South Asia,India,Construction materials and supplies,Construction materials and supplies,2022
+Hanwha Solutions,PT_00819,US4016171054,16.0,28.8,17.3,8.9,361,310,217,556,East Asia & Pacific,"Korea, Rep.",Chemicals,Chemicals,2022
+Nippon Paper Industries,PT_01275,BMG653181005,16.4,22.5,15.8,14.9,345,453,247,408,East Asia & Pacific,Japan,Paper and forest,Paper and forest,2023
+Lojas Renner,PT_01088,NaN,16.3,28.8,10.2,20.8,349,310,421,265,Latin America & Caribbean,Brazil,Apparel and footwear,Apparel and footwear,2022
+X5 Retail Group,PT_01958,US98387E2054,15.5,33.8,7.3,21.1,373,239,511,260,Europe & Central Asia,Russian Federation,Food and agriculture,Food retailers,2023
+Restaurant Brands International,PT_01483,NaN,16.4,30.0,13.9,14.9,345,278,299,408,North America,Canada,Food and agriculture,Food retailers,2023
+First Quantum Minerals,PT_02242,CNE100000502,14.9,25.0,10.9,17.1,385,374,400,346,North America,Canada,Metals and mining,Metals and mining,2022
+Cencosud,PT_00330,NaN,16.2,28.8,8.0,24.0,352,310,493,219,Latin America & Caribbean,Chile,Food and agriculture,Food retailers,2023
+West Fraser Timber,PT_01923,KYG9431R1039,14.6,5.0,18.2,12.9,392,646,197,464,North America,Canada,Paper and forest,Paper and forest,2023
+Shimizu Corporation,PT_01589,NaN,15.9,22.5,20.1,6.7,365,453,150,594,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Columbia Sportswear,PT_00453,NaN,15.5,11.3,13.3,20.6,373,599,321,270,North America,United States,Apparel and footwear,Apparel and footwear,2022
+China Merchants Ports,PT_02254,CNE100000502,16.5,38.8,13.8,11.2,342,163,305,499,East Asia & Pacific,"Hong Kong SAR, China",Freight and logistics,Freight and logistics,2024
+AbbVie,PT_00006,US00287Y1091,15.3,23.8,12.4,16.4,377,402,354,367,North America,United States,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Carter's,PT_00322,NaN,14.7,25.0,9.6,18.6,390,374,443,314,North America,United States,Apparel and footwear,Apparel and footwear,2022
+ARAUCO,PT_02091,CNE100000502,16.2,22.5,18.2,10.4,352,453,197,513,Latin America & Caribbean,Chile,Paper and forest,Paper and forest,2023
+Toba Pulp Lestari,PT_02216,CNE100000502,14.5,22.5,10.3,17.7,396,453,419,337,East Asia & Pacific,Indonesia,Paper and forest,Paper and forest,2023
+Sysco,PT_01713,NaN,16.6,28.8,11.0,20.4,338,310,396,277,North America,United States,Food and agriculture,Food production,2023
+Chipotle Mexican Grill,PT_00411,NaN,16.2,36.3,11.9,14.9,352,192,365,408,North America,United States,Food and agriculture,Food retailers,2023
+Eiffage,PT_00609,FR0000130452,15.4,12.5,19.2,10.4,375,554,171,513,Europe & Central Asia,France,Construction and engineering,Construction and engineering,2022
+Kohl's,PT_01017,US5002551043,15.6,6.3,15.6,19.3,372,618,249,299,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Citrosuco,PT_02075,CNE100000502,16.2,18.8,15.5,16.4,352,478,257,367,Latin America & Caribbean,Brazil,Food and agriculture,Agricultural products,2023
+TUI Cruises,PT_02174,CNE100000502,16.0,12.5,9.8,26.8,361,554,437,179,Europe & Central Asia,Germany,Passenger transport (Cruises),Passenger transport (Cruises),2024
+Royal Caribbean Group,PT_02175,CNE100000502,16.1,33.8,9.0,20.1,359,239,466,281,North America,United States,Passenger transport (Cruises),Passenger transport (Cruises),2024
+Pactiv Evergreen,PT_02171,CNE100000502,14.5,11.3,15.2,14.9,396,599,263,408,North America,United States,Containers and packaging,Containers and packaging,2022
+Borealis,PT_02179,CNE100000502,16.3,38.8,10.1,16.9,349,163,426,352,Europe & Central Asia,Austria,Chemicals,Chemicals,2022
+Savencia,PT_01545,NaN,14.2,23.8,8.1,20.1,408,402,490,281,Europe & Central Asia,France,Food and agriculture,Food production,2023
+INEOS,PT_00902,SE0000652216,12.2,17.5,8.2,16.4,469,519,485,367,Europe & Central Asia,United Kingdom,Chemicals,Chemicals,2022
+China Shenhua,PT_02719,CNE100000502,13.8,33.8,14.4,4.8,425,239,283,629,East Asia & Pacific,China,Metals and mining,Metals and mining,2024
+Obayashi Corporation,PT_01321,AU000000NUF3,13.7,23.8,6.8,20.6,428,402,524,270,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Siam City Cement,PT_01600,NaN,14.1,28.8,10.7,13.4,414,310,404,451,East Asia & Pacific,Thailand,Construction materials and supplies,Construction materials and supplies,2022
+Shin-Etsu Chemical,PT_01590,NaN,13.0,23.8,13.3,8.2,451,402,321,568,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+Industrias Peñoles,PT_02210,CNE100000502,14.2,32.5,6.7,18.6,408,269,527,314,Latin America & Caribbean,Mexico,Metals and mining,Metals and mining,2022
+Salling Group,PT_01522,NaN,13.6,12.5,12.4,15.9,433,554,354,381,Europe & Central Asia,Denmark,Food and agriculture,Food retailers,2023
+Otto Group,PT_01355,AU000000NUF3,12.4,23.8,0.0,27.3,467,402,722,170,Europe & Central Asia,Germany,Apparel and footwear,Apparel and footwear,2022
+The TJX Companies,PT_01781,US8725401090,14.0,23.8,9.0,17.8,417,402,466,331,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Ganfeng Lithium,PT_02243,CNE100000502,12.7,35.0,11.8,5.2,460,201,368,618,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Central Retail,PT_00333,NaN,12.8,28.8,9.1,12.1,457,310,461,475,East Asia & Pacific,Thailand,Food and agriculture,Retail,2023
+Union Andina de Cementos,PT_01842,US9024941034,14.2,38.8,10.2,10.4,408,163,421,513,Latin America & Caribbean,Peru,Construction materials and supplies,Construction materials and supplies,2022
+Pou Chen Corporation,PT_01419,AU000000NUF3,13.0,27.5,7.0,16.7,451,356,520,357,East Asia & Pacific,"Taiwan, China",Apparel and footwear,Apparel and footwear,2022
+Parlevliet & Van der Plas,PT_01371,AU000000NUF3,14.2,30.0,12.0,10.4,408,278,361,513,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+Austevoll Seafood,PT_00163,NaN,12.7,28.8,4.0,20.1,460,310,602,281,Europe & Central Asia,Norway,Food and agriculture,Food production,2023
+Domino's,PT_02438,CNE100000502,13.6,18.8,12.8,12.6,433,478,337,469,North America,United States,Food and agriculture,Food retailers,2023
+Wienerberger,PT_01937,AT0000831706,13.2,35.0,5.3,16.6,446,201,562,361,Europe & Central Asia,Austria,Construction materials and supplies,Construction materials and supplies,2022
+Nan Ya Plastics Corporation,PT_01220,TW0001303006,12.2,38.8,11.3,2.8,469,163,380,653,East Asia & Pacific,"Taiwan, China",Chemicals,Chemicals,2022
+LOTTE Corporation,PT_01094,NaN,12.9,28.8,8.0,14.1,456,310,493,425,East Asia & Pacific,"Korea, Rep.",Food and agriculture,Conglomerates,2023
+Sodiaal,PT_01631,NaN,12.2,18.8,14.9,5.2,469,478,272,618,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Mr. Price,PT_01203,ZAE000200457,13.7,32.5,5.2,19.6,428,269,565,294,Sub-Saharan Africa,South Africa,Apparel and footwear,Apparel and footwear,2022
+Asos,PT_00002,US88579Y1010,13.4,25.0,2.9,25.0,440,374,635,202,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2022
+NH Foods,PT_01264,CNE000000VB0,12.7,28.8,9.4,11.4,460,310,451,496,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+China Mengniu Dairy,PT_00376,NaN,13.7,38.8,12.0,6.2,428,163,361,605,East Asia & Pacific,"Hong Kong SAR, China",Food and agriculture,Food production,2023
+Codelco,PT_02204,CNE100000502,12.6,28.8,11.2,8.2,463,310,387,568,Latin America & Caribbean,Chile,Metals and mining,Metals and mining,2022
+COOP Group,PT_00475,NaN,13.5,22.5,12.8,11.0,437,453,337,509,Europe & Central Asia,Switzerland,Food and agriculture,Food retailers,2023
+Want Want China,PT_01909,KYG9431R1039,13.0,40.0,11.6,4.5,451,133,374,630,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Albertsons Companies,PT_00063,US0130911037,12.2,18.8,9.4,14.1,469,478,451,425,North America,United States,Food and agriculture,Food retailers,2023
+Aurobindo Pharma,PT_00160,NaN,13.3,28.8,17.4,0.7,444,310,214,689,South Asia,India,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Grasim Industries,PT_02202,CNE100000502,13.0,22.5,12.6,9.7,451,453,346,540,South Asia,India,Chemicals,Chemicals,2022
+Dalmia Bharat,PT_00517,NaN,13.9,40.0,15.1,1.5,421,133,266,665,South Asia,India,Construction materials and supplies,Construction materials and supplies,2022
+O-I,PT_01330,AU000000NUF3,13.9,23.8,13.1,11.2,421,402,330,499,North America,United States,Containers and packaging,Containers and packaging,2022
+New Balance,PT_01250,NaN,13.4,22.5,12.0,11.9,440,453,361,478,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Aramark,PT_00127,NaN,12.1,23.8,4.9,18.6,474,402,576,314,North America,United States,Food and agriculture,Food retailers,2023
+Elior Group,PT_00615,FR0011950732,12.4,18.8,12.0,10.4,467,478,361,513,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Showa Denko,PT_01596,NaN,13.4,25.0,11.2,12.1,440,374,387,475,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+Tate & Lyle,PT_01733,GB0008754136,12.8,11.3,11.6,15.4,457,599,374,401,Europe & Central Asia,United Kingdom,Food and agriculture,Food production,2023
+Voestalpine,PT_01897,NaN,12.1,32.5,5.8,13.6,474,269,546,447,Europe & Central Asia,Austria,Metals and mining,Metals and mining,2022
+ECOM Agroindustrial,PT_00598,NaN,13.7,6.3,9.3,23.5,428,618,454,227,Europe & Central Asia,Switzerland,Food and agriculture,Food production,2023
+U.S. Steel,PT_01852,TW0001216000,13.7,18.8,10.7,16.4,428,478,404,367,North America,United States,Metals and mining,Metals and mining,2022
+International Container Terminal Services,PT_02233,CNE100000502,14.0,38.8,8.7,11.7,417,163,474,493,East Asia & Pacific,Philippines,Freight and logistics,Freight and logistics,2024
+LyondellBasell Industries,PT_01108,NaN,13.8,28.8,8.4,16.4,425,310,480,367,Europe & Central Asia,Netherlands,Chemicals,Chemicals,2022
+Carnival Corporation,PT_00319,NaN,13.2,25.0,9.5,13.9,446,374,447,439,North America,United States,Passenger transport (Cruises),Passenger transport (Cruises),2024
+The Foschini Group (TFG),PT_01779,ZAE000148466,14.0,56.3,4.0,12.6,417,20,602,469,Sub-Saharan Africa,South Africa,Apparel and footwear,Apparel and footwear,2022
+Costco Wholesale,PT_00482,US22160K1051,13.0,6.3,12.5,16.4,451,618,350,367,North America,United States,Food and agriculture,Retail,2023
+Ebro Foods,PT_00595,ES0112501012,13.4,16.3,13.9,11.4,440,545,299,496,Europe & Central Asia,Spain,Food and agriculture,Food production,2023
+Zalando,PT_01987,NO0010208051,13.6,25.0,8.2,17.4,433,374,485,339,Europe & Central Asia,Germany,Apparel and footwear,Apparel and footwear,2022
+Pacific International Lines,PT_01363,AU000000NUF3,12.5,28.8,7.6,13.1,465,310,502,461,East Asia & Pacific,Singapore,Freight and logistics,Freight and logistics,2024
+Buenaventura,PT_02718,CNE100000502,13.3,25.0,6.7,18.9,444,374,527,306,Latin America & Caribbean,Peru,Metals and mining,Metals and mining,2024
+Land O'Lakes,PT_01053,US514666AN65,13.6,25.0,11.3,12.6,433,374,380,469,North America,United States,Food and agriculture,Food production,2023
+Kobe Steel (KOBELCO),PT_01014,JP3289800009,12.6,17.5,12.3,11.2,463,519,358,499,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+DEME,PT_02192,CNE100000502,13.5,30.0,11.1,10.4,437,278,391,513,Europe & Central Asia,Belgium,Construction and engineering,Construction and engineering,2022
+Celanese,PT_00328,NaN,13.2,25.0,6.1,19.6,446,374,538,294,North America,United States,Chemicals,Chemicals,2022
+Fluor,PT_00697,US3434121022,14.0,28.8,10.0,14.4,417,310,429,421,North America,United States,Construction and engineering,Construction and engineering,2022
+Kikkoman Corporation,PT_01006,JP3240400006,13.5,12.5,15.6,10.7,437,554,249,510,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Norwegian Cruise Line Holdings,PT_01303,BMG667211046,12.8,23.8,10.5,11.9,457,402,409,478,North America,United States,Passenger transport (Cruises),Passenger transport (Cruises),2024
+JBS,PT_00953,IL0002810146,14.2,23.8,11.3,14.9,408,402,380,408,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Dexco,PT_02214,CNE100000502,13.9,35.0,11.8,8.7,421,201,368,562,Latin America & Caribbean,Brazil,Paper and forest,Paper and forest,2023
+Constellation Brands,PT_00471,NaN,12.1,6.3,12.3,14.1,474,618,358,425,North America,United States,Food and agriculture,Food production,2023
+Crown Holdings,PT_00495,DE0006062144,13.8,12.5,12.4,16.6,425,554,354,361,North America,United States,Containers and packaging,Containers and packaging,2022
+Alpek,PT_02090,CNE100000502,13.1,17.5,9.9,16.4,449,519,434,367,Latin America & Caribbean,Mexico,Chemicals,Chemicals,2022
+Kewpie Corporation,PT_01003,JP3244800003,14.1,23.8,14.0,10.4,414,402,294,513,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Bath & Body Works,PT_01045,JP3257200000,12.2,23.8,5.9,17.4,469,402,545,339,North America,United States,Other,Retail,2024
+Amcor,PT_00082,JE00BJ1F3079,14.1,30.0,10.4,13.6,414,278,414,447,Europe & Central Asia,Switzerland,Containers and packaging,Containers and packaging,2022
+DLG Group,PT_00564,GB00BY9D0Y18,13.9,12.5,14.2,14.1,421,554,286,425,Europe & Central Asia,Denmark,Food and agriculture,Food production,2023
+Godrej Consumer Products,PT_00758,INE102D01028,13.1,43.8,13.6,0.0,449,103,313,700,South Asia,India,Personal and household products,Personal and household products,2024
+AECOM,PT_00029,NaN,12.5,17.5,5.8,20.9,465,519,546,263,North America,United States,Construction and engineering,Construction and engineering,2022
+"FCF Co., Ltd.",PT_00661,NaN,10.6,43.8,4.6,5.1,521,103,584,626,East Asia & Pacific,"Taiwan, China",Food and agriculture,Food production,2023
+Universal Robina,PT_01856,PHY9297P1004,11.4,18.8,10.5,9.7,501,478,409,540,East Asia & Pacific,Philippines,Food and agriculture,Food production,2023
+China International Marine Containers (Group),PT_00373,NaN,12.0,40.0,12.5,0.0,477,133,350,700,East Asia & Pacific,China,Containers and packaging,Containers and packaging,2022
+Abercrombie & Fitch,PT_00007,US0028962076,11.2,12.5,9.0,14.1,505,554,466,425,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Maruha Nichiro,PT_01131,NaN,10.6,28.8,4.2,13.4,521,310,596,451,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Kajima Corporation,PT_00987,JP3210200006,11.7,22.5,7.1,14.6,486,453,515,418,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+J Crew Group,PT_00940,IL0002810146,11.8,23.8,5.2,17.4,484,402,565,339,North America,United States,Apparel and footwear,Apparel and footwear,2022
+LPP,PT_01098,NaN,9.4,17.5,1.8,18.1,543,519,669,326,Europe & Central Asia,Poland,Apparel and footwear,Apparel and footwear,2022
+US Foods,PT_01862,US9120081099,11.5,17.5,4.5,19.9,497,519,585,290,North America,United States,Food and agriculture,Food production,2023
+Sun Pharma,PT_01695,NaN,9.4,38.8,1.6,9.7,543,163,675,540,South Asia,India,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+China Shanshui Cement Group,PT_00395,NaN,9.9,5.0,15.9,2.5,534,646,243,654,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+Martin Marietta Materials,PT_01128,NaN,11.8,12.5,9.9,14.4,484,554,434,421,North America,United States,Construction materials and supplies,Construction materials and supplies,2022
+STRABAG,PT_01676,AT000000STR1,11.7,27.5,5.2,15.6,486,356,565,389,Europe & Central Asia,Austria,Construction and engineering,Construction and engineering,2022
+E-Mart,PT_00618,KR7139480008,9.6,28.8,5.8,7.7,537,310,546,581,East Asia & Pacific,"Korea, Rep.",Food and agriculture,Food retailers,2023
+Calavo Growers,PT_00299,NaN,12.0,27.5,8.9,10.4,477,356,470,513,North America,United States,Food and agriculture,Food production,2023
+RCL Foods,PT_01467,ZAE000179438,9.6,38.8,3.5,7.4,537,163,619,583,Sub-Saharan Africa,South Africa,Food and agriculture,Food production,2023
+Tianqi Lithium,PT_02206,CNE100000502,11.5,38.8,11.8,0.0,497,163,368,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+KWS,PT_01041,DE0007074007,10.4,23.8,4.5,14.1,526,402,585,425,Europe & Central Asia,Germany,Food and agriculture,Agricultural products,2023
+Toray Industries,PT_01804,JP3621000003,11.6,11.3,11.8,11.4,493,599,368,496,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+PPG Industries,PT_01424,AU000000NUF3,11.9,23.8,5.1,17.8,482,402,571,331,North America,United States,Chemicals,Chemicals,2022
+Foot Locker,PT_00704,US3448491049,10.8,18.8,2.6,20.4,516,478,645,277,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Monster Beverage,PT_02163,CNE100000502,11.2,12.5,3.9,22.3,505,554,609,241,North America,United States,Food and agriculture,Food production,2023
+Ross Stores,PT_01499,NaN,9.5,18.8,6.6,10.4,542,478,530,513,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Lamb Weston,PT_01052,US5132721045,9.9,33.8,5.7,6.7,534,239,553,594,North America,United States,Food and agriculture,Food production,2023
+Haseko Corporation,PT_00823,US4016171054,11.1,18.8,11.1,8.2,509,478,391,568,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Mewah,PT_01165,NaN,10.6,30.0,5.8,10.4,521,278,546,513,East Asia & Pacific,Singapore,Food and agriculture,Food production,2023
+Bumi Resources,PT_00286,NaN,11.6,27.5,8.0,10.7,493,356,493,510,East Asia & Pacific,Indonesia,Metals and mining,Metals and mining,2022
+WH Group,PT_01932,KYG960071028,9.8,18.8,6.1,11.9,536,478,538,478,East Asia & Pacific,"Hong Kong SAR, China",Food and agriculture,Food production,2023
+Macy's,PT_01113,NaN,10.1,12.5,4.0,18.8,531,554,602,308,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Summit Materials,PT_01692,NaN,10.8,18.8,5.1,16.7,516,478,571,357,North America,United States,Construction materials and supplies,Construction materials and supplies,2022
+Formosa Plastics,PT_00709,TW0001301000,11.6,32.5,9.2,6.7,493,269,457,594,East Asia & Pacific,"Taiwan, China",Chemicals,Chemicals,2022
+SHEIN,PT_02443,CNE100000502,11.3,18.8,5.8,17.0,502,478,546,350,East Asia & Pacific,Singapore,Apparel and footwear,Apparel and footwear,2024
+Century Pacific Food,PT_02437,CNE100000502,10.8,22.5,7.0,11.9,516,453,520,478,East Asia & Pacific,Philippines,Food and agriculture,Food production,2023
+Nampak,PT_01219,ZAE000071676,9.6,21.3,3.2,14.9,537,472,625,408,Sub-Saharan Africa,South Africa,Containers and packaging,Containers and packaging,2022
+Avril Group,PT_00171,NaN,12.0,12.5,12.8,10.4,477,554,337,513,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Westlake Chemical,PT_01927,KYG9431R1039,12.0,28.8,4.9,16.4,477,310,576,367,North America,United States,Chemicals,Chemicals,2022
+Guess?,PT_00806,US4016171054,11.7,33.8,9.7,5.9,486,239,440,606,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Kumagai Gumi,PT_01035,JP3266800006,10.9,16.3,9.7,10.7,515,545,440,510,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Brinker International,PT_02435,CNE100000502,11.2,12.5,2.6,24.1,505,554,645,218,North America,United States,Food and agriculture,Food retailers,2023
+Arcos Dorados,PT_02433,CNE100000502,11.7,22.5,8.3,12.6,486,453,483,469,Latin America & Caribbean,Uruguay,Food and agriculture,Food retailers,2023
+DL Holdings,PT_02382,CNE100000502,11.3,33.8,7.5,8.2,502,239,504,568,East Asia & Pacific,"Korea, Rep.",Other,Trusts and funds,2024
+CIL,PT_02720,CNE100000502,10.7,26.3,12.5,1.5,520,371,350,665,South Asia,India,Metals and mining,Metals and mining,2024
+Vion,PT_01887,NaN,9.6,20.0,4.5,13.4,537,476,585,451,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+LG Chem,PT_02180,CNE100000502,11.5,18.8,10.4,10.4,497,478,414,513,East Asia & Pacific,"Korea, Rep.",Chemicals,Chemicals,2022
+Gruma,PT_00781,NaN,11.2,33.8,4.9,11.9,505,239,576,478,Latin America & Caribbean,Mexico,Food and agriculture,Food production,2023
+Yildiz,PT_01975,NO0010208051,11.7,17.5,11.1,10.4,486,519,391,513,Europe & Central Asia,Türkiye,Food and agriculture,Food production,2023
+Cheng Shin Rubber,PT_00345,NaN,11.3,21.3,10.8,8.2,502,472,401,568,East Asia & Pacific,"Taiwan, China",Tyres and rubber,Tyres and rubber,2022
+Zespri,PT_01990,NO0010208051,9.6,12.5,8.5,10.0,537,554,478,535,East Asia & Pacific,New Zealand,Food and agriculture,Agricultural products,2023
+Nine Dragons Paper,PT_01272,BMG653181005,11.6,23.8,13.9,3.0,493,402,299,642,East Asia & Pacific,"Hong Kong SAR, China",Containers and packaging,Containers and packaging,2022
+Roquette,PT_01497,NaN,10.4,12.5,2.9,21.3,526,554,635,257,Europe & Central Asia,France,Food and agriculture,Paper and forest products,2023
+Inghams,PT_00908,SE0000652216,11.0,18.8,8.4,11.9,510,478,480,478,East Asia & Pacific,Australia,Food and agriculture,Agricultural products,2023
+TPI Polene,PT_01814,TH0212A10Z07,11.7,38.8,10.2,3.0,486,163,421,642,East Asia & Pacific,Thailand,Construction materials and supplies,Construction materials and supplies,2022
+Jollibee,PT_00975,PHY4466S1007,10.3,12.5,8.8,11.9,528,554,472,478,East Asia & Pacific,Philippines,Food and agriculture,Food retailers,2023
+MHP,PT_01167,NaN,10.0,26.3,4.0,12.9,533,371,602,464,Europe & Central Asia,Ukraine,Food and agriculture,Food production,2023
+Alpla,PT_02211,CNE100000502,11.0,12.5,9.2,13.2,510,554,457,460,Europe & Central Asia,Austria,Containers and packaging,Containers and packaging,2022
+Vinamilk,PT_01885,VN000000VNM8,11.0,23.8,9.5,8.2,510,402,447,568,East Asia & Pacific,Vietnam,Food and agriculture,Food production,2023
+ED&F Man,PT_00601,NaN,11.0,22.5,5.6,14.9,510,453,555,408,Europe & Central Asia,United Kingdom,Food and agriculture,Food production,2023
+BESTSELLER,PT_00246,NaN,10.5,0.0,9.1,16.9,525,657,461,352,Europe & Central Asia,Denmark,Apparel and footwear,Apparel and footwear,2022
+MSC Cruises,PT_01206,NaN,10.8,18.8,10.0,8.8,516,478,429,561,Europe & Central Asia,United Kingdom,Passenger transport (Cruises),Passenger transport (Cruises),2024
+WTK,PT_02219,CNE100000502,11.0,27.5,8.3,8.5,510,356,483,563,East Asia & Pacific,Malaysia,Paper and forest,Paper and forest,2023
+ICA Gruppen,PT_00884,SE0000652216,11.7,18.8,9.8,11.9,486,478,437,478,Europe & Central Asia,Sweden,Food and agriculture,Food retailers,2023
+Larsen & Toubro,PT_01057,INE018A01030,10.6,35.0,6.9,6.7,521,201,522,594,South Asia,India,Construction and engineering,Construction and engineering,2022
+Socfin Group,PT_02226,CNE100000502,10.3,12.5,5.5,17.0,528,554,558,350,Europe & Central Asia,Luxembourg,Tyres and rubber,Tyres and rubber,2022
+San Miguel Food and Beverage,PT_01529,NaN,12.0,0.0,13.8,14.1,477,657,305,425,East Asia & Pacific,Philippines,Food and agriculture,Food production,2023
+Performance Food Group,PT_02441,CNE100000502,10.2,12.5,4.0,18.9,530,554,602,306,North America,United States,Food and agriculture,Food retailers,2023
+Copersucar,PT_00477,NaN,10.1,12.5,7.4,13.4,531,554,506,451,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Fletcher Building,PT_00693,NZFBUE0001S0,11.5,18.8,6.1,17.1,497,478,538,346,East Asia & Pacific,New Zealand,Construction materials and supplies,Construction materials and supplies,2022
+DMK,PT_00565,NaN,11.9,6.3,10.8,15.9,482,618,401,381,Europe & Central Asia,Germany,Food and agriculture,Agricultural products,2023
+Dole,PT_02153,CNE100000502,8.9,12.5,5.2,13.4,552,554,565,451,Europe & Central Asia,Ireland,Food and agriculture,Agricultural products,2023
+Edeka Zentrale,PT_00602,DE000A0EAL21,7.1,0.0,2.3,17.6,595,657,661,338,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Muyuan Foods,PT_01216,CNE100001RQ3,8.1,28.8,6.1,3.0,573,310,538,642,East Asia & Pacific,China,Food and agriculture,Agricultural products,2023
+Lupin,PT_01104,NaN,8.3,11.3,4.3,13.4,570,599,592,451,South Asia,India,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Alfamart,PT_02431,CNE100000502,7.8,32.5,2.7,5.9,578,269,644,606,East Asia & Pacific,Indonesia,Food and agriculture,Retail,2023
+Capri Holdings,PT_00315,NaN,8.7,17.5,2.1,15.4,560,519,666,401,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2022
+URBN,PT_01860,US9170471026,6.8,12.5,5.0,7.2,604,554,573,592,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Jindal Steel And Power ,PT_00965,IL0002810146,7.8,27.5,6.7,1.5,578,356,527,665,South Asia,India,Metals and mining,Metals and mining,2022
+Tingyi,PT_01788,KYG8878S1030,6.7,25.0,4.3,3.0,608,374,592,642,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Maanshan Iron & Steel,PT_01111,NaN,9.1,23.8,9.9,1.7,547,402,434,663,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+RusAgro,PT_02162,CNE100000502,7.0,10.0,6.9,5.9,599,612,522,606,Europe & Central Asia,Russian Federation,Food and agriculture,Food production,2023
+Agrifirm,PT_00045,NaN,8.9,12.5,7.7,9.2,552,554,499,552,Europe & Central Asia,Netherlands,Food and agriculture,Agricultural products,2023
+Chevron Phillips,PT_00349,NaN,8.9,33.8,4.3,5.9,552,239,592,606,North America,United States,Chemicals,Chemicals,2022
+AmRest,PT_02432,CNE100000502,7.9,11.3,3.2,13.9,576,599,625,439,Europe & Central Asia,Spain,Food and agriculture,Food retailers,2023
+Ilim Timber,PT_02574,CNE100000502,7.3,22.5,8.1,0.0,590,453,490,700,Europe & Central Asia,Switzerland,Paper and forest,Paper and forest,2023
+Itoham Yonekyu,PT_00937,IL0002810146,8.4,30.0,8.2,0.0,568,278,485,700,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+SCR Sibelco,PT_01554,NaN,7.1,0.0,4.0,14.9,595,657,602,408,Europe & Central Asia,Belgium,Construction materials and supplies,Construction materials and supplies,2022
+Pick N Pay Stores,PT_01404,AU000000NUF3,9.0,22.5,7.5,5.9,550,453,504,606,Sub-Saharan Africa,South Africa,Food and agriculture,Food retailers,2023
+Autogrill,PT_00165,NaN,9.2,28.8,3.7,9.9,546,310,614,536,Europe & Central Asia,Italy,Food and agriculture,Food retailers,2023
+Kyokuyo,PT_01043,JP3257200000,7.0,15.0,8.0,1.6,599,553,493,664,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Uflex,PT_01833,US9024941034,8.1,22.5,6.6,4.5,573,453,530,630,South Asia,India,Containers and packaging,Containers and packaging,2022
+Darden Restaurants,PT_00525,US2371941053,7.8,5.0,4.5,14.1,578,646,585,425,North America,United States,Food and agriculture,Food retailers,2023
+Shandong Gold Mining,PT_02250,CNE100000502,7.2,28.8,5.2,1.5,593,310,565,665,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Kirana Megatara,PT_02224,CNE100000502,6.8,0.0,6.3,10.3,604,657,534,533,East Asia & Pacific,Indonesia,Tyres and rubber,Tyres and rubber,2022
+Colruyt,PT_00452,NaN,8.5,18.8,9.0,3.7,565,478,466,636,Europe & Central Asia,Belgium,Food and agriculture,Food retailers,2023
+ShenZhen YUTO Packaging Technology,PT_01587,NaN,8.6,28.8,7.9,1.5,563,310,498,665,East Asia & Pacific,China,Containers and packaging,Containers and packaging,2022
+Samling,PT_02218,CNE100000502,7.3,16.3,0.6,14.0,590,545,716,438,East Asia & Pacific,Malaysia,Paper and forest,Paper and forest,2023
+Mercadona,PT_01154,NaN,8.5,18.8,5.3,9.4,565,478,562,549,Europe & Central Asia,Spain,Food and agriculture,Food retailers,2023
+Shenzhou International,PT_01588,NaN,7.6,12.5,10.2,1.5,585,554,421,665,East Asia & Pacific,China,Apparel and footwear,Apparel and footwear,2022
+Savola Group,PT_01546,NaN,7.3,22.5,2.4,8.9,590,453,657,556,Middle East & North Africa,Saudi Arabia,Food and agriculture,Food retailers,2023
+Alicorp,PT_00070,DEXXXXXALDI0,9.1,12.5,5.5,13.4,547,554,558,451,Latin America & Caribbean,Peru,Food and agriculture,Food production,2023
+China Energy Engineering Group,PT_00362,NaN,6.6,16.3,7.4,1.5,611,545,506,665,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Bidcorp,PT_00252,NaN,8.9,27.5,2.3,11.9,552,356,661,478,Sub-Saharan Africa,South Africa,Food and agriculture,Food retailers,2023
+Pentland Group,PT_01381,AU000000NUF3,8.2,5.0,3.7,16.6,571,646,614,361,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2022
+Nippon Paint Holdings,PT_02182,CNE100000502,8.4,18.8,5.3,9.2,568,478,562,552,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+OEC,PT_02415,CNE100000502,7.1,0.0,3.5,15.6,595,657,619,389,Latin America & Caribbean,Brazil,Construction and engineering,Construction and engineering,2022
+Grupo Lala,PT_00790,MXP495211262,7.0,21.3,5.4,3.7,599,472,561,636,Latin America & Caribbean,Mexico,Food and agriculture,Food production,2023
+Reliance Steel & Aluminum,PT_01472,NaN,6.6,6.3,1.6,11.9,611,618,675,478,North America,United States,Metals and mining,Metals and mining,2022
+Subway,PT_01679,NaN,6.8,0.0,1.0,18.8,604,657,711,308,North America,United States,Food and agriculture,Food retailers,2023
+Sucden,PT_01680,NaN,7.7,12.5,6.0,8.4,583,554,543,564,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Precious Woods,PT_02222,CNE100000502,8.6,6.3,8.7,9.4,563,618,474,549,Europe & Central Asia,Switzerland,Paper and forest,Paper and forest,2023
+CHS,PT_00416,NaN,6.7,12.5,2.9,10.4,608,554,635,513,North America,United States,Food and agriculture,Agricultural products,2023
+Steel Dynamics,PT_01670,US8581191009,9.0,17.5,2.5,15.6,550,519,656,389,North America,United States,Metals and mining,Metals and mining,2022
+Woodbois,PT_02213,CNE100000502,7.5,17.5,5.6,6.6,586,519,555,602,Europe & Central Asia,United Kingdom,Paper and forest,Paper and forest,2023
+Vicat,PT_01882,FR0000031775,8.2,6.3,5.0,14.1,571,618,573,425,Europe & Central Asia,France,Construction materials and supplies,Construction materials and supplies,2022
+ANTA International Group Holdings,PT_00117,NaN,7.1,28.8,2.6,5.2,595,310,645,618,East Asia & Pacific,China,Apparel and footwear,Apparel and footwear,2022
+Salzgitter,PT_01524,NaN,8.0,12.5,10.0,3.0,575,554,429,642,Europe & Central Asia,Germany,Metals and mining,Metals and mining,2022
+China Resources Cement,PT_02125,CNE100000502,7.8,23.8,7.7,1.5,578,402,499,665,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+CITIC Pacific Special Steel,PT_02241,CNE100000502,6.7,27.5,4.2,2.2,608,356,596,655,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+B&G Foods,PT_00177,NaN,8.5,6.3,1.6,20.1,565,618,675,281,North America,United States,Food and agriculture,Food production,2023
+PulteGroup,PT_01446,US7458671010,8.9,11.3,4.0,15.6,552,599,602,389,North America,United States,Construction and engineering,Construction and engineering,2022
+Alimentation Couche-Tard,PT_00071,DEXXXXXALDI0,7.8,17.5,5.0,8.2,578,519,573,568,North America,Canada,Food and agriculture,Food retailers,2023
+Perfetti van Melle,PT_01386,AU000000NUF3,6.9,6.3,2.6,13.9,603,618,645,439,Europe & Central Asia,Italy,Food and agriculture,Food production,2023
+Buzzi Unicem,PT_00289,NaN,7.9,23.8,3.0,9.2,576,402,634,552,Europe & Central Asia,Italy,Construction materials and supplies,Construction materials and supplies,2022
+Daewoo Engineering & Construction,PT_00509,KR7047040001,8.9,16.3,6.1,10.4,552,545,538,513,East Asia & Pacific,"Korea, Rep.",Construction and engineering,Construction and engineering,2022
+Sinar Mas (Asia Pulp & Paper),PT_02087,CNE100000502,7.4,10.0,11.5,0.0,589,612,377,700,East Asia & Pacific,Indonesia,Paper and forest,Paper and forest,2023
+Tongaat Hulett,PT_01800,BE0974338700,7.5,11.3,1.3,15.6,586,599,702,389,Sub-Saharan Africa,South Africa,Food and agriculture,Food production,2023
+Shanghai Zijiang Enterprise Group ,PT_01580,NaN,8.7,27.5,9.3,0.0,560,356,454,700,East Asia & Pacific,China,Containers and packaging,Containers and packaging,2022
+Taiheiyo Cement Corporation,PT_01715,JP3449020001,9.1,35.0,4.7,5.5,547,201,583,617,East Asia & Pacific,Japan,Construction materials and supplies,Construction materials and supplies,2022
+Bausch Health ,PT_00221,NaN,8.8,18.8,4.3,11.9,559,478,592,478,North America,Canada,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Tereos,PT_01761,NaN,6.8,0.0,10.5,3.7,604,657,409,636,Europe & Central Asia,France,Food and agriculture,Agricultural products,2023
+Louis Dreyfus Company,PT_01095,NaN,7.5,17.5,4.4,8.4,586,519,591,564,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+Agropur,PT_00046,NaN,8.7,17.5,10.0,3.0,560,519,429,642,North America,Canada,Food and agriculture,Food production,2023
+Paper Excellence,PT_00571,NaN,8.9,6.3,10.5,7.4,552,618,409,583,North America,Canada,Paper and forest,Paper and forest,2023
+China Hongqiao Group,PT_00370,NaN,7.2,10.0,10.2,1.5,593,612,421,665,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Tongwei,PT_01802,BE0974338700,9.3,28.8,8.7,2.2,545,310,474,655,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Wanhua Chemical ,PT_01908,NaN,7.7,27.5,7.4,0.0,583,356,506,700,East Asia & Pacific,China,Chemicals,Chemicals,2022
+EMCOR Group,PT_00619,US29084Q1004,7.0,5.0,3.2,13.9,599,646,625,439,North America,United States,Construction and engineering,Construction and engineering,2022
+PHW Group,PT_01403,AU000000NUF3,3.7,0.0,0.6,9.9,666,657,716,536,Europe & Central Asia,Germany,Food and agriculture,Agricultural products,2023
+Murugappa Group,PT_01214,NaN,3.6,0.0,6.8,0.0,669,657,524,700,South Asia,India,Food and agriculture,Conglomerates,2023
+Thai Roong Ruang,PT_01773,NaN,5.4,0.0,1.6,13.4,632,657,675,451,East Asia & Pacific,Thailand,Food and agriculture,Agricultural products,2023
+SC Johnson,PT_01548,NaN,3.6,6.3,3.2,3.0,669,618,625,642,North America,United States,Personal and household products,Personal and household products,2024
+KRBL,PT_02161,CNE100000502,3.3,12.5,1.6,2.2,677,554,675,655,South Asia,India,Food and agriculture,Agricultural products,2023
+Tanganda Tea Company,PT_02442,CNE100000502,5.6,26.3,1.1,4.2,627,371,709,634,Sub-Saharan Africa,Zimbabwe,Food and agriculture,Agricultural products,2023
+Grupo Comercial Chedraui,PT_02439,CNE100000502,4.4,22.5,1.1,2.2,651,453,709,655,Latin America & Caribbean,Mexico,Food and agriculture,Food retailers,2023
+Gruppo Veronesi,PT_00795,NaN,5.5,11.3,5.7,3.0,628,599,553,642,Europe & Central Asia,Italy,Food and agriculture,Agricultural products,2023
+Bajaj Hindusthan Sugar,PT_02071,CNE100000502,4.0,0.0,2.9,7.4,661,657,635,583,South Asia,India,Food and agriculture,Food production,2023
+Heraeus Holding,PT_00839,US4016171054,4.4,0.0,1.6,10.4,651,657,675,513,Europe & Central Asia,Germany,Metals and mining,Metals and mining,2022
+Chanel ,PT_00340,NaN,6.2,0.0,7.1,7.4,620,657,515,583,Europe & Central Asia,United Kingdom,Apparel and footwear,Apparel and footwear,2022
+Fufeng Group,PT_00721,KYG368441195,6.5,12.5,8.2,1.5,613,554,485,665,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Siat Group,PT_02225,CNE100000502,5.9,11.3,3.5,7.4,624,599,619,583,Europe & Central Asia,Belgium,Tyres and rubber,Tyres and rubber,2022
+Builders FirstSource,PT_00285,NaN,4.7,6.3,1.6,8.9,645,618,675,556,North America,United States,Construction materials and supplies,Construction materials and supplies,2022
+BBMG Corporation,PT_00229,NaN,5.3,23.8,2.9,1.5,634,402,635,665,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+SK Ecoplant,PT_02081,CNE100000502,5.1,17.5,3.3,3.0,638,519,624,642,East Asia & Pacific,"Korea, Rep.",Construction and engineering,Construction and engineering,2022
+Skechers,PT_01620,NaN,4.3,0.0,0.5,11.9,654,657,721,478,North America,United States,Apparel and footwear,Apparel and footwear,2022
+China Baowu Steel Group (Baowu),PT_00352,NaN,3.8,0.0,6.2,1.5,664,657,537,665,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Danish Agro,PT_00521,NaN,6.4,0.0,4.5,11.9,616,657,585,478,Europe & Central Asia,Denmark,Food and agriculture,Agricultural products,2023
+OSI Group,PT_01353,AU000000NUF3,4.6,17.5,1.6,4.0,649,519,675,635,North America,United States,Food and agriculture,Food retailers,2023
+Adani Group,PT_02228,CNE100000502,6.1,17.5,7.1,0.0,623,519,515,700,South Asia,India,Freight and logistics,Freight and logistics,2024
+Compagnie des Bois du Gabon,PT_02220,CNE100000502,5.2,0.0,6.5,5.2,637,657,532,618,Sub-Saharan Africa,Gabon,Paper and forest,Paper and forest,2023
+Anhui Conch Cement,PT_00111,CNE0000019V8,6.4,23.8,3.7,3.7,616,402,614,636,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+Swinerton,PT_02200,CNE100000502,3.8,0.0,0.0,11.2,664,657,722,499,North America,United States,Construction and engineering,Construction and engineering,2022
+Trident Seafoods,PT_01820,TH0212A10Z07,5.5,5.0,2.4,10.2,628,646,657,534,North America,United States,Food and agriculture,Food production,2023
+Nanjing Iron & Steel,PT_02119,CNE100000502,4.7,0.0,8.9,0.0,645,657,470,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Groupe Limagrain,PT_01077,US52736R1023,6.5,12.5,5.8,5.2,613,554,546,618,Europe & Central Asia,France,Food and agriculture,Food production,2023
+BUA Cement,PT_02372,CNE100000502,3.5,0.0,2.4,6.7,671,657,657,594,Sub-Saharan Africa,Nigeria,Construction materials and supplies,Construction materials and supplies,2022
+PPC,PT_01423,AU000000NUF3,6.2,22.5,2.6,5.2,620,453,645,618,Sub-Saharan Africa,South Africa,Construction materials and supplies,Construction materials and supplies,2022
+Boise Cascade Company,PT_00265,NaN,5.5,12.5,0.0,11.2,628,554,722,499,North America,United States,Construction and engineering,Construction and engineering,2022
+Huayou Cobalt,PT_02253,CNE100000502,6.5,22.5,1.3,8.2,613,453,702,568,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Union Invivo,PT_01844,NaN,4.2,6.3,4.8,2.2,657,618,579,655,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Bechtel,PT_00231,NaN,4.0,0.0,0.0,11.9,661,657,722,478,North America,United States,Construction and engineering,Construction and engineering,2022
+Yili Group,PT_01976,NO0010208051,5.1,17.5,4.2,1.5,638,519,596,665,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Metallurgical Corporation of China,PT_01158,NaN,5.8,28.8,2.6,1.5,625,310,645,665,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Organizacion Soriana,PT_01346,AU000000NUF3,3.3,0.0,0.0,9.7,677,657,722,540,Latin America & Caribbean,Mexico,Food and agriculture,Food retailers,2023
+AGD Group,PT_00016,NaN,3.4,0.0,1.6,7.4,674,657,675,583,Latin America & Caribbean,Argentina,Food and agriculture,Food production,2023
+Oetker,PT_01327,AU000000NUF3,5.5,0.0,4.5,9.2,628,657,585,552,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Lactalis,PT_01048,NaN,4.3,12.5,4.8,0.0,654,554,579,700,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Tailored Brands,PT_01717,US87403A1079,3.5,0.0,0.0,10.4,671,657,722,513,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Jiangsu Hengrui Medicine,PT_02413,CNE100000502,3.7,18.8,2.1,0.0,666,478,666,700,East Asia & Pacific,China,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Perdue Farms,PT_01385,AU000000NUF3,3.7,0.0,2.3,7.4,666,657,661,583,North America,United States,Food and agriculture,Food production,2023
+Cosun,PT_00483,NaN,4.4,6.3,1.3,8.4,651,618,702,564,Europe & Central Asia,Netherlands,Food and agriculture,Food production,2023
+EuroChem,PT_00646,NaN,5.7,6.3,1.6,11.9,626,618,675,478,Europe & Central Asia,Switzerland,Food and agriculture,Agricultural products,2023
+China National Building Material Group (CNBM) (Sinoma),PT_00381,NaN,4.8,10.0,6.5,0.0,644,612,532,700,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+American Crystal,PT_00088,US0253033064,3.4,0.0,1.6,7.4,674,657,675,583,North America,United States,Food and agriculture,Food production,2023
+InterCement,PT_00915,SE0000652216,3.3,0.0,0.0,9.7,677,657,722,540,Latin America & Caribbean,Brazil,Construction materials and supplies,Construction materials and supplies,2022
+Van Drie Group,PT_01871,NaN,4.7,16.3,1.0,5.9,645,545,711,606,Europe & Central Asia,Netherlands,Food and agriculture,Agricultural products,2023
+Jinchuan Group,PT_00964,IL0002810146,4.2,6.3,3.2,5.0,657,618,625,628,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Designer Brands,PT_00546,US2505651081,3.3,0.0,0.0,9.7,677,657,722,540,North America,United States,Apparel and footwear,Apparel and footwear,2022
+China Resources,PT_00393,NaN,4.6,11.3,5.8,0.0,649,599,546,700,East Asia & Pacific,China,Food and agriculture,Conglomerates,2023
+Dairy Farmers of America,PT_00515,NaN,5.3,6.3,1.3,11.2,634,618,702,499,North America,United States,Food and agriculture,Food production,2023
+Tetra Laval,PT_01767,NaN,4.0,0.0,7.6,0.0,661,657,502,700,Europe & Central Asia,Switzerland,Containers and packaging,Containers and packaging,2022
+Daito Trust Construction,PT_02085,CNE100000502,4.2,0.0,7.1,1.5,657,657,515,665,East Asia & Pacific,Japan,Construction and engineering,Construction and engineering,2022
+Bloomin' Brands,PT_00258,NaN,6.2,12.5,3.2,8.2,620,554,625,568,North America,United States,Food and agriculture,Food retailers,2023
+Sanderson Farms,PT_01530,NaN,3.4,6.3,0.6,6.7,674,618,716,594,North America,United States,Food and agriculture,Food production,2023
+Ocean Spray Cranberries,PT_01324,AU000000NUF3,5.3,18.8,5.2,0.0,634,478,565,700,North America,United States,Food and agriculture,Food production,2023
+Aluminum Corporation of China (CHALCO),PT_00079,CNE1000000T0,6.3,16.3,6.3,2.2,618,545,534,655,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Lennar Corporation,PT_01068,US5260571048,5.0,0.0,3.9,8.9,641,657,609,556,North America,United States,Construction and engineering,Construction and engineering,2022
+Royal Golden Eagle,PT_02573,CNE100000502,4.3,0.0,3.6,7.1,654,657,617,593,East Asia & Pacific,Singapore,Paper and forest,Paper and forest,2023
+J.R. Simplot,PT_00943,IL0002810146,5.0,0.0,2.9,10.4,641,657,635,513,North America,United States,Food and agriculture,Agricultural products,2023
+Ansteel Group,PT_00116,NaN,4.7,16.3,4.2,0.7,645,545,596,689,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Migros,PT_01174,NaN,3.5,0.0,0.0,10.4,671,657,722,513,Europe & Central Asia,Switzerland,Food and agriculture,Food retailers,2023
+Boparan,PT_00269,NaN,5.4,0.0,2.4,12.4,632,657,657,474,Europe & Central Asia,United Kingdom,Food and agriculture,Food production,2023
+Bachoco,PT_00178,NaN,4.9,0.0,2.3,11.2,643,657,661,499,Latin America & Caribbean,Mexico,Food and agriculture,Agricultural products,2023
+LDC Groupe,PT_01061,FR0013204336,5.1,0.0,4.8,7.7,638,657,579,581,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Blue Diamond Growers,PT_00259,NaN,4.1,11.3,3.9,1.5,660,599,609,665,North America,United States,Food and agriculture,Food production,2023
+Ezaki Glico,PT_00660,NaN,6.3,18.8,3.2,5.9,618,478,625,606,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Taylor Farms,PT_01736,NaN,2.0,0.0,3.9,0.0,706,657,609,700,North America,United States,Food and agriculture,Food production,2023
+New Hope Group,PT_01252,CNE000000VB0,1.9,0.0,2.6,1.5,712,657,645,665,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Cooke,PT_00474,NaN,0.3,0.0,0.0,0.8,747,657,722,688,North America,Canada,Food and agriculture,Food production,2023
+COFCO,PT_00448,NaN,2.5,10.0,1.7,0.7,697,612,670,689,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Pacific Seafood Group,PT_01365,AU000000NUF3,1.6,5.0,1.7,0.0,716,646,670,700,North America,United States,Food and agriculture,Food retailers,2023
+Indian Farmers Fertiliser Cooperative,PT_00893,SE0000652216,1.5,0.0,2.9,0.0,717,657,635,700,South Asia,India,Food and agriculture,Agricultural products,2023
+Inspire Brands,PT_02440,CNE100000502,0.5,0.0,1.0,0.0,743,657,711,700,North America,United States,Food and agriculture,Food retailers,2023
+Shougang Group,PT_01595,NaN,1.5,0.0,2.9,0.0,717,657,635,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Intercorp,PT_00917,SE0000652216,1.7,0.0,3.2,0.0,715,657,625,700,Latin America & Caribbean,Peru,Food and agriculture,Food retailers,2023
+China State Construction Engineering,PT_00398,NaN,0.9,6.3,0.0,0.0,723,618,722,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Sunkist Growers,PT_01697,NaN,2.3,0.0,0.0,6.7,703,657,722,594,North America,United States,Food and agriculture,Agricultural products,2023
+G-III Apparel Group,PT_00748,US36237H1014,2.8,0.0,0.0,8.4,693,657,722,564,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Fung Group,PT_00728,BMG5485F1692,2.5,0.0,0.0,7.4,697,657,722,583,East Asia & Pacific,"Hong Kong SAR, China",Apparel and footwear,Apparel and footwear,2022
+Koch Industries,PT_00746,US3703341046,3.2,0.0,0.8,8.2,682,657,715,568,North America,United States,Paper and forest,Paper and forest,2023
+India Cements,PT_00892,SE0000652216,2.5,5.0,2.9,0.7,697,646,635,689,South Asia,India,Construction materials and supplies,Construction materials and supplies,2022
+Groupe Bigard,PT_00777,NaN,0.9,0.0,1.6,0.0,723,657,675,700,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Starzen,PT_01662,JP3399100001,2.0,6.3,1.6,0.7,706,618,675,689,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Publix Super Markets,PT_01445,NaN,3.0,0.0,5.6,0.0,687,657,555,700,North America,United States,Food and agriculture,Food retailers,2023
+Suguna Foods,PT_01684,NaN,3.0,6.3,1.6,3.7,687,618,675,636,South Asia,India,Food and agriculture,Food production,2023
+Maderacre,PT_02215,CNE100000502,3.1,5.0,4.1,0.7,684,646,601,689,Latin America & Caribbean,Peru,Paper and forest,Paper and forest,2023
+Hanwa,PT_00818,US4016171054,2.7,12.5,0.9,1.5,694,554,714,665,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+China MinMetals,PT_02205,CNE100000502,2.5,5.0,3.5,0.0,697,646,619,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+NVR,PT_01318,AU000000NUF3,2.3,0.0,0.6,5.9,703,657,716,606,North America,United States,Construction and engineering,Construction and engineering,2022
+China Communications Construction,PT_00353,NaN,0.5,0.0,0.0,1.5,743,657,722,665,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+UFP Industries,PT_01834,US9024941034,2.9,6.3,3.9,0.0,690,618,609,700,North America,United States,Paper and forest,Paper and forest,2023
+Schreiber,PT_02003,CNE100000502,2.0,0.0,3.2,0.7,706,657,625,689,North America,United States,Food and agriculture,Food production,2023
+Sumitomo Osaka Cement,PT_01691,NaN,1.3,0.0,0.0,3.7,721,657,722,636,East Asia & Pacific,Japan,Construction materials and supplies,Construction materials and supplies,2022
+China Railway Construction Corporation (CRCC),PT_00392,NaN,0.8,0.0,0.0,2.2,739,657,722,655,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Carozzi,PT_00320,NaN,1.4,0.0,1.6,1.5,720,657,675,665,Latin America & Caribbean,Chile,Food and agriculture,Food production,2023
+Power Construction Corporation of China (POWERCHINA),PT_01420,AU000000NUF3,3.1,17.5,1.3,0.0,684,519,702,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Jiangsu Shagang Group,PT_00960,IL0002810146,0.9,0.0,1.6,0.0,723,657,675,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+C&S Wholesale Grocers,PT_00292,NaN,0.9,0.0,1.6,0.0,723,657,675,700,North America,United States,Food and agriculture,Food retailers,2023
+Shanghai Construction Group,PT_01574,NaN,0.3,0.0,0.0,0.7,747,657,722,689,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Jiangxi Copper,PT_00961,IL0002810146,0.9,6.3,0.0,0.0,723,618,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Wadia Group,PT_01903,NaN,2.6,0.0,4.8,0.0,695,657,579,700,South Asia,India,Food and agriculture,Food production,2023
+Dangote Industries,PT_00520,NaN,0.5,0.0,0.0,1.5,743,657,722,665,Sub-Saharan Africa,Nigeria,Food and agriculture,Conglomerates,2023
+EUROGATE,PT_02232,CNE100000502,2.6,0.0,1.7,5.1,695,657,670,626,Europe & Central Asia,Germany,Freight and logistics,Freight and logistics,2024
+Ascena Retail Group,PT_00141,NaN,3.2,0.0,0.0,9.4,682,657,722,549,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Molinos,PT_01194,NaN,0.9,0.0,1.6,0.0,723,657,675,700,Latin America & Caribbean,Argentina,Food and agriculture,Food production,2023
+BetAgro,PT_00247,NaN,2.5,6.3,2.6,0.7,697,618,645,689,East Asia & Pacific,Thailand,Food and agriculture,Food production,2023
+Mueller,PT_01211,NaN,2.2,0.0,4.2,0.0,705,657,596,700,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Gruppo Cremonini,PT_00794,IT0001282547,1.0,0.0,1.9,0.0,722,657,668,700,Europe & Central Asia,Italy,Food and agriculture,Food production,2023
+Reliance Retail,PT_02053,CNE100000502,1.8,0.0,0.0,5.2,713,657,722,618,South Asia,India,Food and agriculture,Retail,2023
+Amul,PT_00102,NaN,2.0,5.0,2.6,0.0,706,646,645,700,South Asia,India,Food and agriculture,Food production,2023
+D.R. Horton,PT_00505,DE0006062144,2.0,0.0,0.0,5.9,706,657,722,606,North America,United States,Construction and engineering,Construction and engineering,2022
+Groupe Pomona,PT_02001,CNE100000502,2.0,0.0,0.0,5.9,706,657,722,606,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Yamazaki Baking,PT_01969,JP3935600001,0.9,0.0,1.6,0.0,723,657,675,700,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Orascom,PT_02194,CNE100000502,1.5,0.0,0.0,4.5,717,657,722,630,Middle East & North Africa,United Arab Emirates,Construction and engineering,Construction and engineering,2022
+Harim,PT_00821,US4016171054,0.9,0.0,1.6,0.0,723,657,675,700,East Asia & Pacific,"Korea, Rep.",Food and agriculture,Food production,2023
+AGP,PT_00042,NaN,0.9,0.0,1.6,0.0,723,657,675,700,North America,United States,Food and agriculture,Agricultural products,2023
+Ramco Cements,PT_01463,INE331A01037,0.9,0.0,1.6,0.0,723,657,675,700,South Asia,India,Construction materials and supplies,Construction materials and supplies,2022
+TANAKA Precious Metals,PT_01726,JP3468820000,3.0,6.3,3.6,0.7,687,618,617,689,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+Driscoll's,PT_00579,US2605571031,2.4,0.0,2.6,3.0,702,657,645,642,North America,United States,Food and agriculture,Agricultural products,2023
+SIPG,PT_02236,CNE100000502,0.9,0.0,1.7,0.0,723,657,670,700,East Asia & Pacific,China,Freight and logistics,Freight and logistics,2024
+Wilbur-Ellis,PT_01938,NaN,0.7,0.0,1.3,0.0,741,657,702,700,North America,United States,Food and agriculture,Agricultural products,2023
+Terrena,PT_01764,NaN,0.7,0.0,1.3,0.0,741,657,702,700,Europe & Central Asia,France,Food and agriculture,Food production,2023
+Les Mousquetaires,PT_01070,NaN,0.9,6.3,0.0,0.0,723,618,722,700,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Dongwon Enterprise,PT_00574,NaN,0.5,0.0,0.0,1.5,743,657,722,665,East Asia & Pacific,"Korea, Rep.",Food and agriculture,Food production,2023
+J.D. Heiskell & Company,PT_00942,IL0002810146,0.9,0.0,1.6,0.0,723,657,675,700,North America,United States,Food and agriculture,Food production,2023
+Cooperatie Coforta,PT_00476,NaN,0.9,0.0,1.6,0.0,723,657,675,700,Europe & Central Asia,Netherlands,Food and agriculture,Agricultural products,2023
+Newrest,PT_02165,CNE100000502,2.9,0.0,2.6,4.5,690,657,645,630,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Flour Mills of Nigeria,PT_00696,NGFLOURMILL0,2.9,0.0,1.6,5.9,690,657,675,606,Sub-Saharan Africa,Nigeria,Food and agriculture,Food production,2023
+CREC,PT_02191,CNE100000502,1.8,0.0,3.4,0.0,713,657,623,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+SLJ Gloal,PT_02217,CNE100000502,3.3,10.0,2.3,2.2,677,612,661,655,East Asia & Pacific,Indonesia,Paper and forest,Paper and forest,2023
+SSA Marine,PT_02237,CNE100000502,3.1,0.0,1.7,6.6,684,657,670,602,North America,United States,Freight and logistics,Freight and logistics,2024
+Tsingshan Holding Group,PT_01823,NaN,0.9,0.0,1.6,0.0,723,657,675,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+De Heus,PT_00529,NaN,0.8,0.0,0.6,1.5,739,657,716,665,Europe & Central Asia,Netherlands,Food and agriculture,Agricultural products,2023
+Marubeni-Itochu Steel,PT_01130,NaN,0.9,0.0,1.6,0.0,723,657,675,700,East Asia & Pacific,Japan,Metals and mining,Metals and mining,2022
+Beijing Construction Engineering Group (BCEG),PT_02189,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+China West Construction Group,PT_00409,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+People's Food,PT_01382,AU000000NUF3,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Guangdong Haid Group,PT_00800,CNE100000HP8,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Jiangsu Zhongnan Construction Group,PT_02122,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Cutrale,PT_00412,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Kangde Xin Composite Material Group ,PT_00989,CNE100000RN2,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Containers and packaging,Containers and packaging,2022
+JK Holdings,PT_00969,JP3389570007,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Japan,Construction materials and supplies,Construction materials and supplies,2022
+Shandong Iron & Steel Group,PT_01572,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+JiuQuan Iron and Steel Group,PT_00968,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+National Agricultural Cooperative Federation,PT_01289,JP3718800000,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,"Korea, Rep.",Food and agriculture,Agricultural products,2023
+China Pacific Construction Group,PT_00387,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Aurora Alimentos,PT_00161,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Latin America & Caribbean,Brazil,Food and agriculture,Food production,2023
+Souyute Group,PT_01643,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Apparel and footwear,Apparel and footwear,2022
+OUG,PT_01356,AU000000NUF3,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Amer International Group,PT_00083,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Shapoorji Pallonji & Co,PT_02198,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,South Asia,India,Construction and engineering,Construction and engineering,2022
+Taiyuan Iron & Steel,PT_01723,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Beijing Urban Construction Group (BUCG),PT_02190,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Vietnam Rubber Group,PT_02227,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Vietnam,Tyres and rubber,Tyres and rubber,2022
+Koch Foods,PT_01016,NaN,0.0,0.0,0.0,0.0,750,657,722,700,North America,United States,Food and agriculture,Food production,2023
+Youngor Group,PT_01980,NO0010208051,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Apparel and footwear,Apparel and footwear,2022
+Zhongce Rubber Group,PT_01995,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Tyres and rubber,Tyres and rubber,2022
+Tongling Nonferrous Metals Group,PT_01801,BE0974338700,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Wuchan Zhongda Group,PT_01954,CNE000000KF4,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Whiting-Turner Contracting,PT_01936,NaN,0.0,0.0,0.0,0.0,750,657,722,700,North America,United States,Construction and engineering,Construction and engineering,2022
+C.H. Boehringer Sohn AG & Co,PT_00293,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,Germany,Pharmaceuticals and biotechnology,Pharmaceuticals and biotechnology,2022
+Juan Garcia Lax,PT_00981,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Rongsheng Petro Chemical,PT_01496,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Chemicals,Chemicals,2022
+Southern States Cooperative,PT_01641,NaN,0.0,0.0,0.0,0.0,750,657,722,700,North America,United States,Food and agriculture,Agricultural products,2023
+China National Chemical Corporation (ChemChina),PT_00382,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Chemicals,Chemicals,2022
+Hengli Petrochemical,PT_00835,US4016171054,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Chemicals,Chemicals,2022
+Ezz Steel,PT_02375,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,Middle East & North Africa,"Egypt, Arab Rep.",Metals and mining,Metals and mining,2022
+Zensho,PT_01989,NO0010208051,0.3,0.0,0.0,0.7,747,657,722,689,East Asia & Pacific,Japan,Food and agriculture,Food retailers,2023
+Toennies,PT_01803,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+Wen's Foodstuff,PT_01920,KYG9431R1039,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Agricultural products,2023
+Forever 21,PT_00706,NaN,0.0,0.0,0.0,0.0,750,657,722,700,North America,United States,Apparel and footwear,Apparel and footwear,2022
+Kweichow Moutai,PT_01040,CNE0000018R8,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Hunan Valin Iron and Steel Group (Hunan Valin Steel),PT_00872,INE038A01020,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Tokyo Seika,PT_01794,BE0974338700,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Japan,Food and agriculture,Food production,2023
+Beidahuang Group,PT_00234,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Agricultural products,2023
+Heilan Group,PT_00830,US4016171054,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Apparel and footwear,Apparel and footwear,2022
+Guizhou Phosphate Chemical Group,PT_02418,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Chemicals,2023
+Shanghai Urban Construction Group Corporation,PT_01579,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction and engineering,Construction and engineering,2022
+Wuliangye Yibin,PT_01955,CNE000000VQ8,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Allana Group,PT_00072,NaN,0.0,0.0,0.0,0.0,750,657,722,700,South Asia,India,Food and agriculture,Food production,2023
+Dongling Group,PT_00573,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Eurocement,PT_00645,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,Russian Federation,Construction materials and supplies,Construction materials and supplies,2022
+HBIS Group (Hesteel),PT_00844,US4016171054,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Red Chamber Group,PT_01469,NaN,0.0,0.0,0.0,0.0,750,657,722,700,North America,United States,Food and agriculture,Food production,2023
+Yonghui Superstores,PT_01979,NO0010208051,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food retailers,2023
+EW Group,PT_00654,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,Germany,Food and agriculture,Food production,2023
+ZEN-NOH,PT_01988,NO0010208051,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Japan,Food and agriculture,Agricultural products,2023
+Shandong Bohi,PT_01570,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Paper and forest products,2023
+Xinxing Cathay International Group,PT_01963,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+E.Leclerc,PT_00587,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,France,Food and agriculture,Food retailers,2023
+Wonderful Company,PT_01947,NaN,0.0,0.0,0.0,0.0,750,657,722,700,North America,United States,Food and agriculture,Agricultural products,2023
+Conad,PT_00466,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Europe & Central Asia,Italy,Food and agriculture,Food retailers,2023
+Coamo Agroindustrial Cooperativa,PT_00446,NaN,0.0,0.0,0.0,0.0,750,657,722,700,Latin America & Caribbean,Brazil,Food and agriculture,Agricultural products,2023
+Baotou Iron and Steel Group,PT_00215,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Metals and mining,Metals and mining,2022
+Tosoh,PT_01807,JP3595200001,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Japan,Chemicals,Chemicals,2022
+Tangshan Jidong Cement,PT_01727,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+Bright Food Group,PT_00277,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Fujian Sunner Development Corporation,PT_00724,CNE100000G78,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Yatai Building Materials,PT_02416,CNE100000502,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Construction materials and supplies,Construction materials and supplies,2022
+Lingyunhai Sugar Group,PT_01081,NaN,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Food and agriculture,Food production,2023
+Vicem,PT_01883,VN000000BTS4,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,Vietnam,Construction materials and supplies,Construction materials and supplies,2022
+Semir,PT_01994,NO0010208051,0.0,0.0,0.0,0.0,750,657,722,700,East Asia & Pacific,China,Apparel and footwear,Apparel and footwear,2022

@@ -1,0 +1,12 @@
+pdf_files:
+  pgb:
+    pdf_path: "PGB Sustainability Report 2024.pdf"
+    company_name: "Petronas"
+    section: "ADDITIONAL INFORMATION"
+    years: [2022, 2023, 2024]
+    
+  ppp:
+    pdf_path: "GOLDMAN SACHS_Sustainability-Report-December-2025.pdf"
+    company_name: "GOLDMAN SACHS"
+    section: "Appendix I: Operational and Supply Chain Metrics"
+    years: [2022, 2023, 2024]

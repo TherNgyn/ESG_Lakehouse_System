@@ -20,7 +20,6 @@ class ConfigLoader:
             
             # Merge: lấy sheets từ company_patterns, excel config từ file riêng
             merged = {
-                'id': company['id'],
                 'name': company['name'],
                 's3_pattern': company['s3_pattern'],
                 'sheets': company.get('sheets', []),  # <-- LẤY TỪ PATTERNS

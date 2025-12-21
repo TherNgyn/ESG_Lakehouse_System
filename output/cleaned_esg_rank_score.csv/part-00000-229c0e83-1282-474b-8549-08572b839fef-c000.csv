@@ -1,0 +1,722 @@
+ticker,company_name,industry,environment_grade,social_grade,governance_grade,environment_level,social_level,governance_level,environment_score,social_score,governance_score,year,total_grade,total_level
+ECL,Ecolab Inc,Chemicals,A,BB,BB,high,medium,medium,54.7,37.3,32.5,2022,A,high
+PSA,Public Storage,Real Estate,B,B,B,medium,medium,medium,23.5,24.5,20.5,2022,B,medium
+CMI,Cummins Inc,Machinery,A,BB,BB,high,medium,medium,51.0,32.0,30.0,2022,BBB,high
+FLT,Fleetcor Technologies Inc,Technology,BBB,BB,BB,high,medium,medium,41.0,30.2,30.0,2022,BBB,high
+PRCH,Porch Group Inc,Retail,B,B,B,medium,medium,medium,22.5,22.7,21.5,2022,B,medium
+ACAD,ACADIA Pharmaceuticals Inc,Biotechnology,B,B,BB,medium,medium,medium,23.0,23.0,30.5,2022,BB,medium
+AFCG,AFC Gamma Inc,Real Estate,B,B,B,medium,medium,medium,25.5,20.4,22.6,2022,B,medium
+ALGM,Allegro Microsystems Inc,Semiconductors,A,BB,B,high,medium,medium,54.2,31.4,25.0,2022,BBB,high
+VRTX,Vertex Pharmaceuticals Inc,Biotechnology,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+SPR,Spirit AeroSystems Holdings Inc,Aerospace and Defense,A,BB,BB,high,medium,medium,51.5,33.7,30.0,2022,BBB,high
+AEMD,Aethlon Medical Inc,Health Care,B,B,BB,medium,medium,medium,20.0,26.2,31.5,2022,BB,medium
+ETR,Entergy Corp,Utilities,AA,BB,BB,excellent,medium,medium,65.3,38.0,31.0,2022,A,high
+TXN,Texas Instruments Inc,Semiconductors,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+LMT,Lockheed Martin Corp,Aerospace and Defense,A,BB,BB,high,medium,medium,51.0,32.4,32.0,2022,BBB,high
+GWRS,Global Water Resources Inc,Utilities,BB,B,B,medium,medium,medium,36.7,29.7,23.5,2022,BB,medium
+PNRG,Primeenergy Resources Corp,Energy,B,B,B,medium,medium,medium,20.0,20.0,26.0,2022,B,medium
+HEP,Holly Energy Partners LP,Energy,A,B,B,high,medium,medium,51.1,22.5,21.5,2022,BBB,high
+ACOR,Acorda Therapeutics Inc,Biotechnology,B,BB,BB,medium,medium,medium,23.0,30.7,31.0,2022,BB,medium
+RL,Ralph Lauren Corp,Textiles Apparel and Luxury Goods,BBB,BB,BB,high,medium,medium,42.0,35.2,30.3,2022,BBB,high
+TMO,Thermo Fisher Scientific Inc,Life Sciences Tools and Services,A,BB,B,high,medium,medium,52.7,33.2,28.0,2022,BBB,high
+AIP,Arteris Inc,Technology,A,B,BB,high,medium,medium,50.0,28.6,30.0,2022,BBB,high
+TSN,Tyson Foods Inc,Food Products,A,BB,BB,high,medium,medium,53.0,37.4,34.0,2022,A,high
+WMB,Williams Companies Inc,Energy,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+MLM,Martin Marietta Materials Inc,Construction,A,BB,BB,high,medium,medium,57.3,31.3,30.0,2022,BBB,high
+ES,Eversource Energy,Utilities,A,BBB,BB,high,high,medium,57.6,40.9,31.0,2022,A,high
+ADV,Advantage Solutions Inc,Media,A,B,BB,high,medium,medium,51.5,26.9,32.8,2022,BBB,high
+MPWR,Monolithic Power Systems Inc,Semiconductors,BB,B,B,medium,medium,medium,33.0,28.7,23.5,2022,BB,medium
+HD,Home Depot Inc,Retail,B,BB,B,medium,medium,medium,23.0,31.7,20.5,2022,BB,medium
+GD,General Dynamics Corp,Aerospace and Defense,A,BB,BB,high,medium,medium,51.0,31.0,30.0,2022,BBB,high
+CMC,Commercial Metals Co,Metals and Mining,B,B,B,medium,medium,medium,22.3,21.2,20.0,2022,B,medium
+AAME,Atlantic American Corp,Insurance,B,B,BB,medium,medium,medium,22.0,22.1,30.0,2022,B,medium
+ACEV,ACE Convergence Acquisition Corp,N/A,B,B,B,medium,medium,medium,22.5,21.1,21.5,2022,B,medium
+ALF,Alfi Inc,Technology,B,B,BB,medium,medium,medium,22.5,26.0,31.5,2022,BB,medium
+MRO,Marathon Oil Corp,Energy,A,BB,BB,high,medium,medium,53.0,31.3,30.5,2022,BBB,high
+YUMC,Yum China Holdings Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,20.5,21.7,22.0,2022,B,medium
+IT,Gartner Inc,Technology,A,BB,BB,high,medium,medium,50.0,31.6,31.5,2022,BBB,high
+HA,Hawaiian Holdings Inc,Airlines,B,BB,B,medium,medium,medium,20.0,32.1,20.0,2022,B,medium
+GM,General Motors Co,Automobiles,A,BB,B,high,medium,medium,51.0,30.3,25.5,2022,BBB,high
+AIH,Aesthetic Medical International Holdings Group Ltd,Health Care,B,B,BB,medium,medium,medium,22.0,25.0,30.0,2022,BB,medium
+VRSK,Verisk Analytics Inc,Professional Services,AA,BB,BB,excellent,medium,medium,61.5,36.6,30.0,2022,A,high
+AFMD,Affimed NV,Biotechnology,BB,BB,BB,medium,medium,medium,36.8,30.4,31.0,2022,BBB,high
+MRNA,Moderna Inc,Biotechnology,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+MSFT,Microsoft Corp,Technology,AA,BBB,BB,excellent,high,medium,71.5,44.3,37.5,2022,A,high
+SEE,Sealed Air Corp,Packaging,A,BB,B,high,medium,medium,55.5,31.8,25.7,2022,BBB,high
+PNFP,Pinnacle Financial Partners Inc,Banking,B,BB,B,medium,medium,medium,27.1,32.8,25.0,2022,BB,medium
+CNA,CNA Financial Corp,Insurance,A,BB,BB,high,medium,medium,54.0,32.9,34.0,2022,A,high
+SYK,Stryker Corp,Health Care,BBB,BB,BB,high,medium,medium,48.5,32.1,32.5,2022,BBB,high
+CLST,Catalyst Bancorp Inc,Financial Services,B,BB,B,medium,medium,medium,26.0,35.0,26.7,2022,BB,medium
+HE,Hawaiian Electric Industries Inc,Utilities,A,BB,BB,high,medium,medium,58.5,34.8,31.0,2022,A,high
+ADM,Archer-Daniels-Midland Co,Food Products,A,BB,BB,high,medium,medium,58.7,35.3,30.5,2022,A,high
+FRT,Federal Realty Investment Trust,Real Estate,A,BB,BB,high,medium,medium,52.5,30.2,30.0,2022,BBB,high
+HBAN,Huntington Bancshares Inc,Banking,BB,BB,BB,medium,medium,medium,30.8,30.0,30.0,2022,BBB,high
+PRDO,Perdoceo Education Corp,Diversified Consumer Services,BB,B,B,medium,medium,medium,36.5,29.7,25.0,2022,BBB,high
+HAAC,Health Assurance Acquisition Corp,N/A,B,B,BB,medium,medium,medium,20.0,25.8,30.0,2022,BB,medium
+AEYE,AudioEye Inc,Technology,B,BB,BB,medium,medium,medium,23.5,30.1,30.8,2022,BB,medium
+USIO,Usio Inc,Technology,B,B,B,medium,medium,medium,28.5,24.5,24.0,2022,BB,medium
+AAON,Aaon Inc,Building,A,BB,B,high,medium,medium,50.0,30.0,22.3,2022,BBB,high
+SHOO,Steven Madden Ltd,Textiles Apparel and Luxury Goods,A,B,BB,high,medium,medium,50.8,23.1,30.0,2022,BBB,high
+HALO,Halozyme Therapeutics Inc,Biotechnology,A,BB,BB,high,medium,medium,51.0,30.2,31.5,2022,BBB,high
+GVA,Granite Construction Inc,Construction,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+AAL,American Airlines Group Inc,Airlines,B,B,B,medium,medium,medium,27.0,21.1,26.5,2022,B,medium
+ACAC,Acri Capital Acquisition Corp,N/A,B,B,BB,medium,medium,medium,20.0,20.5,30.0,2022,B,medium
+AKTS,Akoustis Technologies Inc,Electrical Equipment,B,BB,BBB,medium,medium,high,22.2,30.2,42.8,2022,BBB,high
+APA,APA Corp (US),Energy,A,BB,BB,high,medium,medium,51.0,31.6,32.5,2022,BBB,high
+NUE,Nucor Corp,Metals and Mining,BB,BB,B,medium,medium,medium,37.4,34.0,22.5,2022,BBB,high
+NKE,Nike Inc,Textiles Apparel and Luxury Goods,B,B,B,medium,medium,medium,20.5,27.5,20.0,2022,B,medium
+F,Ford Motor Co,Automobiles,B,B,B,medium,medium,medium,29.2,24.6,21.5,2022,BB,medium
+XPEV,Xpeng Inc,Automobiles,B,B,B,medium,medium,medium,21.5,20.8,20.0,2022,B,medium
+MTSI,MACOM Technology Solutions Holdings Inc,Semiconductors,BB,BB,B,medium,medium,medium,37.7,30.9,25.5,2022,BBB,high
+ADMP,Adamis Pharmaceuticals Corp,Pharmaceuticals,B,B,B,medium,medium,medium,28.5,20.4,21.5,2022,B,medium
+APTV,Aptiv PLC,Auto Components,A,BB,BB,high,medium,medium,55.5,33.9,31.0,2022,A,high
+YEXT,Yext Inc,Technology,BB,BB,BB,medium,medium,medium,32.5,31.4,31.0,2022,BBB,high
+ZYME,Zymeworks Inc,Biotechnology,B,BB,BB,medium,medium,medium,24.0,32.6,30.5,2022,BB,medium
+ACTG,Acacia Research Corp,Financial Services,B,B,B,medium,medium,medium,20.0,20.0,27.5,2022,B,medium
+ACVA,ACV Auctions Inc,Commercial Services and Supplies,B,B,BB,medium,medium,medium,23.5,26.2,31.5,2022,BB,medium
+SPG,Simon Property Group Inc,Real Estate,B,B,B,medium,medium,medium,22.5,24.7,20.5,2022,B,medium
+FIS,Fidelity National Information Services Inc,Technology,A,B,BB,high,medium,medium,53.0,29.8,31.0,2022,BBB,high
+NEE,Nextera Energy Inc,Utilities,AA,BB,BB,excellent,medium,medium,66.8,30.6,31.3,2022,A,high
+MA,Mastercard Inc,Technology,B,B,B,medium,medium,medium,21.0,23.0,21.5,2022,B,medium
+LNC,Lincoln National Corp,Insurance,AA,BB,BB,excellent,medium,medium,70.0,30.0,30.0,2022,A,high
+AIRG,Airgain Inc,Electrical Equipment,A,BB,BB,high,medium,medium,50.0,30.0,33.0,2022,BBB,high
+META,Meta Platforms Inc,Media,B,B,B,medium,medium,medium,20.5,23.2,21.5,2022,B,medium
+UAL,United Airlines Holdings Inc,Airlines,B,B,B,medium,medium,medium,20.5,20.3,22.1,2022,B,medium
+RJF,Raymond James Financial Inc,Financial Services,A,BB,BB,high,medium,medium,50.5,30.9,30.5,2022,BBB,high
+TROX,Tronox Holdings PLC,Chemicals,A,BB,BB,high,medium,medium,50.3,32.0,30.0,2022,BBB,high
+HES,Hess Corp,Energy,A,BB,BB,high,medium,medium,53.5,30.0,30.5,2022,BBB,high
+USAU,US Gold Corp,Metals and Mining,BBB,B,BB,high,medium,medium,40.0,24.0,30.0,2022,BBB,high
+CNK,Cinemark Holdings Inc,Media,BB,BB,BB,medium,medium,medium,33.0,30.0,30.0,2022,BBB,high
+ADI,Analog Devices Inc,Semiconductors,BB,BB,BB,medium,medium,medium,35.0,31.8,30.0,2022,BBB,high
+CMA,Comerica Inc,Banking,B,BB,B,medium,medium,medium,28.0,30.0,23.0,2022,BB,medium
+CVX,Chevron Corp,Energy,B,B,B,medium,medium,medium,21.0,21.7,21.0,2022,B,medium
+FMC,FMC Corp,Chemicals,A,BB,BB,high,medium,medium,51.0,30.7,31.5,2022,BBB,high
+ACER,Acer Therapeutics Inc,Pharmaceuticals,B,B,BB,medium,medium,medium,22.3,29.1,31.0,2022,BB,medium
+VTRS,Viatris Inc,Pharmaceuticals,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+LEG,Leggett & Platt Inc,Consumer products,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+ROL,Rollins Inc,Commercial Services and Supplies,A,BB,BB,high,medium,medium,50.0,30.0,30.5,2022,BBB,high
+ADMA,ADMA Biologics Inc,Biotechnology,B,B,BB,medium,medium,medium,24.0,26.4,32.0,2022,BB,medium
+CME,CME Group Inc,Financial Services,BB,B,B,medium,medium,medium,37.5,23.7,20.0,2022,BB,medium
+AAP,Advance Auto Parts Inc,Retail,B,B,B,medium,medium,medium,26.4,26.1,21.0,2022,B,medium
+AES,AES Corp,Utilities,A,BB,BB,high,medium,medium,52.5,32.6,37.0,2022,A,high
+BXP,Boston Properties Inc,Real Estate,A,BB,BB,high,medium,medium,53.2,33.9,30.5,2022,BBB,high
+DOV,Dover Corp,Machinery,A,BB,BB,high,medium,medium,50.0,32.0,30.5,2022,BBB,high
+CMG,Chipotle Mexican Grill Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,21.0,24.1,21.3,2022,B,medium
+MTCR,Metacrine Inc,Biotechnology,B,B,BB,medium,medium,medium,21.0,20.7,33.0,2022,B,medium
+CRL,Charles River Laboratories International Inc,Life Sciences Tools and Services,A,BB,B,high,medium,medium,51.0,32.2,23.5,2022,BBB,high
+POWL,Powell Industries Inc,Electrical Equipment,A,B,B,high,medium,medium,50.0,24.0,21.5,2022,BBB,high
+ACHL,Achilles Therapeutics PLC,Biotechnology,B,B,B,medium,medium,medium,23.0,28.8,28.5,2022,BB,medium
+AHCO,Adapthealth Corp,Health Care,B,B,B,medium,medium,medium,21.0,21.1,23.5,2022,B,medium
+ALKS,Alkermes Plc,Biotechnology,BBB,BB,BB,high,medium,medium,41.5,30.2,33.3,2022,BBB,high
+ALB,Albemarle Corp,Chemicals,A,BB,BB,high,medium,medium,54.5,32.2,31.5,2022,BBB,high
+MET,MetLife Inc,Insurance,A,BB,BB,high,medium,medium,51.7,30.5,30.5,2022,BBB,high
+UNH,UnitedHealth Group Inc,Health Care,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CNP,CenterPoint Energy Inc,Utilities,A,BB,B,high,medium,medium,55.0,32.0,26.0,2022,BBB,high
+GRMN,Garmin Ltd,Consumer products,B,B,B,medium,medium,medium,20.5,24.2,20.0,2022,B,medium
+HAFC,Hanmi Financial Corp,Banking,B,B,B,medium,medium,medium,25.0,20.7,23.3,2022,B,medium
+USAP,Universal Stainless & Alloy Products Inc,Metals and Mining,B,B,B,medium,medium,medium,23.8,23.1,20.0,2022,B,medium
+UTSI,UTStarcom Holdings Corp,Communications,BB,BB,BB,medium,medium,medium,34.0,31.0,36.5,2022,BBB,high
+AVB,Avalonbay Communities Inc,Real Estate,A,BB,B,high,medium,medium,50.0,30.0,29.8,2022,BBB,high
+ROK,Rockwell Automation Inc,Electrical Equipment,BB,B,B,medium,medium,medium,30.8,24.3,21.0,2022,BB,medium
+CRM,Salesforce Inc,Technology,B,B,B,medium,medium,medium,21.5,24.1,20.0,2022,B,medium
+FRC,First Republic Bank,Banking,BB,BB,B,medium,medium,medium,37.0,33.1,28.8,2022,BBB,high
+AKBA,Akebia Therapeutics Inc,Biotechnology,B,B,B,medium,medium,medium,20.0,21.8,21.5,2022,B,medium
+BMY,Bristol-Myers Squibb Co,Pharmaceuticals,A,BB,BB,high,medium,medium,50.0,32.1,31.0,2022,BBB,high
+UHS,Universal Health Services Inc,Health Care,A,BB,BB,high,medium,medium,56.0,32.0,33.8,2022,A,high
+HST,Host Hotels & Resorts Inc,Real Estate,A,BB,BB,high,medium,medium,51.0,31.8,31.8,2022,BBB,high
+GYRO,Gyrodyne LLC,Real Estate,B,B,B,medium,medium,medium,24.0,20.6,24.0,2022,B,medium
+CPRT,Copart Inc,Commercial Services and Supplies,B,B,B,medium,medium,medium,27.0,20.4,20.5,2022,B,medium
+QCOM,Qualcomm Inc,Semiconductors,BBB,BB,BB,high,medium,medium,40.9,30.0,30.0,2022,BBB,high
+GLW,Corning Inc,Electrical Equipment,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+HIG,Hartford Financial Services Group Inc,Insurance,A,BB,BB,high,medium,medium,50.0,30.5,30.5,2022,BBB,high
+BA,Boeing Co,Aerospace and Defense,B,B,B,medium,medium,medium,22.0,22.4,23.5,2022,B,medium
+MKC,McCormick & Company Inc,Food Products,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CSCO,Cisco Systems Inc,Communications,B,B,B,medium,medium,medium,28.0,23.4,22.0,2022,B,medium
+EXR,Extra Space Storage Inc,Real Estate,A,B,B,high,medium,medium,57.2,28.9,22.5,2022,BBB,high
+PXD,Pioneer Natural Resources Co,Energy,AA,BBB,BB,excellent,high,medium,70.0,41.2,30.0,2022,A,high
+VTR,Ventas Inc,Real Estate,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+ZEPP,Zepp Health Corp,Electrical Equipment,B,B,B,medium,medium,medium,20.2,21.0,29.5,2022,B,medium
+GVP,GSE Systems Inc,Technology,A,BB,B,high,medium,medium,50.5,30.7,24.5,2022,BBB,high
+UTMD,Utah Medical Products Inc,Health Care,B,B,B,medium,medium,medium,24.0,23.6,25.0,2022,B,medium
+HUBS,HubSpot Inc,Technology,BBB,BB,BB,high,medium,medium,48.0,32.9,32.0,2022,BBB,high
+CNF,CNFinance Holdings Ltd,Financial Services,B,B,B,medium,medium,medium,20.0,20.0,22.0,2022,B,medium
+ADAG,Adagene Inc,Biotechnology,B,BB,BB,medium,medium,medium,29.5,30.1,30.5,2022,BBB,high
+CL,Colgate-Palmolive Co,Consumer products,A,BB,BB,high,medium,medium,52.0,31.0,31.0,2022,BBB,high
+HPQ,HP Inc,Technology,B,B,B,medium,medium,medium,24.5,21.1,20.0,2022,B,medium
+MVST,Microvast Holdings Inc,Machinery,B,B,B,medium,medium,medium,22.5,28.2,21.0,2022,B,medium
+AACI,Armada Acquisition Corp I,N/A,B,B,B,medium,medium,medium,20.5,20.0,20.0,2022,B,medium
+MPC,Marathon Petroleum Corp,Energy,AA,BB,BB,excellent,medium,medium,70.0,36.6,31.5,2022,A,high
+NOW,ServiceNow Inc,Technology,A,BB,BB,high,medium,medium,55.0,37.4,35.0,2022,A,high
+PRU,Prudential Financial Inc,Insurance,B,BB,B,medium,medium,medium,28.5,30.0,28.8,2022,BB,medium
+SYF,Synchrony Financial,Financial Services,BB,BB,BB,medium,medium,medium,32.5,31.2,31.0,2022,BBB,high
+NTRS,Northern Trust Corp,Financial Services,B,B,B,medium,medium,medium,25.0,22.6,22.5,2022,B,medium
+EIX,Edison International,Utilities,AA,A,BB,excellent,high,medium,70.0,51.3,31.5,2022,A,high
+PH,Parker-Hannifin Corp,Machinery,BB,BB,B,medium,medium,medium,32.5,30.3,22.5,2022,BB,medium
+FDX,FedEx Corp,Logistics and Transportation,BB,B,B,medium,medium,medium,33.5,27.8,25.5,2022,BB,medium
+MYMD,MyMD Pharmaceuticals Inc,Pharmaceuticals,B,B,B,medium,medium,medium,20.5,25.7,23.0,2022,B,medium
+AATC,Autoscope Technologies Corp,Electrical Equipment,BBB,B,B,high,medium,medium,41.0,28.6,24.0,2022,BBB,high
+ANET,Arista Networks Inc,Communications,BBB,BB,B,high,medium,medium,44.4,31.0,29.5,2022,BBB,high
+NOC,Northrop Grumman Corp,Aerospace and Defense,A,BB,BB,high,medium,medium,50.5,30.2,30.0,2022,BBB,high
+HCAT,Health Catalyst Inc,Health Care,A,BB,BB,high,medium,medium,54.5,32.4,32.0,2022,BBB,high
+AEP,American Electric Power Company Inc,Utilities,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+GILD,Gilead Sciences Inc,Biotechnology,A,BB,BB,high,medium,medium,50.0,30.3,30.0,2022,BBB,high
+DTE,DTE Energy Co,Utilities,A,BB,B,high,medium,medium,59.2,31.3,21.0,2022,BBB,high
+GIS,General Mills Inc,Food Products,A,BB,BB,high,medium,medium,58.5,32.6,36.5,2022,A,high
+PEP,PepsiCo Inc,Beverages,AA,BB,BB,excellent,medium,medium,71.9,34.0,35.8,2022,A,high
+ENPH,Enphase Energy Inc,Semiconductors,A,BB,BB,high,medium,medium,56.5,31.6,30.0,2022,BBB,high
+DHR,Danaher Corp,Life Sciences Tools and Services,A,BB,BB,high,medium,medium,53.0,34.4,38.5,2022,A,high
+H,Hyatt Hotels Corp,"Hotels, Restaurants & Leisure",B,B,B,medium,medium,medium,23.5,20.9,20.5,2022,B,medium
+TMUS,T-Mobile US Inc,Telecommunication,BB,BB,B,medium,medium,medium,34.2,33.1,23.0,2022,BBB,high
+LUV,Southwest Airlines Co,Airlines,B,BB,B,medium,medium,medium,29.5,31.4,21.8,2022,BB,medium
+LEN,Lennar Corp,Consumer products,BB,BB,B,medium,medium,medium,36.3,34.4,22.0,2022,BBB,high
+AESE,Allied Esports Entertainment Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+AGFY,Agrify Corp,Machinery,A,BB,BB,high,medium,medium,54.0,36.1,30.5,2022,A,high
+MAR,Marriott International Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,21.5,20.0,21.5,2022,B,medium
+ZBRA,Zebra Technologies Corp,Electrical Equipment,BB,BB,BB,medium,medium,medium,32.0,31.7,30.0,2022,BBB,high
+BBY,Best Buy Co Inc,Retail,BBB,B,BB,high,medium,medium,43.0,23.1,30.0,2022,BBB,high
+UNP,Union Pacific Corp,Road and Rail,B,B,B,medium,medium,medium,29.0,25.7,24.5,2022,BB,medium
+SHLS,Shoals Technologies Group Inc,Electrical Equipment,B,B,BB,medium,medium,medium,28.5,28.0,30.0,2022,BB,medium
+X,United States Steel Corp,Metals and Mining,A,BB,BB,high,medium,medium,53.5,36.4,30.0,2022,BBB,high
+RF,Regions Financial Corp,Banking,BBB,BB,BB,high,medium,medium,49.0,30.4,30.5,2022,BBB,high
+CAH,Cardinal Health Inc,Health Care,A,BB,BB,high,medium,medium,50.5,30.0,31.5,2022,BBB,high
+EVRG,Evergy Inc,Utilities,A,BB,BB,high,medium,medium,55.5,31.0,30.0,2022,BBB,high
+ROP,Roper Technologies Inc,Technology,A,BB,BB,high,medium,medium,57.0,35.0,34.0,2022,A,high
+VFC,VF Corp,Textiles Apparel and Luxury Goods,A,BB,BB,high,medium,medium,50.5,30.1,30.0,2022,BBB,high
+WM,Waste Management Inc,Commercial Services and Supplies,AA,BBB,B,excellent,high,medium,61.3,40.8,28.5,2022,A,high
+PKI,PerkinElmer Inc,Life Sciences Tools and Services,A,BB,BB,high,medium,medium,51.5,31.6,32.5,2022,BBB,high
+PM,Philip Morris International Inc,Tobacco,A,BB,BB,high,medium,medium,52.0,32.7,31.5,2022,BBB,high
+PPL,PPL Corp,Utilities,A,BB,BB,high,medium,medium,52.5,30.6,30.0,2022,BBB,high
+SWK,Stanley Black & Decker Inc,Machinery,A,BB,BB,high,medium,medium,55.5,31.5,30.0,2022,BBB,high
+HBT,HBT Financial Inc,Banking,B,B,BB,medium,medium,medium,24.5,27.5,30.0,2022,BB,medium
+UTRS,Minerva Surgical Inc,Health Care,B,B,B,medium,medium,medium,20.5,20.1,21.0,2022,B,medium
+MHK,Mohawk Industries Inc,Consumer products,A,B,BB,high,medium,medium,57.0,29.8,30.3,2022,BBB,high
+AMGN,Amgen Inc,Biotechnology,A,BB,BB,high,medium,medium,57.5,31.2,32.8,2022,A,high
+PEG,Public Service Enterprise Group Inc,Utilities,A,BB,B,high,medium,medium,50.0,30.0,20.5,2022,BBB,high
+ACIW,ACI Worldwide Inc,Technology,A,BB,BB,high,medium,medium,50.0,32.7,30.0,2022,BBB,high
+TDG,TransDigm Group Inc,Aerospace and Defense,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+XOM,Exxon Mobil Corp,Energy,A,BB,BB,high,medium,medium,53.8,32.2,31.3,2022,BBB,high
+PODD,Insulet Corp,Health Care,B,B,B,medium,medium,medium,21.5,23.3,20.5,2022,B,medium
+PRE,Artisan Acquisition Corp,N/A,B,B,B,medium,medium,medium,24.5,20.3,26.5,2022,B,medium
+AAPL,Apple Inc,Technology,BB,B,B,medium,medium,medium,35.5,28.1,25.5,2022,BB,medium
+MU,Micron Technology Inc,Semiconductors,A,BB,BB,high,medium,medium,53.0,33.0,30.0,2022,BBB,high
+DPZ,Domino's Pizza Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,20.5,20.5,20.0,2022,B,medium
+YALA,Yalla Group Ltd,Media,B,B,B,medium,medium,medium,23.3,24.4,22.0,2022,B,medium
+ABMD,ABIOMED Inc,Health Care,A,BB,BB,high,medium,medium,50.0,32.4,30.5,2022,BBB,high
+ANSS,ANSYS Inc,Technology,A,BB,B,high,medium,medium,58.0,33.7,28.5,2022,A,high
+DGX,Quest Diagnostics Inc,Health Care,B,BB,B,medium,medium,medium,23.0,30.0,20.5,2022,B,medium
+MTD,Mettler-Toledo International Inc,Life Sciences Tools and Services,A,BB,B,high,medium,medium,50.5,30.0,24.0,2022,BBB,high
+RHI,Robert Half International Inc,Professional Services,B,BB,BB,medium,medium,medium,25.5,33.4,31.0,2022,BB,medium
+ALGN,Align Technology Inc,Health Care,B,B,B,medium,medium,medium,23.5,28.5,25.5,2022,BB,medium
+ALLO,Allogene Therapeutics Inc,Biotechnology,A,BB,BB,high,medium,medium,53.5,32.4,30.5,2022,BBB,high
+CZR,Caesars Entertainment Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,26.5,22.8,20.0,2022,B,medium
+ALLT,Allot Ltd,Technology,A,BB,BB,high,medium,medium,50.8,32.4,31.0,2022,BBB,high
+DLTR,Dollar Tree Inc,Retail,B,B,B,medium,medium,medium,23.5,20.8,21.5,2022,B,medium
+MTB,M&T Bank Corp,Banking,A,BB,B,high,medium,medium,50.0,30.3,26.0,2022,BBB,high
+ETSY,ETSY Inc,Retail,B,B,B,medium,medium,medium,23.5,24.1,23.5,2022,B,medium
+PPBI,Pacific Premier Bancorp Inc,Banking,A,BB,BB,high,medium,medium,56.5,32.8,31.5,2022,A,high
+ACRX,AcelRx Pharmaceuticals Inc,Pharmaceuticals,B,B,BB,medium,medium,medium,20.0,23.7,30.0,2022,B,medium
+AON,Aon PLC,Insurance,BBB,BB,B,high,medium,medium,48.5,30.4,28.8,2022,BBB,high
+ETN,Eaton Corporation PLC,Electrical Equipment,A,BB,BB,high,medium,medium,52.0,32.8,32.0,2022,BBB,high
+TPR,Tapestry Inc,Textiles Apparel and Luxury Goods,BBB,BB,BB,high,medium,medium,48.3,31.0,30.0,2022,BBB,high
+TRV,Travelers Companies Inc,Insurance,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+USLM,United States Lime & Minerals Inc,Construction,A,B,BB,high,medium,medium,50.0,23.3,30.0,2022,BBB,high
+ABNB,Airbnb Inc,Hotels Restaurants and Leisure,A,A,BBB,high,high,high,50.5,57.0,40.0,2022,A,high
+HII,Huntington Ingalls Industries Inc,Aerospace and Defense,A,BB,BB,high,medium,medium,54.5,31.5,31.5,2022,BBB,high
+SHYF,Shyft Group Inc,Machinery,A,BB,B,high,medium,medium,51.0,30.3,27.5,2022,BBB,high
+PNTG,Pennant Group Inc,Health Care,B,BB,B,medium,medium,medium,24.5,30.6,20.0,2022,BB,medium
+ACXP,Acurx Pharmaceuticals Inc,Biotechnology,B,BB,BB,medium,medium,medium,23.5,30.1,30.5,2022,BB,medium
+ADP,Automatic Data Processing Inc,Technology,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+STX,Seagate Technology Holdings PLC,Technology,A,BB,BB,high,medium,medium,54.0,35.5,30.0,2022,BBB,high
+T,AT&T Inc,Telecommunication,B,B,BB,medium,medium,medium,21.0,20.0,30.5,2022,B,medium
+PNT,POINT Biopharma Global Inc,Biotechnology,BB,B,B,medium,medium,medium,32.0,22.1,28.5,2022,BB,medium
+MRK,Merck & Co Inc,Pharmaceuticals,A,BB,BB,high,medium,medium,50.0,30.5,31.5,2022,BBB,high
+CLSN,Celsion Corp,Biotechnology,B,B,BB,medium,medium,medium,25.5,21.4,30.0,2022,BB,medium
+SIRI,Sirius XM Holdings Inc,Media,B,BB,B,medium,medium,medium,24.0,30.2,20.5,2022,B,medium
+PNR,Pentair PLC,Machinery,BBB,BB,BB,high,medium,medium,43.3,33.0,31.5,2022,BBB,high
+TFC,Truist Financial Corp,Banking,BBB,BB,BB,high,medium,medium,48.0,30.8,30.0,2022,BBB,high
+STT,State Street Corp,Financial Services,B,B,B,medium,medium,medium,22.5,21.1,21.0,2022,B,medium
+GS,Goldman Sachs Group Inc,Financial Services,A,BB,BB,high,medium,medium,52.5,30.5,30.5,2022,BBB,high
+TFX,Teleflex Inc,Health Care,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+L,Loews Corp,Insurance,A,BB,BB,high,medium,medium,50.5,30.3,31.3,2022,BBB,high
+EXC,Exelon Corp,Utilities,AA,BBB,BB,excellent,high,medium,69.4,40.3,31.6,2022,A,high
+HCCI,Heritage-Crystal Clean Inc,Commercial Services and Supplies,A,BBB,BB,high,high,medium,52.5,40.0,30.0,2022,A,high
+MSI,Motorola Solutions Inc,Communications,A,BB,BB,high,medium,medium,50.5,30.5,34.7,2022,BBB,high
+NSC,Norfolk Southern Corp,Road and Rail,BB,BB,BB,medium,medium,medium,35.8,33.9,33.0,2022,BBB,high
+ABUS,Arbutus Biopharma Corp,Biotechnology,B,B,BB,medium,medium,medium,20.3,20.4,33.8,2022,B,medium
+AGFS,AgroFresh Solutions Inc,Chemicals,A,BB,B,high,medium,medium,50.0,30.1,27.5,2022,BBB,high
+AIRS,Airsculpt Technologies Inc,Health Care,B,B,B,medium,medium,medium,21.0,20.1,20.5,2022,B,medium
+JPM,JPMorgan Chase & Co,Banking,A,BB,BB,high,medium,medium,50.5,31.9,33.8,2022,BBB,high
+RSG,Republic Services Inc,Commercial Services and Supplies,B,B,B,medium,medium,medium,29.3,23.5,21.6,2022,B,medium
+EOG,EOG Resources Inc,Energy,A,B,B,high,medium,medium,55.0,25.2,24.0,2022,BBB,high
+MTEX,Mannatech Inc,Consumer products,B,B,B,medium,medium,medium,20.0,26.0,23.0,2022,B,medium
+LVS,Las Vegas Sands Corp,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,54.7,31.8,31.3,2022,BBB,high
+OMC,Omnicom Group Inc,Media,A,BB,BB,high,medium,medium,54.3,33.3,30.5,2022,BBB,high
+EXPE,Expedia Group Inc,Hotels Restaurants and Leisure,B,B,BB,medium,medium,medium,22.5,24.2,30.5,2022,BB,medium
+CLXT,Calyxt Inc,Biotechnology,A,BB,BB,high,medium,medium,53.5,32.2,32.5,2022,BBB,high
+SBAC,SBA Communications Corp,Real Estate,B,B,B,medium,medium,medium,25.0,25.1,21.5,2022,B,medium
+CCL,Carnival Corp,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,51.5,32.6,32.0,2022,BBB,high
+MYPS,Playstudios Inc,Media,B,B,B,medium,medium,medium,20.5,20.2,20.0,2022,B,medium
+CMRE,Costamare Inc,Marine,B,B,B,medium,medium,medium,24.2,20.4,20.0,2022,B,medium
+ADSK,Autodesk Inc,Technology,A,BB,BB,high,medium,medium,55.5,30.4,31.0,2022,BBB,high
+CDNS,Cadence Design Systems Inc,Technology,A,BB,B,high,medium,medium,50.0,30.8,29.5,2022,BBB,high
+DISH,DISH Network Corp,Media,B,B,B,medium,medium,medium,21.0,26.3,20.5,2022,B,medium
+TYL,Tyler Technologies Inc,Technology,BBB,BB,BB,high,medium,medium,40.0,30.6,30.5,2022,BBB,high
+CAG,Conagra Brands Inc,Food Products,A,BB,BB,high,medium,medium,52.5,30.6,30.0,2022,BBB,high
+RCL,Royal Caribbean Cruises Ltd,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,50.3,32.7,31.0,2022,BBB,high
+TXT,Textron Inc,Aerospace and Defense,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+ADTN,ADTRAN Inc,Communications,A,BB,BB,high,medium,medium,51.0,30.8,30.0,2022,BBB,high
+ALKT,Alkami Technology Inc,Technology,B,BB,B,medium,medium,medium,28.0,30.5,26.0,2022,BB,medium
+PENN,PENN Entertainment Inc,Hotels Restaurants and Leisure,BB,BB,B,medium,medium,medium,37.1,30.0,22.0,2022,BB,medium
+CAT,Caterpillar Inc,Machinery,B,B,B,medium,medium,medium,23.5,23.9,23.5,2022,B,medium
+MYFW,First Western Financial Inc,Banking,BB,BB,B,medium,medium,medium,35.1,30.0,23.5,2022,BB,medium
+CND,Concord Acquisition Corp,N/A,B,B,BB,medium,medium,medium,20.5,25.7,30.0,2022,BB,medium
+TTWO,Take-Two Interactive Software Inc,Media,B,BB,BB,medium,medium,medium,22.5,30.7,31.0,2022,BB,medium
+PWR,Quanta Services Inc,Construction,A,BB,BB,high,medium,medium,54.0,38.2,31.0,2022,A,high
+UPWK,Upwork Inc,Professional Services,B,B,B,medium,medium,medium,27.5,26.4,27.8,2022,BB,medium
+CSX,CSX Corp,Road and Rail,A,BB,BB,high,medium,medium,51.0,31.0,32.5,2022,BBB,high
+TROW,T Rowe Price Group Inc,Financial Services,A,BB,BB,high,medium,medium,51.0,32.5,31.0,2022,BBB,high
+PLD,Prologis Inc,Real Estate,A,BB,BB,high,medium,medium,57.9,37.4,31.5,2022,A,high
+ACHC,Acadia Healthcare Company Inc,Health Care,BB,B,B,medium,medium,medium,33.0,23.1,22.0,2022,BB,medium
+TJX,TJX Companies Inc,Retail,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+EXPD,Expeditors International of Washington Inc,Logistics and Transportation,A,BB,BB,high,medium,medium,51.0,30.2,30.0,2022,BBB,high
+CMCO,Columbus McKinnon Corp,Machinery,B,BB,B,medium,medium,medium,20.0,32.3,24.0,2022,BB,medium
+DFS,Discover Financial Services,Financial Services,BB,BB,BB,medium,medium,medium,33.5,32.1,31.3,2022,BBB,high
+WAT,Waters Corp,Life Sciences Tools and Services,B,B,B,medium,medium,medium,27.0,29.2,23.5,2022,BB,medium
+WFC,Wells Fargo & Co,Banking,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+MXCT,MaxCyte Inc,Life Sciences Tools and Services,B,BB,B,medium,medium,medium,22.0,30.0,24.8,2022,BB,medium
+HCDI,Harbor Custom Development Inc,Consumer products,B,B,B,medium,medium,medium,22.2,22.1,20.8,2022,B,medium
+ACNB,ACNB Corp,Banking,B,B,B,medium,medium,medium,22.0,21.9,21.5,2022,B,medium
+ALK,Alaska Air Group Inc,Airlines,A,BB,B,high,medium,medium,51.5,30.3,25.9,2022,BBB,high
+BBWI,Bath & Body Works Inc,Retail,A,BB,BB,high,medium,medium,52.5,30.3,30.0,2022,BBB,high
+STZ,Constellation Brands Inc,Beverages,BBB,BB,B,high,medium,medium,45.9,31.3,29.5,2022,BBB,high
+ALLE,Allegion PLC,Building,A,BB,BB,high,medium,medium,54.2,32.2,31.5,2022,BBB,high
+URI,United Rentals Inc,Trading Companies and Distributors,BBB,BB,BB,high,medium,medium,47.2,31.8,30.0,2022,BBB,high
+PNBK,Patriot National Bancorp Inc,Banking,B,BB,B,medium,medium,medium,20.5,30.2,21.0,2022,B,medium
+ACT,Enact Holdings Inc,Financial Services,A,BB,BB,high,medium,medium,54.0,32.8,31.5,2022,BBB,high
+TSCO,Tractor Supply Co,Retail,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+HON,Honeywell International Inc,Industrial Conglomerates,A,BB,BB,high,medium,medium,54.5,34.4,30.8,2022,BBB,high
+TRU,TransUnion,Professional Services,A,BB,BB,high,medium,medium,51.0,31.3,31.0,2022,BBB,high
+PMCB,PharmaCyte Biotech Inc,Biotechnology,B,B,BB,medium,medium,medium,22.0,20.2,30.0,2022,B,medium
+UTME,Utime Ltd,Electrical Equipment,B,B,B,medium,medium,medium,21.7,20.0,20.0,2022,B,medium
+AFYA,Afya Ltd,Diversified Consumer Services,B,B,B,medium,medium,medium,29.0,20.3,20.5,2022,B,medium
+GOOGL,Alphabet Inc,Media,B,BB,BB,medium,medium,medium,29.5,36.2,35.5,2022,BBB,high
+CARR,Carrier Global Corp,Building,B,B,B,medium,medium,medium,21.0,25.8,22.6,2022,B,medium
+MCHP,Microchip Technology Inc,Semiconductors,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CE,Celanese Corp,Chemicals,A,BB,BB,high,medium,medium,50.0,31.9,30.0,2022,BBB,high
+AFIB,Acutus Medical Inc,Health Care,B,B,B,medium,medium,medium,20.5,21.1,23.5,2022,B,medium
+REGN,Regeneron Pharmaceuticals Inc,Biotechnology,A,BB,BB,high,medium,medium,50.5,32.7,30.5,2022,BBB,high
+AFL,Aflac Inc,Insurance,BBB,BB,B,high,medium,medium,45.4,30.0,23.5,2022,BBB,high
+SO,Southern Co,Utilities,A,BB,BB,high,medium,medium,51.5,30.7,33.0,2022,BBB,high
+AAWW,Atlas Air Worldwide Holdings Inc,Logistics and Transportation,A,B,B,high,medium,medium,52.0,24.3,23.7,2022,BBB,high
+ABCB,Ameris Bancorp,Banking,B,BB,B,medium,medium,medium,29.0,30.0,25.0,2022,BB,medium
+COST,Costco Wholesale Corp,Retail,A,BB,B,high,medium,medium,53.7,30.6,22.5,2022,BBB,high
+AVY,Avery Dennison Corp,Packaging,A,BB,BB,high,medium,medium,53.5,34.7,32.5,2022,A,high
+LUMN,Lumen Technologies Inc,Telecommunication,A,BB,BB,high,medium,medium,53.5,32.7,30.5,2022,BBB,high
+NCLH,Norwegian Cruise Line Holdings Ltd,Hotels Restaurants and Leisure,BBB,BB,BB,high,medium,medium,49.5,30.6,30.0,2022,BBB,high
+NEM,Newmont Corporation,Metals and Mining,AA,BB,BB,excellent,medium,medium,67.5,38.9,35.5,2022,A,high
+YETI,Yeti Holdings Inc,Leisure Products,B,B,BB,medium,medium,medium,26.9,25.3,30.5,2022,BB,medium
+UXIN,Uxin Ltd,Retail,B,B,B,medium,medium,medium,20.3,20.2,22.5,2022,B,medium
+HCC,Warrior Met Coal Inc,Metals & Mining,B,B,B,medium,medium,medium,21.5,20.0,20.0,2022,B,medium
+WELL,Welltower OP LLC,Real Estate,BBB,BB,BB,high,medium,medium,43.7,32.6,30.0,2022,BBB,high
+EMN,Eastman Chemical Co,Chemicals,A,BB,BB,high,medium,medium,58.3,36.5,31.0,2022,A,high
+ADN,Advent Technologies Holdings Inc,Electrical Equipment,B,B,B,medium,medium,medium,25.0,20.3,22.0,2022,B,medium
+ATO,Atmos Energy Corp,Utilities,A,BB,BB,high,medium,medium,57.2,36.8,31.5,2022,A,high
+HARP,Harpoon Therapeutics Inc,Biotechnology,BBB,BB,BB,high,medium,medium,48.5,30.0,31.0,2022,BBB,high
+PRAA,PRA Group Inc,Financial Services,BBB,BB,BB,high,medium,medium,47.3,32.1,31.0,2022,BBB,high
+SITM,SiTime Corp,Semiconductors,A,BB,BB,high,medium,medium,50.5,30.4,30.0,2022,BBB,high
+WRK,Westrock Co,Packaging,A,BB,BB,high,medium,medium,55.5,32.4,30.5,2022,BBB,high
+ACRS,Aclaris Therapeutics Inc,Pharmaceuticals,B,B,B,medium,medium,medium,23.0,20.7,22.0,2022,B,medium
+ATVI,Activision Blizzard Inc,Media,B,BB,BB,medium,medium,medium,28.0,34.7,33.0,2022,BBB,high
+ABBV,Abbvie Inc,Biotechnology,A,BB,BB,high,medium,medium,50.5,31.7,30.0,2022,BBB,high
+CBRE,CBRE Group Inc,Real Estate,B,B,B,medium,medium,medium,20.0,20.9,20.0,2022,B,medium
+CTRA,Coterra Energy Inc,Energy,A,BB,BB,high,medium,medium,55.5,32.9,31.0,2022,BBB,high
+PNC,PNC Financial Services Group Inc,Banking,BBB,BB,BB,high,medium,medium,45.5,32.3,30.0,2022,BBB,high
+WST,West Pharmaceutical Services Inc,Life Sciences Tools and Services,A,BB,BB,high,medium,medium,54.0,33.0,30.5,2022,BBB,high
+WU,Western Union Co,Technology,B,B,B,medium,medium,medium,20.5,20.5,22.8,2022,B,medium
+BEN,Franklin Resources Inc,Financial Services,BB,BB,BB,medium,medium,medium,32.1,34.9,31.0,2022,BBB,high
+MTEM,Molecular Templates Inc,Biotechnology,BB,BB,BB,medium,medium,medium,36.0,32.5,32.0,2022,BBB,high
+AGEN,Agenus Inc,Biotechnology,B,B,BB,medium,medium,medium,29.0,24.5,30.0,2022,BB,medium
+AGYS,Agilysys Inc,Technology,A,BB,BB,high,medium,medium,50.0,30.3,30.0,2022,BBB,high
+DVA,DaVita Inc,Health Care,B,BB,BB,medium,medium,medium,26.0,33.2,30.0,2022,BB,medium
+TGT,Target Corp,Retail,A,BB,BB,high,medium,medium,55.0,34.2,31.3,2022,A,high
+MYGN,Myriad Genetics Inc,Biotechnology,BB,BB,B,medium,medium,medium,35.3,32.1,29.4,2022,BBB,high
+ACHV,Achieve Life Sciences Inc,Biotechnology,B,B,BB,medium,medium,medium,21.5,22.2,30.5,2022,B,medium
+ORLY,O'Reilly Automotive Inc,Retail,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+POOL,Pool Corp,Distributors,A,BB,BB,high,medium,medium,52.5,30.6,31.3,2022,BBB,high
+MSCI,MSCI Inc,Financial Services,A,BB,BB,high,medium,medium,58.0,34.7,33.5,2022,A,high
+MTLS,Materialise NV,Technology,A,BB,BB,high,medium,medium,50.5,30.1,30.0,2022,BBB,high
+DHI,D R Horton Inc,Consumer products,B,B,B,medium,medium,medium,25.0,27.1,20.5,2022,B,medium
+DRE,Duke Realty Corp,Real Estate,A,BB,BB,high,medium,medium,54.0,31.3,30.0,2022,BBB,high
+ORCL,Oracle Corp,Technology,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+ZEN,Zendesk Inc,Technology,A,BB,BB,high,medium,medium,51.5,33.8,32.0,2022,BBB,high
+HAIN,Hain Celestial Group Inc,Food Products,A,BB,BB,high,medium,medium,52.0,30.2,30.5,2022,BBB,high
+POW,Powered Brands,N/A,B,B,B,medium,medium,medium,23.5,23.1,25.0,2022,B,medium
+FN,Fabrinet,Electrical Equipment,A,B,B,high,medium,medium,51.0,20.9,21.0,2022,BBB,high
+CTXS,Citrix Systems Inc,Technology,A,BB,BB,high,medium,medium,53.0,30.5,30.5,2022,BBB,high
+LRCX,Lam Research Corp,Semiconductors,A,BB,BB,high,medium,medium,51.0,32.5,31.5,2022,BBB,high
+A,Agilent Technologies Inc,Life Sciences Tools and Services,A,B,B,high,medium,medium,57.3,23.1,23.3,2022,BBB,high
+VLO,Valero Energy Corp,Energy,AA,BB,BB,excellent,medium,medium,60.8,30.7,33.0,2022,A,high
+V,Visa Inc,Technology,A,BB,BB,high,medium,medium,50.4,36.8,31.0,2022,BBB,high
+EFX,Equifax Inc,Professional Services,BB,BB,BB,medium,medium,medium,39.0,30.0,30.5,2022,BBB,high
+HRL,Hormel Foods Corp,Food Products,A,BB,BB,high,medium,medium,57.0,32.2,30.0,2022,BBB,high
+AIZ,Assurant Inc,Insurance,BBB,BB,BB,high,medium,medium,43.8,31.6,30.0,2022,BBB,high
+FOXA,Fox Corp,Media,B,BB,BB,medium,medium,medium,29.5,33.0,31.5,2022,BBB,high
+FTV,Fortive Corp,Machinery,A,BB,BB,high,medium,medium,54.0,32.6,30.5,2022,BBB,high
+CNO,CNO Financial Group Inc,Insurance,A,BB,BB,high,medium,medium,50.0,32.2,31.5,2022,BBB,high
+VRSN,Verisign Inc,Technology,A,BB,BB,high,medium,medium,54.8,35.4,32.5,2022,A,high
+ABT,Abbott Laboratories,Health Care,A,BB,BB,high,medium,medium,51.5,30.5,30.5,2022,BBB,high
+CNC,Centene Corp,Health Care,A,BB,BB,high,medium,medium,54.8,35.5,31.5,2022,A,high
+MVBF,MVB Financial Corp,Banking,B,B,B,medium,medium,medium,21.0,21.5,21.5,2022,B,medium
+AEHL,Antelope Enterprise Holdings Ltd,Building,B,B,BB,medium,medium,medium,23.8,23.7,32.5,2022,BB,medium
+KO,Coca-Cola Co,Beverages,B,B,B,medium,medium,medium,20.0,20.1,20.0,2022,B,medium
+PVH,PVH Corp,Textiles Apparel and Luxury Goods,BBB,BB,BB,high,medium,medium,41.8,31.9,31.5,2022,BBB,high
+LW,Lamb Weston Holdings Inc,Food Products,BB,B,BB,medium,medium,medium,34.5,25.6,30.0,2022,BBB,high
+UTHR,United Therapeutics Corp,Biotechnology,B,B,BB,medium,medium,medium,23.3,25.9,30.0,2022,BB,medium
+HAYW,Hayward Holdings Inc,Building,A,BB,BB,high,medium,medium,53.5,30.5,30.0,2022,BBB,high
+AMP,Ameriprise Financial Inc,Financial Services,BB,BB,B,medium,medium,medium,39.6,30.8,26.7,2022,BBB,high
+APH,Amphenol Corp,Electrical Equipment,A,BB,BBB,high,medium,high,51.2,30.3,47.5,2022,A,high
+C,Citigroup Inc,Banking,A,BB,BB,high,medium,medium,51.5,30.0,30.3,2022,BBB,high
+POLA,Polar Power Inc,Electrical Equipment,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+AKYA,Akoya Biosciences Inc,Life Sciences Tools and Services,A,BB,B,high,medium,medium,51.2,30.3,21.5,2022,BBB,high
+ED,Consolidated Edison Inc,Utilities,AA,BB,BB,excellent,medium,medium,70.0,35.8,30.0,2022,A,high
+CTVA,Corteva Inc,Chemicals,AA,BB,BB,excellent,medium,medium,61.0,31.2,32.0,2022,A,high
+FFIV,F5 Inc,Communications,B,B,B,medium,medium,medium,20.0,22.1,21.5,2022,B,medium
+HPE,Hewlett Packard Enterprise Co,Technology,B,BB,B,medium,medium,medium,23.0,35.9,23.0,2022,BB,medium
+ZEV,Lightning eMotors Inc,Machinery,A,BB,B,high,medium,medium,53.5,39.1,24.0,2022,BBB,high
+ZWS,Zurn Elkay Water Solutions Corp,Building,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+PLYA,Playa Hotels & Resorts NV,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,21.0,20.0,20.5,2022,B,medium
+HCI,Hci Group Inc,Insurance,B,B,BB,medium,medium,medium,20.5,26.0,30.0,2022,BB,medium
+HHC,Howard Hughes Corp,Real Estate,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CLX,Clorox Co,Consumer products,A,BB,BB,high,medium,medium,56.0,35.0,34.5,2022,A,high
+ABTX,Allegiance Bancshares Inc,Banking,B,BB,BB,medium,medium,medium,29.8,30.0,30.0,2022,BB,medium
+AKAM,Akamai Technologies Inc,Technology,A,BB,BB,high,medium,medium,51.5,34.1,30.5,2022,BBB,high
+ADPT,Adaptive Biotechnologies Corp,Life Sciences Tools and Services,B,BB,B,medium,medium,medium,26.0,34.8,26.0,2022,BB,medium
+AMT,American Tower Corp,Real Estate,A,BB,BB,high,medium,medium,53.0,33.3,30.5,2022,BBB,high
+UDR,UDR Inc,Real Estate,B,BB,B,medium,medium,medium,22.5,30.1,21.5,2022,B,medium
+BSX,Boston Scientific Corp,Health Care,A,BB,BB,high,medium,medium,52.5,39.9,30.0,2022,A,high
+PNW,Pinnacle West Capital Corp,Utilities,AA,BBB,BB,excellent,high,medium,62.9,47.9,30.0,2022,A,high
+OGN,Organon & Co,Pharmaceuticals,A,BB,BB,high,medium,medium,51.5,33.5,30.5,2022,BBB,high
+GPC,Genuine Parts Co,Distributors,A,B,BB,high,medium,medium,53.5,22.5,30.5,2022,BBB,high
+HI,Hillenbrand Inc,Machinery,BBB,BB,BB,high,medium,medium,48.9,34.9,30.0,2022,BBB,high
+CHTR,Charter Communications Inc,Media,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CNNE,Cannae Holdings Inc,Financial Services,B,B,B,medium,medium,medium,21.5,20.3,20.3,2022,B,medium
+ALDX,Aldeyra Therapeutics Inc,Biotechnology,B,B,B,medium,medium,medium,23.1,26.1,23.5,2022,B,medium
+TRMB,Trimble Inc,Electrical Equipment,A,BBB,BB,high,high,medium,55.0,41.5,31.5,2022,A,high
+CHD,Church & Dwight Co Inc,Consumer products,A,BB,BB,high,medium,medium,57.8,34.1,34.8,2022,A,high
+AKIC,Sports Ventures Acquisition Corp,N/A,B,B,B,medium,medium,medium,20.0,20.5,23.0,2022,B,medium
+MDLZ,Mondelez International Inc,Food Products,A,BB,BB,high,medium,medium,52.0,30.7,30.0,2022,BBB,high
+NWSA,News Corp,Media,A,BB,BB,high,medium,medium,50.9,30.0,30.0,2022,BBB,high
+DUK,Duke Energy Corp,Utilities,AA,BB,BB,excellent,medium,medium,60.4,36.2,32.8,2022,A,high
+TEL,TE Connectivity Ltd,Electrical Equipment,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+MVIS,MicroVision Inc,Electrical Equipment,BBB,BB,BB,high,medium,medium,45.1,30.0,33.0,2022,BBB,high
+COP,Conocophillips,Energy,AA,A,BB,excellent,high,medium,68.7,54.4,30.5,2022,A,high
+YOU,Clear Secure Inc,Technology,A,B,B,high,medium,medium,51.5,27.8,20.5,2022,BBB,high
+LNT,Alliant Energy Corp,Utilities,A,BB,BB,high,medium,medium,51.9,30.7,30.0,2022,BBB,high
+NDAQ,Nasdaq Inc,Financial Services,A,BB,BB,high,medium,medium,50.5,31.0,30.0,2022,BBB,high
+PTC,PTC Inc,Technology,A,BB,BB,high,medium,medium,55.0,30.2,30.8,2022,BBB,high
+LOW,Lowe's Companies Inc,Retail,B,B,B,medium,medium,medium,21.8,20.0,20.0,2022,B,medium
+GPN,Global Payments Inc,Technology,BB,BB,B,medium,medium,medium,31.0,34.3,26.5,2022,BBB,high
+HAYN,Haynes International Inc,Metals and Mining,A,BB,BB,high,medium,medium,50.0,30.1,30.0,2022,BBB,high
+PRCT,Procept Biorobotics Corp,Health Care,B,B,BB,medium,medium,medium,20.0,22.4,30.0,2022,B,medium
+AGNC,AGNC Investment Corp,Real Estate,BB,B,BB,medium,medium,medium,38.2,24.2,30.5,2022,BBB,high
+TSLA,Tesla Inc,Automobiles,A,CCC,B,high,low,medium,55.5,16.0,27.8,2022,BBB,high
+SCHW,Charles Schwab Corp,Financial Services,A,BB,BB,high,medium,medium,51.5,30.0,30.0,2022,BBB,high
+HSIC,Henry Schein Inc,Health Care,B,B,B,medium,medium,medium,21.0,20.5,20.0,2022,B,medium
+AEY,ADDvantage Technologies Group Inc,Electrical Equipment,B,B,BB,medium,medium,medium,23.5,23.4,30.0,2022,BB,medium
+SNPS,Synopsys Inc,Technology,A,BB,BB,high,medium,medium,52.5,31.6,31.5,2022,BBB,high
+EL,Estee Lauder Companies Inc,Consumer products,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+ZIM,ZIM Integrated Shipping Services Ltd,Marine,BB,BB,BB,medium,medium,medium,32.9,35.1,32.0,2022,BBB,high
+CMCSA,Comcast Corp,Media,A,BB,BB,high,medium,medium,50.7,34.3,31.5,2022,BBB,high
+SBUX,Starbucks Corp,Hotels Restaurants and Leisure,BBB,BB,B,high,medium,medium,47.5,38.5,29.5,2022,BBB,high
+WY,Weyerhaeuser Co,Real Estate,AA,BB,BB,excellent,medium,medium,70.0,34.0,30.0,2022,A,high
+CLVS,Clovis Oncology Inc,Biotechnology,B,B,BB,medium,medium,medium,22.5,21.2,30.0,2022,B,medium
+AFBI,Affinity Bancshares Inc,Banking,B,B,B,medium,medium,medium,20.0,20.7,20.0,2022,B,medium
+AGTC,Applied Genetic Technologies Corp,Biotechnology,B,BB,BB,medium,medium,medium,23.5,32.3,30.5,2022,BB,medium
+AIRT,Air T Inc,Logistics and Transportation,B,B,BB,medium,medium,medium,23.4,21.0,32.5,2022,BB,medium
+HSY,Hershey Co,Food Products,A,BB,BB,high,medium,medium,52.5,36.1,30.0,2022,BBB,high
+POAI,Predictive Oncology Inc,Health Care,B,B,B,medium,medium,medium,27.8,29.7,22.0,2022,BB,medium
+ABVC,ABVC Biopharma Inc,Biotechnology,B,B,B,medium,medium,medium,22.0,21.2,20.5,2022,B,medium
+BKNG,Booking Holdings Inc,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,55.8,30.6,31.0,2022,BBB,high
+FANG,Diamondback Energy Inc,Energy,A,B,BB,high,medium,medium,51.3,27.1,30.0,2022,BBB,high
+NTAP,NetApp Inc,Technology,A,BB,BB,high,medium,medium,54.5,35.9,32.5,2022,A,high
+WBA,Walgreens Boots Alliance Inc,Retail,A,BB,BB,high,medium,medium,51.5,32.5,30.0,2022,BBB,high
+CPB,Campbell Soup Co,Food Products,A,BB,BB,high,medium,medium,51.5,30.1,30.5,2022,BBB,high
+CI,Cigna Corp,Health Care,A,BB,BB,high,medium,medium,50.8,32.8,31.0,2022,BBB,high
+AERI,Aerie Pharmaceuticals Inc,Pharmaceuticals,A,B,BB,high,medium,medium,50.0,26.4,31.0,2022,BBB,high
+ALCO,Alico Inc,Food Products,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CF,CF Industries Holdings Inc,Chemicals,A,BB,BB,high,medium,medium,52.5,30.7,31.0,2022,BBB,high
+RMD,Resmed Inc,Health Care,BB,BB,BB,medium,medium,medium,33.0,31.2,30.0,2022,BBB,high
+ALGS,Aligos Therapeutics Inc,Biotechnology,B,B,B,medium,medium,medium,21.0,22.2,23.5,2022,B,medium
+AIHS,Senmiao Technology Ltd,Financial Services,B,B,B,medium,medium,medium,22.0,20.3,20.0,2022,B,medium
+MCO,Moody's Corp,Financial Services,A,BB,B,high,medium,medium,51.5,30.8,23.5,2022,BBB,high
+CTAS,Cintas Corp,Commercial Services and Supplies,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+PYPL,PayPal Holdings Inc,Technology,BB,B,B,medium,medium,medium,37.0,24.4,28.5,2022,BB,medium
+MAS,Masco Corp,Building,A,BB,BB,high,medium,medium,52.2,32.3,30.5,2022,BBB,high
+NI,NiSource Inc,Utilities,BB,BB,B,medium,medium,medium,36.1,32.2,22.3,2022,BBB,high
+SPGI,S&P Global Inc,Financial Services,BBB,BB,BB,high,medium,medium,43.5,34.1,31.0,2022,BBB,high
+XL,XL Fleet Corp,Auto Components,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+CLSK,CleanSpark Inc,Technology,A,BB,BB,high,medium,medium,57.0,32.6,31.0,2022,A,high
+HGV,Hilton Grand Vacations Inc,"Hotels, Restaurants & Leisure",BB,B,B,medium,medium,medium,30.5,28.8,25.0,2022,BB,medium
+ALLK,Allakos Inc,Biotechnology,B,B,BB,medium,medium,medium,20.0,27.3,30.0,2022,BB,medium
+DAL,Delta Air Lines Inc,Airlines,A,BB,BB,high,medium,medium,51.5,30.0,31.3,2022,BBB,high
+AZO,Autozone Inc,Retail,B,B,B,medium,medium,medium,26.0,22.2,21.3,2022,B,medium
+WWE,World Wrestling Entertainment Inc,Media,B,BB,BB,medium,medium,medium,27.5,33.2,31.5,2022,BBB,high
+ACGL,Arch Capital Group Ltd,Insurance,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+DD,Dupont De Nemours Inc,Chemicals,A,BB,B,high,medium,medium,55.0,34.1,29.5,2022,BBB,high
+MMM,3M Co,Industrial Conglomerates,A,BB,BB,high,medium,medium,52.6,31.0,30.5,2022,BBB,high
+OXY,Occidental Petroleum Corp,Energy,A,BB,BB,high,medium,medium,50.5,30.2,30.0,2022,BBB,high
+MO,Altria Group Inc,Tobacco,A,BB,BB,high,medium,medium,50.0,32.7,34.1,2022,BBB,high
+HBCP,Home Bancorp Inc,Financial Services,B,B,B,medium,medium,medium,23.0,20.2,20.0,2022,B,medium
+DXCM,Dexcom Inc,Health Care,B,B,B,medium,medium,medium,21.5,23.6,21.5,2022,B,medium
+TT,Trane Technologies PLC,Building,AA,BB,BB,excellent,medium,medium,70.0,38.9,32.0,2022,A,high
+HAS,Hasbro Inc,Leisure Products,B,BB,BB,medium,medium,medium,25.5,30.1,30.0,2022,BB,medium
+XPO,XPO Logistics Inc,Road and Rail,A,BB,BB,high,medium,medium,56.0,31.8,30.0,2022,BBB,high
+ESS,Essex Property Trust Inc,Real Estate,BB,BB,B,medium,medium,medium,37.7,30.4,21.0,2022,BB,medium
+LLY,Eli Lilly and Co,Pharmaceuticals,A,BB,BB,high,medium,medium,51.0,36.0,31.0,2022,BBB,high
+SJ,Scienjoy Holding Corp,Media,B,BB,B,medium,medium,medium,26.0,32.0,24.0,2022,BB,medium
+HLT,Hilton Worldwide Holdings Inc,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,29.3,20.0,20.5,2022,B,medium
+SPOT,Spotify Technology SA,Media,A,B,B,high,medium,medium,50.0,28.3,25.5,2022,BBB,high
+HESM,Hess Midstream LP,Energy,BB,B,B,medium,medium,medium,30.7,25.7,25.5,2022,BB,medium
+ADOC,Edoc Acquisition Corp,N/A,B,BB,BB,medium,medium,medium,21.5,30.1,30.0,2022,BB,medium
+PCAR,Paccar Inc,Machinery,A,BB,BB,high,medium,medium,56.8,34.3,30.5,2022,A,high
+AEHR,Aehr Test Systems,Semiconductors,B,B,BB,medium,medium,medium,29.0,26.2,30.0,2022,BB,medium
+CHRW,CH Robinson Worldwide Inc,Logistics and Transportation,A,BB,BB,high,medium,medium,57.5,33.0,33.8,2022,A,high
+AMD,Advanced Micro Devices Inc,Semiconductors,B,B,B,medium,medium,medium,20.0,20.8,20.0,2022,B,medium
+ZION,Zions Bancorporation NA,Banking,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+ARE,Alexandria Real Estate Equities Inc,Real Estate,AA,BB,BB,excellent,medium,medium,60.0,33.7,34.5,2022,A,high
+CDAY,Ceridian HCM Holding Inc,Technology,A,BB,BB,high,medium,medium,53.0,37.9,32.0,2022,A,high
+WHR,Whirlpool Corp,Consumer products,A,BB,BB,high,medium,medium,50.0,30.1,30.0,2022,BBB,high
+HCAR,Healthcare Services Acquisition Corp,N/A,B,B,BB,medium,medium,medium,24.5,20.5,30.0,2022,BB,medium
+POWI,Power Integrations Inc,Semiconductors,A,B,BB,high,medium,medium,57.5,28.5,30.5,2022,BBB,high
+CINF,Cincinnati Financial Corp,Insurance,B,B,B,medium,medium,medium,23.5,27.5,25.0,2022,BB,medium
+LKQ,LKQ Corp,Distributors,A,BB,BB,high,medium,medium,51.5,30.0,30.5,2022,BBB,high
+GL,Globe Life Inc,Insurance,B,B,B,medium,medium,medium,21.5,23.8,21.5,2022,B,medium
+SIEB,Siebert Financial Corp,Financial Services,BB,B,B,medium,medium,medium,30.0,29.9,23.5,2022,BB,medium
+AGRI,AgriFORCE Growing Systems Ltd,Food Products,A,B,BB,high,medium,medium,51.0,24.8,30.5,2022,BBB,high
+XYL,Xylem Inc,Machinery,BB,B,B,medium,medium,medium,37.4,25.4,21.0,2022,BB,medium
+HUM,Humana Inc,Health Care,BBB,BB,BB,high,medium,medium,46.2,30.0,30.0,2022,BBB,high
+MTRX,Matrix Service Co,Construction,A,BB,B,high,medium,medium,58.9,39.0,27.7,2022,A,high
+ACLS,Axcelis Technologies Inc,Semiconductors,A,BB,B,high,medium,medium,51.5,30.6,26.0,2022,BBB,high
+EBAY,eBay Inc,Retail,A,BB,BB,high,medium,medium,50.0,30.2,30.5,2022,BBB,high
+CMBM,Cambium Networks Corp,Communications,A,BB,BB,high,medium,medium,50.5,33.7,30.0,2022,BBB,high
+ALL,Allstate Corp,Insurance,A,BB,B,high,medium,medium,53.0,30.0,22.0,2022,BBB,high
+PKG,Packaging Corp of America,Packaging,A,BB,BB,high,medium,medium,50.0,30.3,30.0,2022,BBB,high
+COF,Capital One Financial Corp,Financial Services,A,BB,BB,high,medium,medium,50.8,30.9,32.0,2022,BBB,high
+PLXS,Plexus Corp,Electrical Equipment,A,BB,BB,high,medium,medium,51.0,30.0,30.0,2022,BBB,high
+XHR,Xenia Hotels & Resorts Inc,Real Estate,B,B,B,medium,medium,medium,26.0,26.3,23.6,2022,BB,medium
+NWL,Newell Brands Inc,Consumer products,A,BB,BB,high,medium,medium,52.5,30.3,31.5,2022,BBB,high
+BK,Bank of New York Mellon Corp,Financial Services,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+COO,Cooper Companies Inc,Health Care,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+ADIL,Adial Pharmaceuticals Inc,Pharmaceuticals,B,B,BB,medium,medium,medium,20.0,20.3,30.0,2022,B,medium
+ACMR,ACM Research Inc,Semiconductors,BBB,B,BB,high,medium,medium,41.0,23.2,32.5,2022,BBB,high
+MNST,Monster Beverage Corp,Beverages,A,BB,BB,high,medium,medium,51.5,34.4,30.0,2022,BBB,high
+WYNN,Wynn Resorts Ltd,Hotels Restaurants and Leisure,B,B,B,medium,medium,medium,22.5,20.1,20.0,2022,B,medium
+URGN,Urogen Pharma Ltd,Biotechnology,B,B,B,medium,medium,medium,21.0,25.1,29.0,2022,BB,medium
+HBI,HanesBrands Inc,Textiles Apparel and Luxury Goods,BB,B,BB,medium,medium,medium,31.0,22.3,30.5,2022,BB,medium
+LYV,Live Nation Entertainment Inc,Media,BBB,BB,B,high,medium,medium,49.2,31.0,25.0,2022,BBB,high
+STE,STERIS plc,Health Care,A,BB,BB,high,medium,medium,51.0,30.1,30.5,2022,BBB,high
+DELL,Dell Technologies Inc,Technology,A,BB,B,high,medium,medium,50.0,31.8,27.5,2022,BBB,high
+O,Realty Income Corp,Real Estate,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+AFRM,Affirm Holdings Inc,Technology,B,BB,BB,medium,medium,medium,22.5,33.5,33.5,2022,BB,medium
+WDC,Western Digital Corp,Technology,A,BB,B,high,medium,medium,54.5,33.9,26.0,2022,BBB,high
+FISV,Fiserv Inc,Technology,BB,BB,BB,medium,medium,medium,39.5,30.2,31.0,2022,BBB,high
+PPSI,Pioneer Power Solutions Inc,Electrical Equipment,B,BB,BB,medium,medium,medium,29.9,30.5,31.5,2022,BBB,high
+AGIL,AgileThought Inc,Technology,BB,B,BB,medium,medium,medium,34.0,29.9,30.5,2022,BBB,high
+PFG,Principal Financial Group Inc,Insurance,A,BB,BB,high,medium,medium,55.5,32.0,30.0,2022,BBB,high
+AGLE,Aeglea Bio Therapeutics Inc,Biotechnology,B,B,B,medium,medium,medium,20.5,22.3,20.0,2022,B,medium
+EA,Electronic Arts Inc,Media,BB,BB,B,medium,medium,medium,36.0,30.0,22.5,2022,BB,medium
+BWA,Borgwarner Inc,Auto Components,B,B,B,medium,medium,medium,26.0,20.6,23.0,2022,B,medium
+FBHS,Fortune Brands Home & Security Inc,Building,A,BB,BB,high,medium,medium,51.0,30.2,30.0,2022,BBB,high
+XYF,X Financial,Financial Services,B,B,B,medium,medium,medium,21.5,20.5,20.0,2022,B,medium
+AGIO,Agios Pharmaceuticals Inc,Biotechnology,A,BB,BB,high,medium,medium,52.0,30.3,32.5,2022,BBB,high
+PAYX,Paychex Inc,Technology,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+XEL,Xcel Energy Inc,Utilities,B,B,B,medium,medium,medium,22.3,20.1,20.5,2022,B,medium
+SIVB,SVB Financial Group,Banking,A,BB,BB,high,medium,medium,51.0,34.0,30.0,2022,BBB,high
+ADES,Advanced Emissions Solutions Inc,Chemicals,B,B,BB,medium,medium,medium,20.5,20.1,30.0,2022,B,medium
+AKTX,Akari Therapeutics PLC,Pharmaceuticals,B,B,BB,medium,medium,medium,22.5,21.6,30.5,2022,B,medium
+SWKS,Skyworks Solutions Inc,Semiconductors,A,BB,B,high,medium,medium,51.5,30.3,27.0,2022,BBB,high
+LIN,Linde PLC,Chemicals,B,B,B,medium,medium,medium,21.0,24.0,27.5,2022,B,medium
+GPS,Gap Inc,Retail,A,BB,BB,high,medium,medium,51.5,34.9,30.0,2022,BBB,high
+MTTR,Matterport Inc,Technology,BB,BB,B,medium,medium,medium,34.6,32.5,26.0,2022,BBB,high
+ADAP,Adaptimmune Therapeutics PLC,Biotechnology,BB,B,BB,medium,medium,medium,36.5,28.3,30.5,2022,BBB,high
+AJG,Arthur J. Gallagher & Co.,Insurance,A,BB,BB,high,medium,medium,53.0,34.4,31.0,2022,BBB,high
+EMR,Emerson Electric Co,Electrical Equipment,AA,BB,BB,excellent,medium,medium,60.5,32.3,31.5,2022,A,high
+HOLX,Hologic Inc,Health Care,A,BB,BB,high,medium,medium,51.5,32.4,31.5,2022,BBB,high
+SIEN,Sientra Inc,Health Care,B,BB,B,medium,medium,medium,21.9,30.8,23.6,2022,BB,medium
+HBIO,Harvard Bioscience Inc,Life Sciences Tools and Services,B,B,BB,medium,medium,medium,25.0,22.1,30.0,2022,BB,medium
+ACCD,Accolade Inc,Health Care,B,B,B,medium,medium,medium,25.5,25.4,23.5,2022,B,medium
+ABCL,Abcellera Biologics Inc,Life Sciences Tools and Services,A,BB,BB,high,medium,medium,54.0,35.4,34.5,2022,A,high
+ADUS,Addus Homecare Corp,Health Care,B,B,B,medium,medium,medium,21.0,21.5,21.8,2022,B,medium
+AEIS,Advanced Energy Industries Inc,Electrical Equipment,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+AME,AMETEK Inc,Electrical Equipment,A,BB,B,high,medium,medium,54.0,32.9,27.0,2022,BBB,high
+APD,Air Products and Chemicals Inc,Chemicals,AA,BBB,BB,excellent,high,medium,70.0,44.2,30.0,2022,A,high
+KMX,Carmax Inc,Retail,B,B,BB,medium,medium,medium,25.1,23.7,30.0,2022,BB,medium
+AEE,Ameren Corp,Utilities,A,BB,BB,high,medium,medium,56.2,34.5,30.0,2022,A,high
+DLR,Digital Realty Trust Inc,Real Estate,A,BB,BB,high,medium,medium,54.0,31.7,30.0,2022,BBB,high
+AACG,ATA Creativity Global,Diversified Consumer Services,B,B,B,medium,medium,medium,20.3,20.0,20.5,2022,B,medium
+SRE,Sempra Energy,Utilities,AA,BB,BB,excellent,medium,medium,70.0,38.6,31.0,2022,A,high
+AADI,Aadi Bioscience Inc,Biotechnology,B,B,B,medium,medium,medium,20.0,20.1,20.3,2022,B,medium
+ABC,Amerisourcebergen Corp,Health Care,A,BB,BB,high,medium,medium,50.5,30.0,31.5,2022,BBB,high
+AGMH,AGM Group Holdings Inc,Financial Services,B,B,B,medium,medium,medium,20.5,20.4,21.0,2022,B,medium
+CVS,CVS Health Corp,Health Care,A,BB,BB,high,medium,medium,54.0,30.2,31.5,2022,BBB,high
+FCX,Freeport-McMoRan Inc,Metals and Mining,AA,BB,BB,excellent,medium,medium,60.8,31.3,30.5,2022,A,high
+YRD,Yiren Digital Ltd,Financial Services,B,B,B,medium,medium,medium,20.0,20.5,20.5,2022,B,medium
+USAK,USA Truck Inc,Road and Rail,A,BB,BB,high,medium,medium,53.2,31.1,30.3,2022,BBB,high
+HEI,HEICO Corp,Aerospace & Defense,B,B,B,medium,medium,medium,22.5,20.3,20.5,2022,B,medium
+DIS,Walt Disney Co,Media,A,BB,BB,high,medium,medium,51.0,31.6,32.1,2022,BBB,high
+AEI,Alset Ehome International Inc,Real Estate,A,B,B,high,medium,medium,52.0,20.7,21.0,2022,BBB,high
+SHW,Sherwin-Williams Co,Chemicals,B,B,B,medium,medium,medium,29.5,25.9,22.0,2022,BB,medium
+WRB,W R Berkley Corp,Insurance,BB,B,BB,medium,medium,medium,36.0,29.4,30.0,2022,BBB,high
+TRTN,Triton International Ltd,Trading Companies and Distributors,BBB,BB,BB,high,medium,medium,47.7,30.6,30.0,2022,BBB,high
+CMCM,Cheetah Mobile Inc,Technology,B,B,B,medium,medium,medium,20.5,21.4,21.5,2022,B,medium
+HAE,Haemonetics Corp,Health Care,BBB,BB,BB,high,medium,medium,44.8,30.3,30.5,2022,BBB,high
+ADBE,Adobe Inc,Technology,B,B,B,medium,medium,medium,20.0,22.1,20.0,2022,B,medium
+FAST,Fastenal Co,Trading Companies and Distributors,B,BB,B,medium,medium,medium,23.0,30.2,20.0,2022,B,medium
+EQR,Equity Residential,Real Estate,B,B,B,medium,medium,medium,23.5,20.8,21.0,2022,B,medium
+HCA,HCA Healthcare Inc,Health Care,A,BB,BB,high,medium,medium,52.0,34.8,30.5,2022,BBB,high
+MCK,Mckesson Corp,Health Care,A,BB,BB,high,medium,medium,50.0,30.3,31.0,2022,BBB,high
+FITB,Fifth Third Bancorp,Banking,BB,BB,B,medium,medium,medium,31.3,30.0,21.5,2022,BB,medium
+EVK,Ever-Glory International Group Inc,Textiles Apparel and Luxury Goods,B,B,B,medium,medium,medium,20.0,21.1,21.0,2022,B,medium
+POWW,Ammo Inc,Leisure Products,B,B,B,medium,medium,medium,23.3,22.4,20.0,2022,B,medium
+HBB,Hamilton Beach Brands Holding Co,Consumer products,B,B,B,medium,medium,medium,24.5,27.2,23.0,2022,B,medium
+ROST,Ross Stores Inc,Retail,BB,BB,BB,medium,medium,medium,37.5,32.5,30.0,2022,BBB,high
+VNO,Vornado Realty Trust,Real Estate,A,BB,BB,high,medium,medium,54.0,32.6,32.5,2022,BBB,high
+MMC,Marsh & McLennan Companies Inc,Insurance,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+ZTS,Zoetis Inc,Pharmaceuticals,A,BB,BB,high,medium,medium,52.0,34.8,31.0,2022,BBB,high
+EQIX,Equinix Inc,Real Estate,A,BB,BB,high,medium,medium,51.5,32.3,31.5,2022,BBB,high
+ALHC,Alignment Healthcare LLC,N/A,B,BB,B,medium,medium,medium,21.0,30.2,25.6,2022,BB,medium
+AMAT,Applied Materials Inc,Semiconductors,A,BB,BB,high,medium,medium,52.5,31.7,30.0,2022,BBB,high
+MKTX,Marketaxess Holdings Inc,Financial Services,B,B,B,medium,medium,medium,23.0,21.3,21.0,2022,B,medium
+REG,Regency Centers Corp,Real Estate,A,BB,BB,high,medium,medium,57.5,37.2,36.5,2022,A,high
+QRVO,Qorvo Inc,Semiconductors,A,BB,BB,high,medium,medium,53.5,31.0,30.5,2022,BBB,high
+DXC,DXC Technology Co,Technology,A,BB,BB,high,medium,medium,50.5,32.6,30.5,2022,BBB,high
+DE,Deere & Co,Machinery,A,BB,BB,high,medium,medium,56.0,33.9,30.5,2022,A,high
+AMZN,Amazon.com Inc,Retail,AA,BB,BBB,excellent,medium,high,66.8,30.5,46.0,2022,A,high
+WEC,WEC Energy Group Inc,Utilities,AA,BBB,BB,excellent,high,medium,63.5,43.8,30.0,2022,A,high
+USEG,US Energy Corp,Energy,BBB,B,BB,high,medium,medium,43.8,26.5,31.5,2022,BBB,high
+AHPI,Allied Healthcare Products Inc,Health Care,B,B,BB,medium,medium,medium,21.0,22.8,32.5,2022,BB,medium
+PGR,Progressive Corp,Insurance,BB,BB,B,medium,medium,medium,35.0,35.5,27.0,2022,BBB,high
+ALEC,Alector Inc,Biotechnology,B,B,BB,medium,medium,medium,24.0,27.7,30.0,2022,BB,medium
+AIG,American International Group Inc,Insurance,A,BB,BB,high,medium,medium,51.8,32.3,31.0,2022,BBB,high
+PPG,PPG Industries Inc,Chemicals,B,B,B,medium,medium,medium,29.3,23.6,22.0,2022,B,medium
+SNA,Snap-On Inc,Machinery,A,BB,B,high,medium,medium,50.0,30.0,26.1,2022,BBB,high
+DVN,Devon Energy Corp,Energy,A,BB,BB,high,medium,medium,57.0,30.1,30.0,2022,BBB,high
+SYY,Sysco Corp,Retail,A,BB,BB,high,medium,medium,55.5,30.1,30.5,2022,BBB,high
+YUM,Yum! Brands Inc,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,50.0,32.0,31.0,2022,BBB,high
+PG,Procter & Gamble Co,Consumer products,A,BBB,BB,high,high,medium,56.0,42.2,31.0,2022,A,high
+HWM,Howmet Aerospace Inc,Aerospace and Defense,A,BB,BB,high,medium,medium,52.5,31.5,32.0,2022,BBB,high
+CMP,Compass Minerals International Inc,Metals and Mining,A,BB,BB,high,medium,medium,50.5,30.2,32.0,2022,BBB,high
+HASI,Hannon Armstrong Sustainable Infrastructure Capital Inc,Real Estate,AA,BBB,BB,excellent,high,medium,64.6,40.4,31.3,2022,A,high
+XRAY,DENTSPLY SIRONA Inc,Health Care,A,BB,BB,high,medium,medium,53.0,31.8,30.5,2022,BBB,high
+MGM,MGM Resorts International,Hotels Restaurants and Leisure,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+YSG,Yatsen Holding Ltd,Consumer products,BB,B,BB,medium,medium,medium,35.5,21.7,32.5,2022,BB,medium
+DRI,Darden Restaurants Inc,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,51.5,30.9,30.0,2022,BBB,high
+UPS,United Parcel Service Inc,Logistics and Transportation,A,BB,B,high,medium,medium,54.0,37.4,24.5,2022,BBB,high
+UVSP,Univest Financial Corp,Banking,BB,BB,BB,medium,medium,medium,33.1,32.2,30.5,2022,BBB,high
+GWW,WW Grainger Inc,Trading Companies and Distributors,B,BB,B,medium,medium,medium,25.5,38.5,24.0,2022,BB,medium
+BAX,Baxter International Inc,Health Care,A,BB,BB,high,medium,medium,50.0,31.6,30.0,2022,BBB,high
+BRO,Brown & Brown Inc,Insurance,BBB,BB,BB,high,medium,medium,40.5,32.0,30.0,2022,BBB,high
+LDOS,Leidos Holdings Inc,Professional Services,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+NLSN,Nielsen Holdings PLC,Professional Services,A,BB,BB,high,medium,medium,50.0,31.0,30.0,2022,BBB,high
+MOS,Mosaic Co,Chemicals,A,BB,BB,high,medium,medium,51.5,37.9,31.5,2022,A,high
+HALL,Hallmark Financial Services Inc,Insurance,B,B,BB,medium,medium,medium,21.5,23.3,30.0,2022,B,medium
+AXP,American Express Co,Financial Services,B,B,B,medium,medium,medium,23.0,22.6,20.8,2022,B,medium
+VMC,Vulcan Materials Co,Construction,A,BB,BB,high,medium,medium,57.0,31.9,30.0,2022,BBB,high
+WTS,Watts Water Technologies Inc,Machinery,BBB,BB,B,high,medium,medium,42.0,30.3,21.0,2022,BBB,high
+CLRO,Clearone Inc,Communications,BB,B,B,medium,medium,medium,37.0,22.8,21.0,2022,BB,medium
+NLOK,NortonLifeLock Inc,Technology,A,BB,BB,high,medium,medium,50.5,31.5,30.5,2022,BBB,high
+USB,US Bancorp,Banking,BB,BB,BB,medium,medium,medium,33.6,31.7,30.0,2022,BBB,high
+GNRC,Generac Holdings Inc,Electrical Equipment,A,BB,B,high,medium,medium,53.5,31.1,25.0,2022,BBB,high
+MXL,Maxlinear Inc,Semiconductors,A,BB,BB,high,medium,medium,53.5,32.5,33.5,2022,BBB,high
+AKRO,Akero Therapeutics Inc,Biotechnology,B,B,BB,medium,medium,medium,25.0,24.6,30.5,2022,BB,medium
+BR,Broadridge Financial Solutions Inc,Technology,A,BB,BB,high,medium,medium,55.0,31.3,32.5,2022,BBB,high
+RE,Everest Re Group Ltd,Insurance,A,B,BB,high,medium,medium,50.5,27.6,30.5,2022,BBB,high
+Y,Alleghany Corp,Insurance,B,B,BB,medium,medium,medium,21.5,24.0,30.0,2022,BB,medium
+ABOS,Acumen Pharmaceuticals Inc,Biotechnology,B,B,B,medium,medium,medium,20.5,20.1,20.0,2022,B,medium
+AIMC,Altra Industrial Motion Corp,Machinery,A,BB,BB,high,medium,medium,52.5,31.5,30.5,2022,BBB,high
+CTSH,Cognizant Technology Solutions Corp,Technology,AA,BB,BB,excellent,medium,medium,60.5,36.5,30.0,2022,A,high
+MAA,Mid-America Apartment Communities Inc,Real Estate,BB,B,B,medium,medium,medium,31.5,26.1,21.0,2022,BB,medium
+GURE,Gulf Resources Inc,Chemicals,BBB,B,BB,high,medium,medium,40.8,20.6,30.0,2022,BBB,high
+PRAX,Praxis Precision Medicines Inc,Biotechnology,B,B,B,medium,medium,medium,20.0,21.5,21.5,2022,B,medium
+CDW,CDW Corp,Electrical Equipment,B,B,B,medium,medium,medium,22.5,20.9,20.0,2022,B,medium
+CFG,Citizens Financial Group Inc,Banking,B,B,B,medium,medium,medium,23.0,21.5,20.5,2022,B,medium
+PAYC,Paycom Software Inc,Technology,BBB,BB,BB,high,medium,medium,47.0,30.5,31.5,2022,BBB,high
+AIB,AIB Acquisition Corp,N/A,B,B,BB,medium,medium,medium,21.5,22.7,30.0,2022,B,medium
+NXPI,NXP Semiconductors NV,Semiconductors,A,BB,BB,high,medium,medium,50.5,32.9,30.5,2022,BBB,high
+MCD,McDonald's Corp,Hotels Restaurants and Leisure,A,BB,BB,high,medium,medium,50.5,32.6,30.5,2022,BBB,high
+PHM,Pultegroup Inc,Consumer products,B,B,B,medium,medium,medium,21.5,20.3,24.0,2022,B,medium
+ULTA,Ulta Beauty Inc,Retail,B,B,B,medium,medium,medium,20.5,24.2,20.0,2022,B,medium
+NRG,NRG Energy Inc,Utilities,BB,BB,B,medium,medium,medium,37.1,32.7,21.8,2022,BBB,high
+ZUO,Zuora Inc,Technology,B,B,B,medium,medium,medium,24.0,23.4,20.0,2022,B,medium
+HAPP,Happiness Development Group Ltd,Consumer products,B,B,BB,medium,medium,medium,22.5,20.7,30.0,2022,B,medium
+GWRE,Guidewire Software Inc,Technology,A,BB,BB,high,medium,medium,54.9,32.1,33.0,2022,A,high
+DG,Dollar General Corp,Retail,B,B,B,medium,medium,medium,24.7,22.2,20.0,2022,B,medium
+MS,Morgan Stanley,Financial Services,A,BB,BB,high,medium,medium,55.5,30.3,32.0,2022,BBB,high
+NVR,NVR Inc,Consumer products,B,B,B,medium,medium,medium,26.5,20.6,20.5,2022,B,medium
+CTLT,Catalent Inc,Pharmaceuticals,BBB,BB,BB,high,medium,medium,48.3,30.3,30.5,2022,BBB,high
+AAOI,Applied Optoelectronics Inc,Communications,BB,B,B,medium,medium,medium,31.1,25.6,21.8,2022,BB,medium
+ADVM,Adverum Biotechnologies Inc,Biotechnology,B,BB,B,medium,medium,medium,26.2,32.1,23.5,2022,BB,medium
+TECH,Bio-Techne Corp,Life Sciences Tools and Services,A,B,BB,high,medium,medium,51.0,26.8,30.0,2022,BBB,high
+BDX,Becton Dickinson and Co,Health Care,AA,BB,BB,excellent,medium,medium,60.7,38.4,31.5,2022,A,high
+PEAK,Healthpeak Properties Inc,Real Estate,A,BB,BB,high,medium,medium,53.5,33.1,33.5,2022,A,high
+PPIH,Perma-Pipe International Holdings Inc,Machinery,A,B,BB,high,medium,medium,50.0,26.0,30.0,2022,BBB,high
+PPC,Pilgrims Pride Corp,Food Products,A,BB,B,high,medium,medium,50.0,30.2,22.0,2022,BBB,high
+ALIM,Alimera Sciences Inc,Pharmaceuticals,B,B,B,medium,medium,medium,22.0,22.8,24.3,2022,B,medium
+ACET,Adicet Bio Inc,Biotechnology,B,B,BB,medium,medium,medium,21.5,21.1,30.5,2022,B,medium
+ACN,Accenture PLC,Technology,A,BB,BB,high,medium,medium,51.5,36.0,30.5,2022,BBB,high
+TDY,Teledyne Technologies Inc,Electrical Equipment,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+CLWT,Euro Tech Holdings Company Ltd,Trading Companies and Distributors,B,B,B,medium,medium,medium,23.0,20.1,21.0,2022,B,medium
+ABSI,Absci Corp,Life Sciences Tools and Services,B,B,B,medium,medium,medium,20.5,22.4,23.0,2022,B,medium
+D,Dominion Energy Inc,Utilities,A,BB,BB,high,medium,medium,53.5,32.5,31.0,2022,BBB,high
+RTX,Raytheon Technologies Corp,Aerospace and Defense,A,BB,BBB,high,medium,high,52.0,33.0,40.0,2022,A,high
+WMT,Walmart Inc,Retail,BB,B,B,medium,medium,medium,31.0,28.1,22.0,2022,BB,medium
+YELP,Yelp Inc,Media,B,A,B,medium,high,medium,24.5,51.5,21.3,2022,BBB,high
+SIBN,SI-BONE Inc,Health Care,B,B,B,medium,medium,medium,22.0,22.8,21.0,2022,B,medium
+CNMD,Conmed Corp,Health Care,BBB,BB,B,high,medium,medium,44.1,30.0,27.0,2022,BBB,high
+ADTX,Aditxt Inc,Biotechnology,B,B,BB,medium,medium,medium,21.0,22.4,30.5,2022,B,medium
+AIKI,Aikido Pharma Inc,Biotechnology,B,B,B,medium,medium,medium,20.0,23.5,20.5,2022,B,medium
+AKU,Akumin Inc,Health Care,BBB,BB,BB,high,medium,medium,45.5,34.7,30.0,2022,BBB,high
+MDT,Medtronic PLC,Health Care,A,BB,BB,high,medium,medium,51.5,30.8,31.5,2022,BBB,high
+DOW,Dow Inc,Chemicals,B,B,B,medium,medium,medium,22.5,20.1,20.0,2022,B,medium
+PFE,Pfizer Inc,Pharmaceuticals,A,BB,BB,high,medium,medium,50.0,30.0,30.0,2022,BBB,high
+HBNC,Horizon Bancorp Inc,Banking,B,BB,B,medium,medium,medium,25.5,32.1,23.3,2022,BB,medium
+NVDA,NVIDIA Corp,Semiconductors,BB,BB,B,medium,medium,medium,32.3,30.1,27.5,2022,BB,medium
+CLSD,Clearside Biomedical Inc,Pharmaceuticals,B,B,B,medium,medium,medium,21.5,23.0,20.0,2022,B,medium
+AVGO,Broadcom Inc,Semiconductors,B,B,B,medium,medium,medium,21.0,21.2,20.0,2022,B,medium
+ABIO,ARCA Biopharma Inc,Biotechnology,B,B,B,medium,medium,medium,20.0,22.2,29.0,2022,B,medium
+AFAQ,AF Acquisition Corp,N/A,B,B,B,medium,medium,medium,20.0,20.0,20.0,2022,B,medium
+PSX,Phillips 66,Energy,A,BB,BB,high,medium,medium,56.9,36.3,31.0,2022,A,high
+SHIP,Seanergy Maritime Holdings Corp,Marine,BB,BB,BB,medium,medium,medium,34.5,30.0,30.5,2022,BBB,high
+URBN,Urban Outfitters Inc,Retail,BB,BB,BB,medium,medium,medium,33.5,30.0,30.0,2022,BBB,high
+ALGT,Allegiant Travel Co,Airlines,B,B,B,medium,medium,medium,28.7,20.8,24.8,2022,B,medium
+BIIB,Biogen Inc,Biotechnology,BB,BB,BB,medium,medium,medium,38.0,30.3,36.4,2022,BBB,high
+ALNY,Alnylam Pharmaceuticals Inc,Biotechnology,BB,BB,BB,medium,medium,medium,33.1,34.6,32.5,2022,BBB,high
+BIO,Bio Rad Laboratories Inc,Life Sciences Tools and Services,B,B,BB,medium,medium,medium,27.5,22.7,30.0,2022,BB,medium
+FE,FirstEnergy Corp,Utilities,A,BB,BB,high,medium,medium,51.0,30.4,30.0,2022,BBB,high
+ABEO,Abeona Therapeutics Inc,Biotechnology,B,BB,BB,medium,medium,medium,20.5,30.6,31.0,2022,BB,medium
+ACIU,AC Immune SA,Biotechnology,B,B,BB,medium,medium,medium,25.0,29.6,30.5,2022,BB,medium
+ODFL,Old Dominion Freight Line Inc,Road and Rail,BBB,BBB,B,high,high,medium,46.7,42.3,28.0,2022,BBB,high
+BAC,Bank of America Corp,Banking,B,BB,B,medium,medium,medium,22.0,39.4,26.5,2022,BB,medium
+ALBO,Albireo Pharma Inc,Biotechnology,A,BB,BB,high,medium,medium,50.0,30.0,31.0,2022,BBB,high
+AWK,American Water Works Company Inc,Utilities,AA,BB,BB,excellent,medium,medium,65.3,39.5,30.0,2022,A,high
+XIN,Xinyuan Real Estate Co Ltd,Real Estate,B,B,BB,medium,medium,medium,20.5,24.2,30.0,2022,B,medium
+MTC,MMTEC Inc,Technology,B,B,BB,medium,medium,medium,22.1,22.5,30.5,2022,BB,medium
+WAB,Westinghouse Air Brake Technologies Corp,Machinery,AA,BB,BB,excellent,medium,medium,60.7,31.1,32.0,2022,A,high
+ZBH,Zimmer Biomet Holdings Inc,Health Care,A,BB,BB,high,medium,medium,52.0,33.0,31.0,2022,BBB,high
+OKE,ONEOK Inc,Energy,A,BB,BB,high,medium,medium,58.1,32.6,35.5,2022,A,high
+CLVR,Clever Leaves Holdings Inc,Pharmaceuticals,B,B,B,medium,medium,medium,22.5,24.3,20.5,2022,B,medium
+MTCH,Match Group Inc,Media,B,BB,BB,medium,medium,medium,24.5,38.9,31.1,2022,BBB,high
+JNJ,Johnson & Johnson,Pharmaceuticals,A,BB,BB,high,medium,medium,56.5,30.8,30.0,2022,BBB,high
+EW,Edwards Lifesciences Corp,Health Care,B,BB,BB,medium,medium,medium,29.0,33.3,30.5,2022,BBB,high
+AGRX,Agile Therapeutics Inc,Pharmaceuticals,B,B,B,medium,medium,medium,24.0,20.3,26.0,2022,B,medium
+TER,Teradyne Inc,Semiconductors,A,BB,BB,high,medium,medium,50.7,32.8,31.5,2022,BBB,high
+BX,Blackstone Inc,Financial Services,A,BB,BB,high,medium,medium,53.4,34.3,32.0,2022,BBB,high
+FTNT,Fortinet Inc,Technology,A,BB,BB,high,medium,medium,50.0,30.6,30.5,2022,BBB,high
+AOS,A O Smith Corp,Building,A,BB,BB,high,medium,medium,51.0,31.5,31.0,2022,BBB,high
+LYB,LyondellBasell Industries NV,Chemicals,A,BB,BB,high,medium,medium,58.7,35.2,33.0,2022,A,high
+WWW,Wolverine World Wide Inc,Textiles Apparel and Luxury Goods,BB,B,BB,medium,medium,medium,39.0,29.8,30.8,2022,BBB,high
+SISI,Shineco Inc,Consumer products,BB,BB,BB,medium,medium,medium,34.0,34.6,30.5,2022,BBB,high
+AKUS,Akouos Inc,Biotechnology,B,B,B,medium,medium,medium,20.5,22.1,29.5,2022,B,medium
+CCI,Crown Castle Inc,Real Estate,A,BB,B,high,medium,medium,50.0,30.0,20.0,2022,BBB,high
+GE,General Electric Co,Industrial Conglomerates,A,BB,BB,high,medium,medium,53.3,30.0,30.0,2022,BBB,high
+TRTX,TPG RE Finance Trust Inc,Real Estate,B,B,BB,medium,medium,medium,23.0,23.9,30.0,2022,BB,medium

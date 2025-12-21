@@ -1,94 +1,58 @@
--- =====================================================
--- ESG LAKEHOUSE - POSTGRESQL GOLD LAYER SCHEMA
--- =====================================================
-
--- Create schemas
 CREATE SCHEMA IF NOT EXISTS gold;
 CREATE SCHEMA IF NOT EXISTS metadata;
 
--- Set search path
 SET search_path TO gold, public;
 
--- =====================================================
--- DIMENSION TABLES
--- =====================================================
-
--- dim_company: Company master data
-CREATE TABLE IF NOT EXISTS gold.dim_company (
-    company_id SERIAL PRIMARY KEY,
-    company_name VARCHAR(200) NOT NULL,
-    ticker_symbol VARCHAR(20),
-    isin_code VARCHAR(12),
-    industry VARCHAR(100),
-    sector VARCHAR(100),
-    sub_sector VARCHAR(100),
-    country VARCHAR(100),
-    region VARCHAR(100),
-    market_cap_usd BIGINT,
-    employee_count INTEGER,
-    founding_year INTEGER,
-    is_public BOOLEAN DEFAULT TRUE,
-    stock_exchange VARCHAR(50),
-    website_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT unique_ticker UNIQUE (ticker_symbol),
-    CONSTRAINT unique_isin UNIQUE (isin_code)
-);
-
-CREATE INDEX idx_company_industry ON gold.dim_company(industry);
-CREATE INDEX idx_company_sector ON gold.dim_company(sector);
-CREATE INDEX idx_company_country ON gold.dim_company(country);
-
-COMMENT ON TABLE gold.dim_company IS 'Company dimension containing master data for all tracked organizations';
-
--- dim_country: Country master data
-CREATE TABLE IF NOT EXISTS gold.dim_country (
+-- DimCountry
+CREATE TABLE IF NOT EXISTS gold.DimCountry (
     country_id SERIAL PRIMARY KEY,
     country_name VARCHAR(100) NOT NULL,
-    iso_code_2 CHAR(2) NOT NULL,
-    iso_code_3 CHAR(3) NOT NULL,
-    region VARCHAR(100),
-    sub_region VARCHAR(100),
-    income_group VARCHAR(50),
-    population BIGINT,
-    gdp_usd BIGINT,
-    gdp_per_capita DECIMAL(15,2),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT unique_iso2 UNIQUE (iso_code_2),
-    CONSTRAINT unique_iso3 UNIQUE (iso_code_3)
+    region VARCHAR(100)
+);
+CREATE INDEX idx_country_region ON gold.DimCountry(region);
+COMMENT ON TABLE gold.DimCountry IS 'Country dimension for country-level ESG analysis';
+--      
+-- DimIndusty
+CREATE TABLE IF NOT EXISTS gold.DimIndustry (
+    industry_id SERIAL PRIMARY KEY,
+    industry_name VARCHAR(100) NOT NULL,
+    sector VARCHAR(100)
 );
 
-CREATE INDEX idx_country_region ON gold.dim_country(region);
-COMMENT ON TABLE gold.dim_country IS 'Country dimension for country-level ESG analysis';
+-- DimCompany
+CREATE TABLE IF NOT EXISTS gold.DimCompany (
+    company_id SERIAL PRIMARY KEY,
+    company_name VARCHAR(200) NOT NULL,
+    industry_id VARCHAR(100) REFERENCES gold.DimIndustry(industry_id),
+    sector VARCHAR(100), -- Industry Sector
+    country_id VARCHAR(100) REFERENCES gold.DimCountry(country_id),
+    region VARCHAR(100)
+);
+CREATE INDEX idx_company_industry ON gold.DimCompany(industry);
+CREATE INDEX idx_company_sector ON gold.DimCompany(sector);
+CREATE INDEX idx_company_country ON gold.DimCompany(country);
 
--- dim_kpi: KPI metadata following GRI, SASB, TCFD standards
-CREATE TABLE IF NOT EXISTS gold.dim_kpi (
-    kpi_id SERIAL PRIMARY KEY,
-    kpi_name VARCHAR(200) NOT NULL,
-    kpi_code VARCHAR(50) NOT NULL,
-    esg_pillar CHAR(1) CHECK (esg_pillar IN ('E', 'S', 'G')),
-    category VARCHAR(100),
-    sub_category VARCHAR(100),
-    unit_of_measure VARCHAR(50),
-    calculation_method TEXT,
-    reporting_standard VARCHAR(50),
-    is_quantitative BOOLEAN DEFAULT TRUE,
-    target_direction VARCHAR(10) CHECK (target_direction IN ('Increase', 'Decrease', 'Maintain')),
-    materiality_level VARCHAR(20) CHECK (materiality_level IN ('High', 'Medium', 'Low')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT unique_kpi_code UNIQUE (kpi_code)
+COMMENT ON TABLE gold.DimCompany IS 'Company dimension containing master data for all tracked organizations';
+
+-- DimKPI: KPI metadata following GRI, SASB, TCFD standards
+CREATE TABLE IF NOT EXISTS gold.DimKPI (
+    id SERIAL PRIMARY KEY,
+    metric_name VARCHAR(200) NOT NULL,
+    metric_category VARCHAR(100),
+    unit VARCHAR(50),
+    boundary_scope VARCHAR(100),
+    topic VARCHAR(20) -- E, S, or G
+    description TEXT
 );
 
-CREATE INDEX idx_kpi_pillar ON gold.dim_kpi(esg_pillar);
-CREATE INDEX idx_kpi_category ON gold.dim_kpi(category);
-CREATE INDEX idx_kpi_standard ON gold.dim_kpi(reporting_standard);
+CREATE INDEX idx_kpi_pillar ON gold.DimKPI(topic);
+CREATE INDEX idx_kpi_category ON gold.DimKPI(category);
 
-COMMENT ON TABLE gold.dim_kpi IS 'KPI definitions aligned with GRI, SASB, and TCFD reporting standards';
 
--- dim_date: Date dimension for time-series analysis
-CREATE TABLE IF NOT EXISTS gold.dim_date (
+COMMENT ON TABLE gold.DimKPI IS 'KPI definitions aligned with GRI, SASB, and TCFD reporting standards';
+
+-- DimDate: Date dimension for time-series analysis
+CREATE TABLE IF NOT EXISTS gold.DimDate (
     date_id INTEGER PRIMARY KEY,
     full_date DATE NOT NULL,
     year INTEGER NOT NULL,
@@ -108,49 +72,22 @@ CREATE TABLE IF NOT EXISTS gold.dim_date (
     CONSTRAINT unique_date UNIQUE (full_date)
 );
 
-CREATE INDEX idx_date_year ON gold.dim_date(year);
-CREATE INDEX idx_date_fiscal_year ON gold.dim_date(fiscal_year);
-CREATE INDEX idx_date_reporting ON gold.dim_date(is_reporting_period);
+CREATE INDEX idx_date_year ON gold.DimDate(year);
+CREATE INDEX idx_date_fiscal_year ON gold.DimDate(fiscal_year);
+CREATE INDEX idx_date_reporting ON gold.DimDate(is_reporting_period);
 
-COMMENT ON TABLE gold.dim_date IS 'Date dimension for temporal analysis and reporting periods';
-
--- dim_industry: Industry classification and ESG materiality
-CREATE TABLE IF NOT EXISTS gold.dim_industry (
-    industry_id SERIAL PRIMARY KEY,
-    industry_name VARCHAR(100) NOT NULL,
-    sector VARCHAR(100),
-    gics_code VARCHAR(10),
-    sic_code VARCHAR(10),
-    esg_materiality_topics TEXT[],
-    high_risk_areas TEXT[],
-    regulatory_intensity VARCHAR(20) CHECK (regulatory_intensity IN ('High', 'Medium', 'Low')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT unique_industry_name UNIQUE (industry_name)
-);
-
-CREATE INDEX idx_industry_sector ON gold.dim_industry(sector);
-COMMENT ON TABLE gold.dim_industry IS 'Industry classifications with sector-specific ESG materiality topics';
-
--- =====================================================
--- FACT TABLES
--- =====================================================
+COMMENT ON TABLE gold.DimDate IS 'Date dimension for temporal analysis and reporting periods';
 
 -- fact_corporate_esg_metrics: Corporate ESG KPI measurements
 CREATE TABLE IF NOT EXISTS gold.fact_corporate_esg_metrics (
     metric_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.dim_company(company_id),
-    date_id INTEGER REFERENCES gold.dim_date(date_id),
-    kpi_id INTEGER REFERENCES gold.dim_kpi(kpi_id),
+    company_id INTEGER REFERENCES gold.DimCompany(company_id),
+    date_id INTEGER REFERENCES gold.DimDate(date_id),
+    kpi_id INTEGER REFERENCES gold.DimKPI(id),
     metric_value DECIMAL(18,4),
     unit_of_measure VARCHAR(50),
     baseline_year INTEGER,
     baseline_value DECIMAL(18,4),
-    year_over_year_change DECIMAL(10,4),
-    target_value DECIMAL(18,4),
-    achievement_rate DECIMAL(10,4),
-    data_source VARCHAR(100),
-    data_quality_score DECIMAL(3,2),
-    verification_status VARCHAR(20) CHECK (verification_status IN ('Verified', 'Unverified', 'Pending')),
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -166,8 +103,8 @@ COMMENT ON TABLE gold.fact_corporate_esg_metrics IS 'Fact table containing all c
 -- fact_esg_risk_scores: ESG risk assessment scores
 CREATE TABLE IF NOT EXISTS gold.fact_esg_risk_scores (
     risk_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.dim_company(company_id),
-    date_id INTEGER REFERENCES gold.dim_date(date_id),
+    company_id INTEGER REFERENCES gold.DimCompany(company_id),
+    date_id INTEGER REFERENCES gold.DimDate(date_id),
     overall_esg_score DECIMAL(10,4),
     environmental_score DECIMAL(10,4),
     social_score DECIMAL(10,4),
@@ -195,8 +132,8 @@ COMMENT ON TABLE gold.fact_esg_risk_scores IS 'ESG risk scores and ratings from 
 -- fact_country_esg_indicators: Country-level ESG indicators
 CREATE TABLE IF NOT EXISTS gold.fact_country_esg_indicators (
     indicator_id BIGSERIAL PRIMARY KEY,
-    country_id INTEGER REFERENCES gold.dim_country(country_id),
-    date_id INTEGER REFERENCES gold.dim_date(date_id),
+    country_id INTEGER REFERENCES gold.DimCountry(country_id),
+    date_id INTEGER REFERENCES gold.DimDate(date_id),
     pillar CHAR(1) CHECK (pillar IN ('E', 'S', 'G')),
     indicator_name VARCHAR(200) NOT NULL,
     indicator_value DECIMAL(18,4),
@@ -246,14 +183,11 @@ CREATE INDEX idx_fact_ranking_body ON gold.fact_sustainability_rankings(ranking_
 
 COMMENT ON TABLE gold.fact_sustainability_rankings IS 'External sustainability rankings from bodies like CDP, DJSI, GRESB';
 
--- =====================================================
--- AGGREGATED TABLES (For Performance)
--- =====================================================
 
--- agg_company_esg_summary: Pre-aggregated company ESG summary
+-- agg_company_esg_summary: Pre-aggregated company ESG summary # Qua các năm 
 CREATE TABLE IF NOT EXISTS gold.agg_company_esg_summary (
     summary_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.dim_company(company_id),
+    company_id INTEGER REFERENCES gold.DimCompany(company_id),
     year INTEGER,
     avg_esg_score DECIMAL(10,4),
     avg_environmental_score DECIMAL(10,4),
@@ -333,9 +267,6 @@ CREATE TABLE IF NOT EXISTS metadata.data_quality_checks (
 CREATE INDEX idx_quality_table ON metadata.data_quality_checks(table_name);
 CREATE INDEX idx_quality_timestamp ON metadata.data_quality_checks(check_timestamp);
 
--- =====================================================
--- VIEWS FOR POWER BI
--- =====================================================
 
 -- Comprehensive ESG dashboard view
 CREATE OR REPLACE VIEW gold.vw_esg_dashboard AS
@@ -388,12 +319,10 @@ JOIN gold.dim_date d ON m.date_id = d.date_id;
 COMMENT ON VIEW gold.vw_esg_dashboard IS 'Comprehensive view for Power BI ESG dashboard';
 COMMENT ON VIEW gold.vw_kpi_performance IS 'KPI performance tracking view for detailed analysis';
 
--- Grant permissions
 GRANT USAGE ON SCHEMA gold TO esg_user;
 GRANT SELECT ON ALL TABLES IN SCHEMA gold TO esg_user;
 GRANT SELECT ON ALL VIEWS IN SCHEMA gold TO esg_user;
 GRANT USAGE ON SCHEMA metadata TO esg_user;
 GRANT SELECT ON ALL TABLES IN SCHEMA metadata TO esg_user;
 
--- Successfully completed schema initialization
 SELECT 'ESG Lakehouse Gold Layer Schema Created Successfully' AS status;

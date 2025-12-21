@@ -1,0 +1,60 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+
+# 1. Khởi tạo Spark Session (giữ nguyên config giống file chính)
+spark = SparkSession.builder \
+    .appName("ESG-Test-Bradesco-Output") \
+    .config("spark.hadoop.fs.s3a.endpoint", "http://minio:9000") \
+    .config("spark.hadoop.fs.s3a.access.key", "admin") \
+    .config("spark.hadoop.fs.s3a.secret.key", "admin123456") \
+    .config("spark.hadoop.fs.s3a.path.style.access", "true") \
+    .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
+    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
+    .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+    .getOrCreate()
+
+OUTPUT_PATH = "s3a://silver/clean_kpi_excel"
+#df_pdf = spark.read.parquet("s3a://silver/clean_kpi_pdf")
+def test_output():
+    print("\n" + "="*60)
+    print("BẮT ĐẦU KIỂM TRA DỮ LIỆU ĐẦU RA CHO BRADESCO")
+    print("="*60)
+
+    # 2. Đọc dữ liệu từ bảng Delta
+    try:
+        df = spark.read.format("parquet").load(OUTPUT_PATH)
+    except Exception as e:
+        print(f"Lỗi: Không tìm thấy hoặc không đọc được bảng Delta tại {OUTPUT_PATH}")
+        return
+
+    count = df.count()
+    if count == 0:
+        print(">>> KẾT QUẢ: Không tìm thấy bất kỳ dòng dữ liệu nào của Bradesco trong bảng!")
+        # Thử in ra danh sách các công ty đang có trong bảng để debug
+        print("\nDanh sách các công ty hiện có trong bảng:")
+        df.select("name").distinct().show(truncate=False)
+    else:
+        print(f">>> KẾT QUẢ: Tìm thấy {count} dòng dữ liệu của Bradesco.")
+
+        # Thống kê theo Topic
+        print("\n[1] Thống kê số lượng theo Topic:")
+        df.groupBy("topic").count().show()
+
+        # Thống kê theo Năm
+        print("[2] Thống kê số lượng theo Năm:")
+        df.groupBy("year").count().orderBy("year").show()
+        # Thống kê theo Metric Category (Theme)
+        print("[3] Các nhóm Theme (Metric Category) chính:")
+        df.groupBy("metric_category").count().orderBy(col("count").desc()).show(10, truncate=False)
+
+        # In mẫu dữ liệu chi tiết
+        print("[4] Mẫu 20 dòng dữ liệu chi tiết:")
+        df.select("topic", "metric_category", "year", "metric_name", "value", "units") \
+                   .orderBy("topic", "metric_category") \
+                   .show(2000, truncate=False)
+
+    print("="*60 + "\n")
+
+if __name__ == "__main__":
+    test_output()
+    spark.stop()
