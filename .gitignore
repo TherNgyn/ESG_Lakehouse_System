@@ -3,3 +3,14 @@ document.docx
 venv/.env
 .env.local
 *.env
+
+# Data files
+*.csv
+
+# Spark output
+output/
+_SUCCESS
+*.crc
+
+# Airflow logs
+airflow/logs/
