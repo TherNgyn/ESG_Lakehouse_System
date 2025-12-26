@@ -1,0 +1,247 @@
+semantic_models:
+  - name: esg_metrics
+    description: "ESG metrics fact table with normalized values"
+    model: ref('fact_esg_metric')
+    defaults:
+      agg_time_dimension: created_at
+    
+    entities:
+      - name: company
+        type: foreign
+        expr: company_id
+      - name: metric
+        type: foreign
+        expr: metric_id
+      - name: unit
+        type: foreign
+        expr: unit_id
+    
+    dimensions:
+      - name: year
+        type: time
+        type_params:
+          time_granularity: year
+      - name: source
+        type: categorical
+      - name: entity
+        type: categorical
+        description: "Semantic entity (organization, employees, etc.)"
+      - name: activity
+        type: categorical
+        description: "Semantic activity (emission, consumption, etc.)"
+      - name: measure
+        type: categorical
+        description: "Semantic measure (percentage, count, etc.)"
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+    
+    measures:
+      - name: total_normalized_value
+        agg: sum
+        expr: normalized_value
+      - name: avg_normalized_value
+        agg: average
+        expr: normalized_value
+      - name: metric_count
+        agg: count
+        expr: metric_key
+      - name: company_count
+        agg: count_distinct
+        expr: company_id
+
+  - name: esg_score_risk
+    description: "ESG scores and risk ratings from multiple sources by year"
+    model: ref('fact_esg_score_risk')
+    defaults:
+      agg_time_dimension: created_at
+    
+    entities:
+      - name: company
+        type: foreign
+        expr: company_id
+    
+    dimensions:
+      - name: year
+        type: time
+        type_params:
+          time_granularity: year
+      - name: source
+        type: categorical
+        description: "esg_level | sp500_risk | sustainability_rank | industrials | esg_crawled"
+      - name: environment_level
+        type: categorical
+      - name: social_level
+        type: categorical
+      - name: governance_level
+        type: categorical
+      - name: total_level
+        type: categorical
+      - name: environment_grade
+        type: categorical
+      - name: social_grade
+        type: categorical
+      - name: governance_grade
+        type: categorical
+      - name: total_grade
+        type: categorical
+      - name: risk_level
+        type: categorical
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+    
+    measures:
+      - name: avg_environmental_score
+        agg: average
+        expr: environmental_score
+      - name: avg_social_score
+        agg: average
+        expr: social_score
+      - name: avg_governance_score
+        agg: average
+        expr: governance_score
+      - name: avg_overall_score
+        agg: average
+        expr: overall_score
+      - name: avg_risk_score
+        agg: average
+        expr: risk_score
+      - name: min_environmental_score
+        agg: min
+        expr: environmental_score
+      - name: max_environmental_score
+        agg: max
+        expr: environmental_score
+      - name: score_count
+        agg: count
+        expr: score_key
+      - name: company_count
+        agg: count_distinct
+        expr: company_id
+
+metrics:
+  - name: total_emissions
+    description: "Total GHG emissions (tCO2e)"
+    type: simple
+    label: Total Emissions
+    type_params:
+      measure: total_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} in ('scope 1 emissions', 'scope 2 emissions', 'scope 3 emissions')
+  
+  - name: total_scope_1_emissions
+    description: "Total Scope 1 emissions (tCO2e)"
+    type: simple
+    label: Scope 1 Emissions
+    type_params:
+      measure: total_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'scope 1 emissions'
+  
+  - name: total_scope_2_emissions
+    description: "Total Scope 2 emissions (tCO2e)"
+    type: simple
+    label: Scope 2 Emissions
+    type_params:
+      measure: total_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'scope 2 emissions'
+  
+  - name: total_scope_3_emissions
+    description: "Total Scope 3 emissions (tCO2e)"
+    type: simple
+    label: Scope 3 Emissions
+    type_params:
+      measure: total_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'scope 3 emissions'
+  
+  - name: total_energy_consumption
+    description: "Total energy consumption (GJ)"
+    type: simple
+    label: Total Energy
+    type_params:
+      measure: total_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'renewable energy'
+  
+  - name: total_water_consumption
+    description: "Total water consumption (m3)"
+    type: simple
+    label: Total Water
+    type_params:
+      measure: total_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'water consumption'
+  
+  - name: avg_employee_turnover_rate
+    description: "Average employee turnover rate (%)"
+    type: simple
+    label: Turnover Rate
+    type_params:
+      measure: avg_normalized_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'employee turnover'
+
+  - name: avg_esg_score
+    description: "Average overall ESG score across all sources"
+    type: simple
+    label: Average ESG Score
+    type_params:
+      measure: avg_overall_score
+
+  - name: avg_environmental_score
+    description: "Average environmental score"
+    type: simple
+    label: Environmental Score
+    type_params:
+      measure: avg_environmental_score
+
+  - name: avg_social_score
+    description: "Average social score"
+    type: simple
+    label: Social Score
+    type_params:
+      measure: avg_social_score
+
+  - name: avg_governance_score
+    description: "Average governance score"
+    type: simple
+    label: Governance Score
+    type_params:
+      measure: avg_governance_score
+
+  - name: avg_risk_score
+    description: "Average ESG risk score (SP500)"
+    type: simple
+    label: Risk Score
+    type_params:
+      measure: avg_risk_score
+
+  - name: esg_score_by_source
+    description: "ESG scores comparison across different sources"
+    type: simple
+    label: ESG Score by Source
+    type_params:
+      measure: avg_overall_score
+
+  - name: high_risk_companies
+    description: "Count of companies with high ESG risk"
+    type: simple
+    label: High Risk Companies
+    type_params:
+      measure: company_count
+    filter: |
+      {{ Dimension('esg_score_risk__risk_level') }} = 'high'
+
+  - name: top_environmental_performers
+    description: "Companies with environmental score > 80"
+    type: simple
+    label: Top Environmental Performers
+    type_params:
+      measure: company_count
+    filter: |
+      {{ Dimension('esg_score_risk__environmental_score') }} > 80

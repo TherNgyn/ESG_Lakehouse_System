@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: dim_company
+    columns:
+      - name: company_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: dim_unit
+    columns:
+      - name: unit_id
+        tests:
+          - unique
+          - not_null
+  
+  - name: dim_metric
+    columns:
+      - name: metric_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_date
+    columns:
+      - name: date_id
+        tests:
+          - unique
+          - not_null
+  
+  - name: fact_esg_metric
+    columns:
+      - name: metric_key
+        tests:
+          - unique
+          - not_null
+      - name: company_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_company')
+                field: company_id
+              
+  - name: fact_esg_score_risk
+    description: "ESG scores and risk ratings from multiple sources"
+    columns:
+      - name: score_key
+        tests:
+          - unique
+          - not_null
+      - name: company_id
+        tests:
+        - not_null
+        - relationships:
+            arguments:
+              to: ref('dim_company')
+              field: company_key
+      

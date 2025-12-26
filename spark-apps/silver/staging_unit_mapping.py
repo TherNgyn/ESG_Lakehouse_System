@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
+from pyspark.sql.window import Window
 import re
 
 spark = SparkSession.builder \
@@ -16,7 +17,7 @@ spark = SparkSession.builder \
 
 print("Loading normalized metrics...")
 
-df = spark.read.format("delta").load("s3a://silver/normalized_metrics")
+df = spark.read.format("delta").load("s3a://silver/classified_metrics")
 
 total_records = df.count()
 print(f"Total records: {total_records}")
@@ -262,7 +263,10 @@ schema = StructType([
 
 staging_units = spark.createDataFrame(unit_standardization, schema=schema)
 
-staging_units = staging_units.withColumn("staging_unit_id", monotonically_increasing_id())
+# THỐNG NHẤT ID: UNT-00001
+windowUnits = Window.orderBy("original_unit")
+staging_units = staging_units.withColumn("staging_unit_id", 
+    concat(lit("UNT-"), lpad(row_number().over(windowUnits).cast("string"), 5, "0")))
 
 print("\nUnit categories summary:")
 staging_units.groupBy("unit_category").count().orderBy(desc("count")).show(50, truncate=False)
@@ -323,7 +327,7 @@ if null_units_count > 0:
     print(f"WARNING: {null_units_count} records have NULL units")
 
 df_with_units = df.join(
-    staging_units.select("original_unit", "standard_unit", "conversion_factor", "unit_category", "note"),
+    staging_units.select("original_unit", "standard_unit", "conversion_factor", "unit_category", "note", "staging_unit_id"),
     df.units == staging_units.original_unit,
     "left"
 )
@@ -339,43 +343,5 @@ missing_units = df_with_units.filter(col("standard_unit").isNull()).select("unit
 if missing_units > 0:
     print(f"\nWARNING: {missing_units} units not found in staging_units")
     df_with_units.filter(col("standard_unit").isNull()).select("units").distinct().show(50, truncate=False)
-
-print("\nMetrics by category:")
-df_with_units.groupBy("unit_category", "standard_unit").agg(
-    count("*").alias("metric_count"),
-    countDistinct("name").alias("company_count"),
-    countDistinct("metric_norm").alias("distinct_metrics")
-).orderBy("unit_category", desc("metric_count")).show(100, truncate=False)
-
-# print("\nSample data after unit conversion:")
-# df_with_units.select(
-#     "name",
-#     "year",
-#     "metric_norm",
-#     "value",
-#     "units",
-#     "standard_unit",
-#     "unit_category",
-#     "conversion_factor",
-#     "value_normalized",
-#     "note"
-# ).show(50, truncate=False)
-
-# print("\nSaving metrics with normalized units...")
-
-# df_with_units.write.format("delta") \
-#     .mode("overwrite") \
-#     .option("overwriteSchema", "true") \
-#     .save("s3a://silver/normalized_metrics_with_units")
-
-# print("Successfully saved metrics with normalized units")
-
-# print("\n" + "="*60)
-# print("SUMMARY")
-# print("="*60)
-# print(f"Total records processed: {total_records}")
-# print(f"Total distinct units: {len(units_list)}")
-# print(f"Records after conversion: {df_with_units.count()}")
-# print(f"Standard units created: {staging_units.select('standard_unit').distinct().count()}")
 
 spark.stop()

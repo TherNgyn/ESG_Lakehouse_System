@@ -1,0 +1,61 @@
+version: 2
+
+sources:
+  - name: silver
+    database: delta
+    schema: default
+    tables:
+      - name: staging_companies_mapping
+        description: "Company master with CMP-XXXXX IDs"
+        columns:
+          - name: matched_company_id
+            description: "Primary key (CMP-00001)"
+          - name: staging_id
+            description: "Record ID (REC-000001)"
+          - name: company_name
+          - name: symbol
+          - name: isin
+          - name: sector
+          - name: industry
+          - name: country
+          - name: source
+      
+      - name: staging_units
+        description: "Unit conversion with UNT-XXXXX IDs"
+        columns:
+          - name: staging_unit_id
+            description: "Primary key (UNT-00001)"
+          - name: original_unit
+          - name: standard_unit
+          - name: conversion_factor
+          - name: unit_category
+      
+      - name: staging_metrics
+        description: "Metric definitions with MET-XXXXX IDs"
+        columns:
+          - name: staging_metric_id
+            description: "Primary key (MET-00001)"
+          - name: metric_name
+          - name: metric_group
+          - name: topic
+      
+      - name: normalized_metrics
+        identifier: metric_norm_final
+        description: "Normalized ESG metrics with semantic classification"
+        columns:
+          - name: name
+          - name: metric_name
+          - name: metric_norm
+          - name: year
+          - name: value
+          - name: units
+          - name: source
+          - name: entity
+          - name: activity
+          - name: measure
+      - name: clean_esg_level_score
+      - name: clean_sp500_esg_risk
+      - name: clean_sustainability_rank
+      - name: clean_industrials_esg_score
+      - name: clean_esg_score
+    

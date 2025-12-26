@@ -77,7 +77,7 @@ services:
   spark-worker:
     build: ./spark-apps
     image: spark-custom:3.5.3-python3
-    container_name: spark-worker
+    # container_name: spark-worker
     depends_on:
       spark-master:
         condition: service_healthy
@@ -199,7 +199,8 @@ services:
       - ./dbt-project:/usr/app
       - ./dbt-profiles:/root/.dbt
     working_dir: /usr/app
-    entrypoint: ["tail", "-f", "/dev/null"]
+    entrypoint: >
+      sh -c "pip install dbt-trino && tail -f /dev/null"
     networks:
       - esg-network
 
@@ -227,19 +228,42 @@ services:
       trino:
         condition: service_healthy
     environment:
-      MF_WAREHOUSE: trino
-      MF_TRINO_HOST: trino
-      MF_TRINO_PORT: 8080
-      MF_TRINO_USER: user
-      MF_TRINO_CATALOG: hive
-      MF_TRINO_SCHEMA: public
+      - DBT_PROJECT_DIR=/usr/app
+      - DBT_PROFILES_DIR=/usr/app
     volumes:
-      - ./dbt-project:/workspace/dbt
-    working_dir: /workspace/dbt
-    command: ["metricflow", "serve", "--host", "0.0.0.0", "--port", "8080"]
+      - ./dbt-profiles:/usr/app
+      - ./dbt-project:/usr/app
+      - ./metricflow:/usr/app
+    working_dir: /usr/app
+    ports:
+      - "${METRICFLOW_PORT:-8083}:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    command: gunicorn --bind 0.0.0.0:8080 --workers 4 --timeout 120 api_server:app
     networks:
       - esg-network
-  
+
+  streamlit:
+    build: ./streamlit-app  
+    container_name: streamlit-app
+    depends_on:
+      trino:
+        condition: service_healthy
+    ports:
+      - "${STREAMLIT_PORT:-8501}:8501"  
+    volumes:
+      - ./streamlit-app:/app
+    working_dir: /app
+    command: ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]  # Nếu không dùng Dockerfile
+    environment:
+      - TRINO_HOST=trino
+      - TRINO_PORT=8080
+      - TRINO_USER=user
+    networks:
+      - esg-network
 volumes:
   minio-data:
   postgres-data:

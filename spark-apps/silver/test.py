@@ -13,12 +13,9 @@ spark = SparkSession.builder \
     .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
     .getOrCreate()
 
-OUTPUT_PATH = "s3a://silver/clean_kpi_excel"
+OUTPUT_PATH = "s3a://silver/staging_metric"
 #df_pdf = spark.read.parquet("s3a://silver/clean_kpi_pdf")
 def test_output():
-    print("\n" + "="*60)
-    print("BẮT ĐẦU KIỂM TRA DỮ LIỆU ĐẦU RA CHO BRADESCO")
-    print("="*60)
 
     # 2. Đọc dữ liệu từ bảng Delta
     try:
@@ -36,23 +33,10 @@ def test_output():
     else:
         print(f">>> KẾT QUẢ: Tìm thấy {count} dòng dữ liệu của Bradesco.")
 
-        # Thống kê theo Topic
-        print("\n[1] Thống kê số lượng theo Topic:")
-        df.groupBy("topic").count().show()
-
-        # Thống kê theo Năm
-        print("[2] Thống kê số lượng theo Năm:")
-        df.groupBy("year").count().orderBy("year").show()
-        # Thống kê theo Metric Category (Theme)
-        print("[3] Các nhóm Theme (Metric Category) chính:")
-        df.groupBy("metric_category").count().orderBy(col("count").desc()).show(10, truncate=False)
-
+       
         # In mẫu dữ liệu chi tiết
         print("[4] Mẫu 20 dòng dữ liệu chi tiết:")
-        df.select("topic", "metric_category", "year", "metric_name", "value", "units") \
-                   .orderBy("topic", "metric_category") \
-                   .show(2000, truncate=False)
-
+        df.select("company_name","name_norm", "sector_norm", "industry_norm", "country_norm", "isin_valid").show(2000, truncate=False)
     print("="*60 + "\n")
 
 if __name__ == "__main__":

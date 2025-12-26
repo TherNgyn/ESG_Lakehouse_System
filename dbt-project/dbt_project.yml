@@ -1,0 +1,36 @@
+name: 'esg_analytics'
+version: '1.0.0'
+config-version: 2
+
+profile: 'esg_trino'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+
+models:
+  esg_analytics:
+    esg_analytics: 
+    marts:
+      +materialized: table
+      +catalog: delta
+      +schema: gold_marts
+      +on_schema_change: append_new_columns
+      +on_table_exists: drop
+    staging:
+      +materialized: table
+      +catalog: delta
+      +schema: default
+    util:
+      +materialized: table
+      +catalog: delta
+      +schema: default
+
+vars:
+  current_timestamp: "current_timestamp"

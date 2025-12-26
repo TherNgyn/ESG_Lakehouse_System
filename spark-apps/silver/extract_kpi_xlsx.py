@@ -267,7 +267,7 @@ def main():
     
     print(f"\nTotal rows: {df.count()}")
     
-    df.write.format("delta").mode("overwrite").partitionBy("extract_date").save(OUTPUT_PATH)
+    df.write.format("delta").mode("overwrite").save(OUTPUT_PATH)
     
     print(f"\nExtracted {len(all_rows)} rows to {OUTPUT_PATH}")
     

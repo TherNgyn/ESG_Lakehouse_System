@@ -1,0 +1,5 @@
+time_spines:
+  - name: time_spine
+    model: ref('time_spine')
+    granularity: day
+    time_column: date_day

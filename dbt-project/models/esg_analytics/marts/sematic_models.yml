@@ -1,0 +1,342 @@
+version: 2
+
+saved_queries: []
+
+semantic_models:
+  # 1. Company Dimension
+  - name: company
+    description: "Company master data for filtering and grouping"
+    model: ref('dim_company')
+    defaults:
+      agg_time_dimension: created_at
+    
+    entities:
+      - name: company
+        type: primary
+        expr: company_key
+    
+    dimensions:
+      - name: company_name
+        type: categorical
+        expr: company_name
+      - name: symbol
+        type: categorical
+        expr: symbol
+      - name: sector
+        type: categorical
+        expr: sector_normalized
+      - name: industry
+        type: categorical
+        expr: industry_normalized
+      - name: country
+        type: categorical
+        expr: country_normalized
+      - name: city
+        type: categorical
+        expr: city
+      - name: region
+        type: categorical
+        expr: region
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+
+  # 2. Metric Dimension
+  - name: metric_dim
+    description: "Metric metadata for filtering by topic/group"
+    model: ref('dim_metric')
+    defaults:
+      agg_time_dimension: created_at
+    
+    entities:
+      - name: metric
+        type: primary
+        expr: metric_key
+    
+    dimensions:
+      - name: metric_name
+        type: categorical
+        expr: metric_name
+      - name: metric_group
+        type: categorical
+        expr: metric_group
+      - name: topic
+        type: categorical
+        expr: topic
+        description: "Environmental, Social, or Governance"
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+
+  # 3. ESG Metrics Fact
+  - name: esg_metrics
+    description: "Granular ESG metrics (400+ metrics)"
+    model: ref('fact_esg_metric')
+    defaults:
+      agg_time_dimension: metric_date
+    
+    entities:
+      - name: metric_fact
+        type: primary
+        expr: metric_key
+      - name: company
+        type: foreign
+        expr: company_id
+      - name: metric
+        type: foreign
+        expr: metric_id
+      - name: unit
+        type: foreign
+        expr: unit_id
+    
+    dimensions:
+      - name: metric_date
+        type: time
+        expr: "case when year is not null then cast(cast(year as varchar) || '-01-01' as date) else current_date end"
+        type_params:
+          time_granularity: year
+      - name: source
+        type: categorical
+    
+    measures:
+      - name: total_value
+        agg: sum
+        expr: normalized_value
+        description: "Sum of normalized metric values"
+      - name: avg_value
+        agg: average
+        expr: normalized_value
+        description: "Average normalized metric value"
+      - name: min_value
+        agg: min
+        expr: normalized_value
+      - name: max_value
+        agg: max
+        expr: normalized_value
+      - name: metric_count
+        agg: count
+        expr: metric_key
+      - name: metric_company_count
+        agg: count_distinct
+        expr: company_id
+
+  # 4. ESG Scores & Risk
+  - name: esg_scores
+    description: "ESG scores, pulse, and risk ratings from multiple sources"
+    model: ref('fact_esg_score_risk')
+    defaults:
+      agg_time_dimension: score_date
+    
+    entities:
+      - name: score_fact
+        type: primary
+        expr: score_key
+      - name: company
+        type: foreign
+        expr: company_id
+    
+    dimensions:
+      - name: score_date
+        type: time
+        expr: "case when year is not null then cast(cast(year as varchar) || '-01-01' as date) else current_date end"
+        type_params:
+          time_granularity: year
+      - name: source
+        type: categorical
+        expr: source
+        description: "esg_level | sp500_risk | sustainability_rank | industrials | esg_crawled"
+      - name: total_level
+        type: categorical
+        expr: total_level
+      - name: total_grade
+        type: categorical
+        expr: total_grade
+      - name: esg_risk_level
+        type: categorical
+        expr: esg_risk_level
+      - name: esg_risk_percentile
+        type: categorical
+        expr: esg_risk_percentile
+      - name: controversy_level
+        type: categorical
+        expr: controversy_level
+      - name: score_created_at
+        type: time
+        expr: created_at
+        type_params:
+          time_granularity: day
+    
+    measures:
+      - name: avg_overall_score
+        agg: average
+        expr: overall_score
+        description: "Average overall ESG score"
+      - name: avg_esg_pulse
+        agg: average
+        expr: esg_pulse
+        description: "Average ESG pulse (real-time activity)"
+      - name: avg_risk_score
+        agg: average
+        expr: total_esg_risk_score
+        description: "Average total ESG risk score"
+      - name: avg_controversy
+        agg: average
+        expr: controversy_score
+        description: "Average controversy score"
+      - name: min_overall_score
+        agg: min
+        expr: overall_score
+      - name: max_overall_score
+        agg: max
+        expr: overall_score
+      - name: score_count
+        agg: count
+        expr: score_key
+      - name: score_company_count
+        agg: count_distinct
+        expr: company_id
+
+metrics:
+  - name: company_overall_score
+    description: "Company's overall ESG score"
+    type: simple
+    label: Overall ESG Score
+    type_params:
+      measure: avg_overall_score
+
+  - name: company_esg_pulse
+    description: "Company's ESG pulse (Industrials source only)"
+    type: simple
+    label: ESG Pulse
+    type_params:
+      measure: avg_esg_pulse
+    filter: |
+      {{ Dimension('esg_scores__source') }} = 'industrials'
+
+  - name: company_risk_score
+    description: "Company's total ESG risk (SP500 source only)"
+    type: simple
+    label: ESG Risk Score
+    type_params:
+      measure: avg_risk_score
+    filter: |
+      {{ Dimension('esg_scores__source') }} = 'sp500_risk'
+
+  - name: company_controversy_score
+    description: "Company's controversy score"
+    type: simple
+    label: Controversy Score
+    type_params:
+      measure: avg_controversy
+    filter: |
+      {{ Dimension('esg_scores__source') }} = 'sp500_risk'
+
+  - name: industry_avg_score
+    description: "Industry average ESG score for benchmarking"
+    type: simple
+    label: Industry Avg ESG Score
+    type_params:
+      measure: avg_overall_score
+
+  - name: industry_avg_pulse
+    description: "Industry average ESG pulse"
+    type: simple
+    label: Industry Avg ESG Pulse
+    type_params:
+      measure: avg_esg_pulse
+    filter: |
+      {{ Dimension('esg_scores__source') }} = 'industrials'
+
+  - name: industry_avg_risk
+    description: "Industry average ESG risk"
+    type: simple
+    label: Industry Avg Risk
+    type_params:
+      measure: avg_risk_score
+    filter: |
+      {{ Dimension('esg_scores__source') }} = 'sp500_risk'
+
+  - name: sector_avg_score
+    description: "Sector average ESG score"
+    type: simple
+    label: Sector Avg ESG Score
+    type_params:
+      measure: avg_overall_score
+
+  - name: metric_value
+    description: "Normalized metric value (avg)"
+    type: simple
+    label: Metric Value
+    type_params:
+      measure: avg_value
+
+  - name: metric_total
+    description: "Total metric value (sum)"
+    type: simple
+    label: Metric Total
+    type_params:
+      measure: total_value
+
+  - name: emissions_total
+    description: "Total emissions (Scope 1+2+3)"
+    type: simple
+    label: Total Emissions
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric_dim__topic') }} = 'Environmental' AND
+      {{ Dimension('metric_dim__metric_group') }} LIKE '%emission%'
+
+  - name: renewable_energy_total
+    description: "Total renewable energy consumption"
+    type: simple
+    label: Renewable Energy
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric_dim__metric_group') }} LIKE '%renewable%'
+
+  - name: water_consumption_total
+    description: "Total water consumption"
+    type: simple
+    label: Water Consumption
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric_dim__metric_group') }} LIKE '%water%'
+
+  - name: high_risk_companies
+    description: "Count of companies with high ESG risk"
+    type: simple
+    label: High Risk Companies
+    type_params:
+      measure: score_company_count
+    filter: |
+      {{ Dimension('esg_scores__esg_risk_level') }} = 'high'
+
+  - name: companies_by_risk_level
+    description: "Company count by risk level"
+    type: simple
+    label: Companies by Risk Level
+    type_params:
+      measure: score_company_count
+
+  - name: top_performers_count
+    description: "Companies with ESG score >= 70"
+    type: simple
+    label: Top Performers
+    type_params:
+      measure: score_company_count
+    filter: |
+      {{ Dimension('esg_scores__avg_overall_score') }} >= 70
+
+  - name: poor_performers_count
+    description: "Companies with ESG score < 50"
+    type: simple
+    label: Poor Performers
+    type_params:
+      measure: score_company_count
+    filter: |
+      {{ Dimension('esg_scores__avg_overall_score') }} < 50

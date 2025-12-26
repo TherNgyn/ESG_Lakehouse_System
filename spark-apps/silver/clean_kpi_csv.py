@@ -71,18 +71,17 @@ df = (df
     .filter(~col("name").isin(["name"]))
 )
 
+amazon_indicators = ["Amazon's", "Supplier Audits by Type"]
 df = df.withColumn(
     "metric_name",
     when(
-        (col("name").rlike("-")) | (col("name").rlike("U\\.S\\.")) | 
-        (col("name").rlike("Amazon's")) | (col("name").rlike("Supplier Audits by Type")),
+        col("name").rlike("Amazon|" + "|".join(amazon_indicators)),
         concat(col("name"), lit(" - "), col("metric_name"))
     ).otherwise(col("metric_name"))
 ).withColumn(
     "name",
     when(
-        (col("name").rlike("-")) | (col("name").rlike("U\\.S\\.")) | 
-        (col("name").rlike("Amazon's")) | (col("name").rlike("Supplier Audits by Type")),
+        col("name").rlike("Amazon|" + "|".join(amazon_indicators)),
         "Amazon"
     ).otherwise(col("name"))
 )
@@ -95,8 +94,10 @@ df = df.withColumn(
     when(col("name_parenthesis") != "", "Brookfield Corporate").otherwise(col("name"))
 ).withColumn(
     "metric_name",
-    when(col("name_parenthesis") != "",
-         concat(col("name_parenthesis"), lit(" - "), col("metric_name"))
+    when(
+        (col("name_parenthesis") != "") & 
+        (~col("metric_name").startswith(col("name_parenthesis"))),
+        concat(col("name_parenthesis"), lit(" - "), col("metric_name"))
     ).otherwise(col("metric_name"))
 ).drop("name_parenthesis")
 

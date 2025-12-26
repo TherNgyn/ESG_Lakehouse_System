@@ -1,12 +1,13 @@
-esg_project:
+esg_trino:
   target: dev
   outputs:
     dev:
-      type: postgres
-      host: postgres
-      user: airflow
-      password: airflow
-      port: 5432
-      dbname: airflow
-      schema: public
+      type: trino
+      method: none
+      host: trino
+      port: 8080
+      database: delta
+      schema: default
       threads: 4
+      http_scheme: http
+      user: trino

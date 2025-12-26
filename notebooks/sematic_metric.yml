@@ -1,0 +1,221 @@
+semantic_models:
+  - name: esg_metrics
+    description: "ESG metrics fact - 1 company x 1 year x N metrics"
+    model: ref('fact_esg_metric')
+    defaults:
+      agg_time_dimension: year
+    
+    entities:
+      - name: company
+        type: foreign
+        expr: company_id
+      - name: metric
+        type: foreign
+        expr: metric_id
+      - name: unit
+        type: foreign
+        expr: unit_id
+    
+    dimensions:
+      - name: year
+        type: time
+        type_params:
+          time_granularity: year
+      - name: source
+        type: categorical
+      - name: entity
+        type: categorical
+      - name: activity
+        type: categorical
+      - name: measure
+        type: categorical
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+    
+    measures:
+      - name: total_value
+        agg: sum
+        expr: normalized_value
+      - name: avg_value
+        agg: average
+        expr: normalized_value
+      - name: min_value
+        agg: min
+        expr: normalized_value
+      - name: max_value
+        agg: max
+        expr: normalized_value
+      - name: metric_count
+        agg: count
+        expr: metric_key
+      - name: company_count
+        agg: count_distinct
+        expr: company_id
+
+  - name: esg_score_risk
+    description: "ESG scores from multiple sources"
+    model: ref('fact_esg_score_risk')
+    defaults:
+      agg_time_dimension: year
+    
+    entities:
+      - name: company
+        type: foreign
+        expr: company_id
+    
+    dimensions:
+      - name: year
+        type: time
+        type_params:
+          time_granularity: year
+      - name: source
+        type: categorical
+      - name: environment_level
+        type: categorical
+      - name: social_level
+        type: categorical
+      - name: governance_level
+        type: categorical
+      - name: total_level
+        type: categorical
+      - name: environment_grade
+        type: categorical
+      - name: social_grade
+        type: categorical
+      - name: governance_grade
+        type: categorical
+      - name: total_grade
+        type: categorical
+      - name: esg_risk_level
+        type: categorical
+      - name: esg_risk_percentile
+        type: categorical
+      - name: controversy_level
+        type: categorical
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+    
+    measures:
+      - name: avg_environmental_score
+        agg: average
+        expr: environmental_score
+      - name: avg_social_score
+        agg: average
+        expr: social_score
+      - name: avg_governance_score
+        agg: average
+        expr: governance_score
+      - name: avg_overall_score
+        agg: average
+        expr: overall_score
+      - name: avg_total_risk
+        agg: average
+        expr: total_esg_risk_score
+      - name: avg_controversy
+        agg: average
+        expr: controversy_score
+
+metrics:
+  - name: scope_1_emissions
+    description: "Scope 1 GHG emissions (tCO2e)"
+    type: simple
+    label: Scope 1 Emissions
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_name') }} = 'Scope 1 Emissions'
+  
+  - name: scope_2_emissions
+    description: "Scope 2 GHG emissions (tCO2e)"
+    type: simple
+    label: Scope 2 Emissions
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_name') }} = 'Scope 2 Emissions'
+  
+  - name: scope_3_emissions
+    description: "Scope 3 GHG emissions (tCO2e)"
+    type: simple
+    label: Scope 3 Emissions
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_name') }} = 'Scope 3 Emissions'
+  
+  - name: total_emissions
+    description: "Total GHG emissions (all scopes)"
+    type: simple
+    label: Total Emissions
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} in ('scope 1 emissions', 'scope 2 emissions', 'scope 3 emissions')
+  
+  - name: renewable_energy
+    description: "Renewable energy consumption"
+    type: simple
+    label: Renewable Energy
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'renewable energy'
+  
+  - name: water_consumption
+    description: "Total water consumption"
+    type: simple
+    label: Water Consumption
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'water consumption'
+  
+  - name: employee_turnover
+    description: "Employee turnover rate"
+    type: simple
+    label: Employee Turnover
+    type: params:
+      measure: avg_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'employee turnover'
+  
+  - name: waste_recycled
+    description: "Total waste recycled"
+    type: simple
+    label: Waste Recycled
+    type_params:
+      measure: total_value
+    filter: |
+      {{ Dimension('metric__metric_group') }} = 'waste recycled'
+
+  - name: avg_esg_score
+    description: "Average ESG score"
+    type: simple
+    label: ESG Score
+    type_params:
+      measure: avg_overall_score
+
+  - name: avg_environmental_score
+    description: "Average environmental score"
+    type: simple
+    label: Environmental Score
+    type_params:
+      measure: avg_environmental_score
+
+  - name: avg_social_score
+    description: "Average social score"
+    type: simple
+    label: Social Score
+    type_params:
+      measure: avg_social_score
+
+  - name: avg_governance_score
+    description: "Average governance score"
+    type: simple
+    label: Governance Score
+    type_params:
+      measure: avg_governance_score

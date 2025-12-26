@@ -40,7 +40,9 @@ companies = df.select("name").distinct().rdd.flatMap(lambda x: x).collect()
 for company in companies:
     if company:
         df = df.withColumn("metric_name", 
-            regexp_replace(col("metric_name"), f"(?i){company}", ""))
+            regexp_replace(col("metric_name"), f"(?i)\\b{company}\\b", ""))
+        df = df.withColumn("metric_name", 
+            trim(regexp_replace(col("metric_name"), r"\s+", " ")))
 
 text_clean_cols = ['metric_category', 'metric_name', 'category_group']
 for col_name in text_clean_cols:
@@ -55,9 +57,23 @@ if 'category_group' not in df.columns:
 df = df.withColumn("category_group", 
     coalesce(col("category_group"), col("metric_category"))
 )
+from pyspark.sql.types import StringType
+from pyspark.sql.functions import udf
+@udf(StringType())
+def remove_duplicate_phrases(text):
+    if not text:
+        return text
+    words = text.split()
+    seen = set()
+    result = []
+    for word in words:
+        word_lower = word.lower()
+        if word_lower not in seen:
+            result.append(word)
+            seen.add(word_lower)
+    return ' '.join(result)
 
-df = df.withColumn("category_group", regexp_replace(col("category_group"), r'([a-zA-Z])\d+', r'$1'))
-df = df.withColumn("category_group", trim(regexp_replace(col("category_group"), r'\d+\.\d+', '')))
+df = df.withColumn("metric_name", remove_duplicate_phrases(col("metric_name")))
 
 print("\nProcessing Bradesco data...")
 bradesco_mask = lower(col("name")).contains("bradesco")
@@ -105,10 +121,11 @@ df_final.show(20, truncate=False)
 
 print("\nSchema:")
 df_final.printSchema()
-
+spark.conf.set("spark.sql.sources.partitionOverwriteMode", "static")
 extract_date = datetime.now().strftime("%Y-%m-%d")
 df_final = df_final.withColumn("extract_date", lit(extract_date))
-
+key_cols = ['name', 'year', 'metric_name', 'units']
+df_final = df_final.dropDuplicates(key_cols)
 df_final.write.format("delta").mode("overwrite").partitionBy("year").save(OUTPUT_PATH)
 
 print(f"\nData saved to {OUTPUT_PATH}")

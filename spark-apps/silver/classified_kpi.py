@@ -31,6 +31,38 @@ df.select([count(when(col(c).isNull(), c)).alias(c) for c in df.columns]).show()
 if 'source' in df.columns:
     df.groupBy('source').count().orderBy(col('count').desc()).show()
 
+@udf(StringType())
+def standardize_text(text):
+    if not text:
+        return text
+    
+    text = text.strip()
+    
+    esg_mapping = {
+        "e": "Environmental",
+        "s": "Social", 
+        "g": "Governance"
+    }
+    
+    text_lower = text.lower()
+    if text_lower in esg_mapping:
+        return esg_mapping[text_lower]
+    
+    if text.isupper():
+        words = text.split()
+        return ' '.join(word.capitalize() for word in words)
+    
+    if text[0].islower():
+        return text.capitalize()
+    
+    return text
+
+if 'metric_category' in df.columns:
+    df = df.withColumn("metric_category", standardize_text(col("metric_category")))
+
+if 'category_group' in df.columns:
+    df = df.withColumn("category_group", standardize_text(col("category_group")))
+
 esg_categories = {
     "Scope 1 Emissions": ["scope 1", "direct emission", "direct ghg", "non-energy sources"],
     "Scope 2 Emissions": ["scope 2", "indirect emission", "purchased electricity"],
@@ -149,7 +181,6 @@ metric_summary_with_samples = df_classified.groupBy("metric_group", "topic").agg
     countDistinct("name").alias("companies"),
     concat_ws("; ", collect_set("metric_name")).alias("sample_metrics")
 ).orderBy(col("record_count").desc())
-
 
 total_groups = metric_summary.filter(col("metric_group") != "Other").count()
 total_other = metric_summary.filter(col("metric_group") == "Other").select("record_count").collect()
