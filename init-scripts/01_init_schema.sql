@@ -1,328 +1,233 @@
-CREATE SCHEMA IF NOT EXISTS gold;
-CREATE SCHEMA IF NOT EXISTS metadata;
+-- Trino SQL Queries for ESG Gold Layer
 
-SET search_path TO gold, public;
+-- ============================================
+-- DIMENSION QUERIES
+-- ============================================
 
--- DimCountry
-CREATE TABLE IF NOT EXISTS gold.DimCountry (
-    country_id SERIAL PRIMARY KEY,
-    country_name VARCHAR(100) NOT NULL,
-    region VARCHAR(100)
-);
-CREATE INDEX idx_country_region ON gold.DimCountry(region);
-COMMENT ON TABLE gold.DimCountry IS 'Country dimension for country-level ESG analysis';
---      
--- DimIndusty
-CREATE TABLE IF NOT EXISTS gold.DimIndustry (
-    industry_id SERIAL PRIMARY KEY,
-    industry_name VARCHAR(100) NOT NULL,
-    sector VARCHAR(100)
-);
+-- View all companies
+SELECT company_id, company_name, sector, industry, country
+FROM marts.dim_company
+LIMIT 10;
 
--- DimCompany
-CREATE TABLE IF NOT EXISTS gold.DimCompany (
-    company_id SERIAL PRIMARY KEY,
-    company_name VARCHAR(200) NOT NULL,
-    industry_id VARCHAR(100) REFERENCES gold.DimIndustry(industry_id),
-    sector VARCHAR(100), -- Industry Sector
-    country_id VARCHAR(100) REFERENCES gold.DimCountry(country_id),
-    region VARCHAR(100)
-);
-CREATE INDEX idx_company_industry ON gold.DimCompany(industry);
-CREATE INDEX idx_company_sector ON gold.DimCompany(sector);
-CREATE INDEX idx_company_country ON gold.DimCompany(country);
+-- Companies by sector
+SELECT sector, COUNT(*) as company_count
+FROM marts.dim_company
+WHERE sector IS NOT NULL
+GROUP BY sector
+ORDER BY company_count DESC;
 
-COMMENT ON TABLE gold.DimCompany IS 'Company dimension containing master data for all tracked organizations';
+-- View all metrics
+SELECT metric_id, metric_name, metric_group, topic
+FROM marts.dim_metric
+ORDER BY metric_group, metric_name
+LIMIT 20;
 
--- DimKPI: KPI metadata following GRI, SASB, TCFD standards
-CREATE TABLE IF NOT EXISTS gold.DimKPI (
-    id SERIAL PRIMARY KEY,
-    metric_name VARCHAR(200) NOT NULL,
-    metric_category VARCHAR(100),
-    unit VARCHAR(50),
-    boundary_scope VARCHAR(100),
-    topic VARCHAR(20) -- E, S, or G
-    description TEXT
-);
+-- Metrics by topic
+SELECT topic, COUNT(*) as metric_count
+FROM marts.dim_metric
+GROUP BY topic;
 
-CREATE INDEX idx_kpi_pillar ON gold.DimKPI(topic);
-CREATE INDEX idx_kpi_category ON gold.DimKPI(category);
+-- View unit conversions
+SELECT original_unit, standard_unit, conversion_factor, unit_category
+FROM marts.dim_unit
+WHERE unit_category = 'emissions'
+ORDER BY conversion_factor DESC;
 
+-- ============================================
+-- FACT TABLE QUERIES
+-- ============================================
 
-COMMENT ON TABLE gold.DimKPI IS 'KPI definitions aligned with GRI, SASB, and TCFD reporting standards';
-
--- DimDate: Date dimension for time-series analysis
-CREATE TABLE IF NOT EXISTS gold.DimDate (
-    date_id INTEGER PRIMARY KEY,
-    full_date DATE NOT NULL,
-    year INTEGER NOT NULL,
-    quarter INTEGER NOT NULL,
-    month INTEGER NOT NULL,
-    month_name VARCHAR(20),
-    week_of_year INTEGER,
-    day_of_year INTEGER,
-    day_of_month INTEGER,
-    day_of_week INTEGER,
-    day_name VARCHAR(20),
-    fiscal_year INTEGER,
-    fiscal_quarter INTEGER,
-    is_reporting_period BOOLEAN DEFAULT FALSE,
-    is_weekend BOOLEAN DEFAULT FALSE,
-    is_holiday BOOLEAN DEFAULT FALSE,
-    CONSTRAINT unique_date UNIQUE (full_date)
-);
-
-CREATE INDEX idx_date_year ON gold.DimDate(year);
-CREATE INDEX idx_date_fiscal_year ON gold.DimDate(fiscal_year);
-CREATE INDEX idx_date_reporting ON gold.DimDate(is_reporting_period);
-
-COMMENT ON TABLE gold.DimDate IS 'Date dimension for temporal analysis and reporting periods';
-
--- fact_corporate_esg_metrics: Corporate ESG KPI measurements
-CREATE TABLE IF NOT EXISTS gold.fact_corporate_esg_metrics (
-    metric_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.DimCompany(company_id),
-    date_id INTEGER REFERENCES gold.DimDate(date_id),
-    kpi_id INTEGER REFERENCES gold.DimKPI(id),
-    metric_value DECIMAL(18,4),
-    unit_of_measure VARCHAR(50),
-    baseline_year INTEGER,
-    baseline_value DECIMAL(18,4),
-    notes TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_fact_metrics_company ON gold.fact_corporate_esg_metrics(company_id);
-CREATE INDEX idx_fact_metrics_date ON gold.fact_corporate_esg_metrics(date_id);
-CREATE INDEX idx_fact_metrics_kpi ON gold.fact_corporate_esg_metrics(kpi_id);
-CREATE INDEX idx_fact_metrics_composite ON gold.fact_corporate_esg_metrics(company_id, date_id, kpi_id);
-
-COMMENT ON TABLE gold.fact_corporate_esg_metrics IS 'Fact table containing all corporate ESG KPI measurements';
-
--- fact_esg_risk_scores: ESG risk assessment scores
-CREATE TABLE IF NOT EXISTS gold.fact_esg_risk_scores (
-    risk_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.DimCompany(company_id),
-    date_id INTEGER REFERENCES gold.DimDate(date_id),
-    overall_esg_score DECIMAL(10,4),
-    environmental_score DECIMAL(10,4),
-    social_score DECIMAL(10,4),
-    governance_score DECIMAL(10,4),
-    risk_level VARCHAR(20) CHECK (risk_level IN ('Low Risk', 'Medium Risk', 'High Risk', 'Critical Risk')),
-    industry_percentile DECIMAL(5,2),
-    global_percentile DECIMAL(5,2),
-    year_over_year_improvement DECIMAL(10,4),
-    controversy_score DECIMAL(10,4),
-    compliance_score DECIMAL(10,4),
-    rating_agency VARCHAR(100),
-    assessment_methodology VARCHAR(100),
-    confidence_level DECIMAL(3,2),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_fact_risk_company ON gold.fact_esg_risk_scores(company_id);
-CREATE INDEX idx_fact_risk_date ON gold.fact_esg_risk_scores(date_id);
-CREATE INDEX idx_fact_risk_level ON gold.fact_esg_risk_scores(risk_level);
-CREATE INDEX idx_fact_risk_composite ON gold.fact_esg_risk_scores(company_id, date_id);
-
-COMMENT ON TABLE gold.fact_esg_risk_scores IS 'ESG risk scores and ratings from third-party assessment agencies';
-
--- fact_country_esg_indicators: Country-level ESG indicators
-CREATE TABLE IF NOT EXISTS gold.fact_country_esg_indicators (
-    indicator_id BIGSERIAL PRIMARY KEY,
-    country_id INTEGER REFERENCES gold.DimCountry(country_id),
-    date_id INTEGER REFERENCES gold.DimDate(date_id),
-    pillar CHAR(1) CHECK (pillar IN ('E', 'S', 'G')),
-    indicator_name VARCHAR(200) NOT NULL,
-    indicator_value DECIMAL(18,4),
-    unit_of_measure VARCHAR(50),
-    global_rank INTEGER,
-    regional_rank INTEGER,
-    year_over_year_change DECIMAL(10,4),
-    sdg_alignment VARCHAR(50),
-    data_source VARCHAR(100),
-    confidence_interval_lower DECIMAL(18,4),
-    confidence_interval_upper DECIMAL(18,4),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_fact_country_country ON gold.fact_country_esg_indicators(country_id);
-CREATE INDEX idx_fact_country_date ON gold.fact_country_esg_indicators(date_id);
-CREATE INDEX idx_fact_country_pillar ON gold.fact_country_esg_indicators(pillar);
-CREATE INDEX idx_fact_country_composite ON gold.fact_country_esg_indicators(country_id, date_id, pillar);
-
-COMMENT ON TABLE gold.fact_country_esg_indicators IS 'Country-level ESG indicators for sovereign risk assessment';
-
--- fact_sustainability_rankings: Third-party sustainability rankings
-CREATE TABLE IF NOT EXISTS gold.fact_sustainability_rankings (
-    ranking_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.dim_company(company_id),
-    date_id INTEGER REFERENCES gold.dim_date(date_id),
-    ranking_body VARCHAR(100) NOT NULL,
-    overall_score DECIMAL(10,4),
-    environmental_score DECIMAL(10,4),
-    social_score DECIMAL(10,4),
-    governance_score DECIMAL(10,4),
-    global_rank INTEGER,
-    industry_rank INTEGER,
-    region_rank INTEGER,
-    total_participants INTEGER,
-    percentile DECIMAL(5,2),
-    award_level VARCHAR(50),
-    certification_status VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_fact_ranking_company ON gold.fact_sustainability_rankings(company_id);
-CREATE INDEX idx_fact_ranking_date ON gold.fact_sustainability_rankings(date_id);
-CREATE INDEX idx_fact_ranking_body ON gold.fact_sustainability_rankings(ranking_body);
-
-COMMENT ON TABLE gold.fact_sustainability_rankings IS 'External sustainability rankings from bodies like CDP, DJSI, GRESB';
-
-
--- agg_company_esg_summary: Pre-aggregated company ESG summary # Qua các năm 
-CREATE TABLE IF NOT EXISTS gold.agg_company_esg_summary (
-    summary_id BIGSERIAL PRIMARY KEY,
-    company_id INTEGER REFERENCES gold.DimCompany(company_id),
-    year INTEGER,
-    avg_esg_score DECIMAL(10,4),
-    avg_environmental_score DECIMAL(10,4),
-    avg_social_score DECIMAL(10,4),
-    avg_governance_score DECIMAL(10,4),
-    total_kpis_tracked INTEGER,
-    kpis_on_target INTEGER,
-    kpis_at_risk INTEGER,
-    overall_achievement_rate DECIMAL(5,2),
-    industry_rank INTEGER,
-    yoy_improvement DECIMAL(10,4),
-    maturity_level VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT unique_company_year UNIQUE (company_id, year)
-);
-
-CREATE INDEX idx_agg_summary_company ON gold.agg_company_esg_summary(company_id);
-CREATE INDEX idx_agg_summary_year ON gold.agg_company_esg_summary(year);
-
-COMMENT ON TABLE gold.agg_company_esg_summary IS 'Pre-aggregated ESG summary for faster dashboard queries';
-
--- agg_industry_benchmarks: Industry-level benchmarks
-CREATE TABLE IF NOT EXISTS gold.agg_industry_benchmarks (
-    benchmark_id BIGSERIAL PRIMARY KEY,
-    industry VARCHAR(100),
-    year INTEGER,
-    avg_esg_score DECIMAL(10,4),
-    median_esg_score DECIMAL(10,4),
-    top_quartile_score DECIMAL(10,4),
-    bottom_quartile_score DECIMAL(10,4),
-    std_deviation DECIMAL(10,4),
-    company_count INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT unique_industry_year UNIQUE (industry, year)
-);
-
-CREATE INDEX idx_agg_benchmark_industry ON gold.agg_industry_benchmarks(industry);
-CREATE INDEX idx_agg_benchmark_year ON gold.agg_industry_benchmarks(year);
-
-COMMENT ON TABLE gold.agg_industry_benchmarks IS 'Industry-level ESG benchmarks for comparative analysis';
-
--- =====================================================
--- METADATA TABLES
--- =====================================================
-
-CREATE TABLE IF NOT EXISTS metadata.data_lineage (
-    lineage_id BIGSERIAL PRIMARY KEY,
-    source_table VARCHAR(100),
-    target_table VARCHAR(100),
-    transformation_type VARCHAR(50),
-    pipeline_name VARCHAR(100),
-    execution_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    records_processed INTEGER,
-    records_inserted INTEGER,
-    records_updated INTEGER,
-    records_failed INTEGER,
-    execution_status VARCHAR(20),
-    error_message TEXT
-);
-
-CREATE INDEX idx_lineage_pipeline ON metadata.data_lineage(pipeline_name);
-CREATE INDEX idx_lineage_timestamp ON metadata.data_lineage(execution_timestamp);
-
-CREATE TABLE IF NOT EXISTS metadata.data_quality_checks (
-    check_id BIGSERIAL PRIMARY KEY,
-    table_name VARCHAR(100),
-    check_type VARCHAR(50),
-    check_description TEXT,
-    check_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    passed BOOLEAN,
-    metric_value DECIMAL(10,2),
-    threshold_value DECIMAL(10,2),
-    severity VARCHAR(20) CHECK (severity IN ('Critical', 'High', 'Medium', 'Low'))
-);
-
-CREATE INDEX idx_quality_table ON metadata.data_quality_checks(table_name);
-CREATE INDEX idx_quality_timestamp ON metadata.data_quality_checks(check_timestamp);
-
-
--- Comprehensive ESG dashboard view
-CREATE OR REPLACE VIEW gold.vw_esg_dashboard AS
+-- Latest ESG metrics for a company
 SELECT 
     c.company_name,
-    c.ticker_symbol,
-    c.industry,
+    m.metric_name,
+    f.year,
+    f.normalized_value,
+    u.standard_unit
+FROM marts.fact_esg_metric f
+JOIN marts.dim_company c ON f.company_id = c.company_id
+JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+JOIN marts.dim_unit u ON f.unit_id = u.unit_id
+WHERE c.company_name LIKE '%Tesla%'
+    AND f.year = 2024
+ORDER BY m.metric_name;
+
+-- Total emissions by company (2024)
+SELECT 
+    c.company_name,
     c.sector,
-    c.country,
-    d.year,
-    d.quarter,
-    r.overall_esg_score,
-    r.environmental_score,
-    r.social_score,
-    r.governance_score,
-    r.risk_level,
-    r.industry_percentile,
-    r.global_percentile,
-    COUNT(m.metric_id) as kpis_reported,
-    AVG(m.achievement_rate) as avg_achievement_rate
-FROM gold.fact_esg_risk_scores r
-JOIN gold.dim_company c ON r.company_id = c.company_id
-JOIN gold.dim_date d ON r.date_id = d.date_id
-LEFT JOIN gold.fact_corporate_esg_metrics m ON r.company_id = m.company_id AND r.date_id = m.date_id
-GROUP BY c.company_name, c.ticker_symbol, c.industry, c.sector, c.country,
-         d.year, d.quarter, r.overall_esg_score, r.environmental_score,
-         r.social_score, r.governance_score, r.risk_level, 
-         r.industry_percentile, r.global_percentile;
+    SUM(f.normalized_value) as total_emissions_tco2e
+FROM marts.fact_esg_metric f
+JOIN marts.dim_company c ON f.company_id = c.company_id
+JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+WHERE m.metric_group IN ('scope 1 emissions', 'scope 2 emissions', 'scope 3 emissions')
+    AND f.year = 2024
+GROUP BY c.company_id, c.company_name, c.sector
+ORDER BY total_emissions_tco2e DESC
+LIMIT 20;
 
--- KPI performance view
-CREATE OR REPLACE VIEW gold.vw_kpi_performance AS
+-- Energy consumption trends by year
+SELECT 
+    f.year,
+    SUM(f.normalized_value) as total_energy_gj,
+    COUNT(DISTINCT f.company_id) as company_count
+FROM marts.fact_esg_metric f
+JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+WHERE m.metric_group = 'renewable energy'
+GROUP BY f.year
+ORDER BY f.year;
+
+-- ============================================
+-- ESG SCORE QUERIES
+-- ============================================
+
+-- Top ESG performers (2024)
 SELECT 
     c.company_name,
-    k.kpi_name,
-    k.kpi_code,
-    k.esg_pillar,
-    k.category,
-    d.year,
-    m.metric_value,
-    m.unit_of_measure,
-    m.target_value,
-    m.achievement_rate,
-    m.year_over_year_change,
-    m.data_quality_score
-FROM gold.fact_corporate_esg_metrics m
-JOIN gold.dim_company c ON m.company_id = c.company_id
-JOIN gold.dim_kpi k ON m.kpi_id = k.kpi_id
-JOIN gold.dim_date d ON m.date_id = d.date_id;
+    c.sector,
+    s.overall_esg_score,
+    s.environmental_score,
+    s.social_score,
+    s.governance_score
+FROM marts.fact_esg_score s
+JOIN marts.dim_company c ON s.company_id = c.company_id
+WHERE s.year = 2024
+ORDER BY s.overall_esg_score DESC
+LIMIT 20;
 
-COMMENT ON VIEW gold.vw_esg_dashboard IS 'Comprehensive view for Power BI ESG dashboard';
-COMMENT ON VIEW gold.vw_kpi_performance IS 'KPI performance tracking view for detailed analysis';
+-- ESG score trends by sector
+SELECT 
+    c.sector,
+    s.year,
+    AVG(s.overall_esg_score) as avg_esg_score,
+    AVG(s.environmental_score) as avg_env_score,
+    AVG(s.social_score) as avg_social_score
+FROM marts.fact_esg_score s
+JOIN marts.dim_company c ON s.company_id = c.company_id
+WHERE c.sector IS NOT NULL
+GROUP BY c.sector, s.year
+ORDER BY c.sector, s.year;
 
-GRANT USAGE ON SCHEMA gold TO esg_user;
-GRANT SELECT ON ALL TABLES IN SCHEMA gold TO esg_user;
-GRANT SELECT ON ALL VIEWS IN SCHEMA gold TO esg_user;
-GRANT USAGE ON SCHEMA metadata TO esg_user;
-GRANT SELECT ON ALL TABLES IN SCHEMA metadata TO esg_user;
+-- Companies with declining ESG scores
+WITH yearly_scores AS (
+    SELECT 
+        company_id,
+        year,
+        overall_esg_score,
+        LAG(overall_esg_score) OVER (PARTITION BY company_id ORDER BY year) as prev_score
+    FROM marts.fact_esg_score
+)
+SELECT 
+    c.company_name,
+    y.year,
+    y.overall_esg_score,
+    y.prev_score,
+    (y.overall_esg_score - y.prev_score) as score_change
+FROM yearly_scores y
+JOIN marts.dim_company c ON y.company_id = c.company_id
+WHERE y.prev_score IS NOT NULL
+    AND (y.overall_esg_score - y.prev_score) < -5
+ORDER BY score_change;
 
-SELECT 'ESG Lakehouse Gold Layer Schema Created Successfully' AS status;
+-- ============================================
+-- ADVANCED ANALYTICS
+-- ============================================
+
+-- Emissions intensity by sector
+SELECT 
+    c.sector,
+    f.year,
+    SUM(CASE WHEN m.metric_group LIKE '%emissions%' THEN f.normalized_value ELSE 0 END) as total_emissions,
+    COUNT(DISTINCT f.company_id) as company_count,
+    SUM(CASE WHEN m.metric_group LIKE '%emissions%' THEN f.normalized_value ELSE 0 END) / 
+        NULLIF(COUNT(DISTINCT f.company_id), 0) as avg_emissions_per_company
+FROM marts.fact_esg_metric f
+JOIN marts.dim_company c ON f.company_id = c.company_id
+JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+WHERE c.sector IS NOT NULL
+GROUP BY c.sector, f.year
+ORDER BY c.sector, f.year;
+
+-- Top metrics by data availability
+SELECT 
+    m.metric_name,
+    m.metric_group,
+    COUNT(DISTINCT f.company_id) as company_count,
+    COUNT(*) as measurement_count,
+    MIN(f.year) as first_year,
+    MAX(f.year) as last_year
+FROM marts.fact_esg_metric f
+JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+GROUP BY m.metric_id, m.metric_name, m.metric_group
+HAVING COUNT(DISTINCT f.company_id) >= 10
+ORDER BY company_count DESC
+LIMIT 30;
+
+-- Correlation: Emissions vs ESG Score
+SELECT 
+    c.company_name,
+    s.year,
+    s.environmental_score,
+    SUM(f.normalized_value) as total_emissions
+FROM marts.fact_esg_score s
+JOIN marts.dim_company c ON s.company_id = c.company_id
+LEFT JOIN marts.fact_esg_metric f ON s.company_id = f.company_id AND s.year = f.year
+LEFT JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+WHERE m.metric_group LIKE '%emissions%'
+GROUP BY c.company_id, c.company_name, s.year, s.environmental_score
+HAVING SUM(f.normalized_value) > 0
+ORDER BY s.year, s.environmental_score DESC;
+
+-- Year-over-year growth rates
+WITH yearly_totals AS (
+    SELECT 
+        c.company_id,
+        c.company_name,
+        f.year,
+        SUM(f.normalized_value) as total_emissions
+    FROM marts.fact_esg_metric f
+    JOIN marts.dim_company c ON f.company_id = c.company_id
+    JOIN marts.dim_metric m ON f.metric_id = m.metric_id
+    WHERE m.metric_group LIKE '%emissions%'
+    GROUP BY c.company_id, c.company_name, f.year
+)
+SELECT 
+    company_name,
+    year,
+    total_emissions,
+    LAG(total_emissions) OVER (PARTITION BY company_id ORDER BY year) as prev_year_emissions,
+    CASE 
+        WHEN LAG(total_emissions) OVER (PARTITION BY company_id ORDER BY year) > 0 
+        THEN ROUND(((total_emissions - LAG(total_emissions) OVER (PARTITION BY company_id ORDER BY year)) / 
+              LAG(total_emissions) OVER (PARTITION BY company_id ORDER BY year) * 100), 2)
+        ELSE NULL 
+    END as yoy_growth_pct
+FROM yearly_totals
+WHERE year >= 2020
+ORDER BY company_name, year;
+
+-- ============================================
+-- DATA QUALITY CHECKS
+-- ============================================
+
+-- Check for missing values
+SELECT 
+    'dim_company' as table_name,
+    COUNT(*) as total_rows,
+    SUM(CASE WHEN company_name IS NULL THEN 1 ELSE 0 END) as null_company_name,
+    SUM(CASE WHEN sector IS NULL THEN 1 ELSE 0 END) as null_sector
+FROM marts.dim_company
+UNION ALL
+SELECT 
+    'fact_esg_metric',
+    COUNT(*),
+    SUM(CASE WHEN company_id IS NULL THEN 1 ELSE 0 END),
+    SUM(CASE WHEN metric_id IS NULL THEN 1 ELSE 0 END)
+FROM marts.fact_esg_metric;
+
+-- Verify referential integrity
+SELECT 
+    COUNT(*) as orphaned_records
+FROM marts.fact_esg_metric f
+LEFT JOIN marts.dim_company c ON f.company_id = c.company_id
+WHERE c.company_id IS NULL;

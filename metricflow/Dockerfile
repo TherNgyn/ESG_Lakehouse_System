@@ -19,9 +19,11 @@ RUN pip install --no-cache-dir \
     flask==3.0.0 \
     flask-cors==4.0.0 \
     requests==2.31.0
-
+COPY api_server.py .
 COPY . /usr/app
-
+ENV PYTHONPATH=/usr/app
+ENV DBT_PROJECT_DIR=/usr/dbt-project
+ENV DBT_PROFILES_DIR=/usr/dbt-profiles
 EXPOSE 8080
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "api_server:app"]

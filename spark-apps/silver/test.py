@@ -13,7 +13,7 @@ spark = SparkSession.builder \
     .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
     .getOrCreate()
 
-OUTPUT_PATH = "s3a://silver/staging_metric"
+OUTPUT_PATH = "s3a://silver/staging_companies_mapping"
 #df_pdf = spark.read.parquet("s3a://silver/clean_kpi_pdf")
 def test_output():
 
@@ -36,7 +36,7 @@ def test_output():
        
         # In mẫu dữ liệu chi tiết
         print("[4] Mẫu 20 dòng dữ liệu chi tiết:")
-        df.select("company_name","name_norm", "sector_norm", "industry_norm", "country_norm", "isin_valid").show(2000, truncate=False)
+        df.show(2000, truncate=True)
     print("="*60 + "\n")
 
 if __name__ == "__main__":

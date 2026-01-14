@@ -4,3 +4,6 @@ trino
 requests
 plotly
 matplotlib
+geopy
+folium
+streamlit-folium

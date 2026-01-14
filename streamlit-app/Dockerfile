@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 # Copy requirements first (for caching)
 COPY requirements.txt .
-
+COPY page_modules/ ./page_modules/
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 

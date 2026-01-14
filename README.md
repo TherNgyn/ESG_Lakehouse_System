@@ -61,6 +61,9 @@ README.md          # Tài liệu mô tả dự án
 
 ---
 
+## Cơ sở dữ liệu ở tầng Gold
+![alt text](<Fact_Dim (2).jpg>)
+
 ## Dịch vụ Docker Compose
 
 Hệ thống hỗ trợ khởi tạo nhanh toàn bộ stack qua `docker-compose.yml`:

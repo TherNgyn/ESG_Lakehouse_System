@@ -3,7 +3,6 @@ version: 2
 saved_queries: []
 
 semantic_models:
-  # 1. Company Dimension
   - name: company
     description: "Company master data for filtering and grouping"
     model: ref('dim_company')
@@ -42,7 +41,6 @@ semantic_models:
         type_params:
           time_granularity: day
 
-  # 2. Metric Dimension
   - name: metric_dim
     description: "Metric metadata for filtering by topic/group"
     model: ref('dim_metric')
@@ -70,7 +68,6 @@ semantic_models:
         type_params:
           time_granularity: day
 
-  # 3. ESG Metrics Fact
   - name: esg_metrics
     description: "Granular ESG metrics (400+ metrics)"
     model: ref('fact_esg_metric')
@@ -104,7 +101,7 @@ semantic_models:
       - name: total_value
         agg: sum
         expr: normalized_value
-        description: "Sum of normalized metric values"
+        description: "Sum of normalized values"
       - name: avg_value
         agg: average
         expr: normalized_value
@@ -122,7 +119,6 @@ semantic_models:
         agg: count_distinct
         expr: company_id
 
-  # 4. ESG Scores & Risk
   - name: esg_scores
     description: "ESG scores, pulse, and risk ratings from multiple sources"
     model: ref('fact_esg_score_risk')
@@ -198,6 +194,130 @@ semantic_models:
         agg: count_distinct
         expr: company_id
 
+  - name: wba_benchmarks
+    description: "WBA global rankings and industry/sector benchmarks"
+    model: ref('fact_esg_rank')
+    defaults:
+      agg_time_dimension: benchmark_date
+    
+    entities:
+      - name: rank_fact
+        type: primary
+        expr: benchmark_key
+      - name: company
+        type: foreign
+        expr: company_id
+    
+    dimensions:
+      - name: benchmark_date
+        type: time
+        expr: "cast(cast(year_benchmarked as varchar) || '-01-01' as date)"
+        type_params:
+          time_granularity: year
+      - name: industry
+        type: categorical
+        expr: industry
+      - name: sector
+        type: categorical
+        expr: sector
+      - name: year_benchmarked
+        type: categorical
+        expr: year_benchmarked
+    
+    measures:
+      - name: global_rank_value
+        agg: min 
+        expr: total_rank
+        description: "WBA global rank (lower is better)"
+      - name: governance_rank_value
+        agg: min 
+        expr: governance_strategy_rank
+      - name: environment_rank_value
+        agg: min 
+        expr: ecosystems_biodiversity_rank
+      - name: social_rank_value
+        agg: min 
+        expr: social_community_rank
+      - name: industry_rank_value
+        agg: min
+        expr: industry_rank
+        description: "Rank within industry (lower is better)"
+      - name: industry_percentile
+        agg: average
+        expr: "cast(industry_rank as double) / cast(industry_company_count as double) * 100"
+        description: "Industry percentile rank (0-100)"
+      - name: sector_rank_value
+        agg: min
+        expr: sector_rank
+        description: "Rank within sector (lower is better)"
+      - name: sector_percentile
+        agg: average
+        expr: "cast(sector_rank as double) / cast(sector_company_count as double) * 100"
+        description: "Sector percentile rank (0-100)"
+
+  - name: esg_derived
+    description: "Pre-calculated derived ESG metrics (YoY, industry comparisons)"
+    model: ref('fact_esg_metric_cal')
+    defaults:
+      agg_time_dimension: derived_date
+    
+    entities:
+      - name: derived_fact
+        type: primary
+        expr: derived_key
+      - name: company
+        type: foreign
+        expr: company_id
+    
+    dimensions:
+      - name: derived_date
+        type: time
+        expr: "cast(cast(year as varchar) || '-01-01' as date)"
+        type_params:
+          time_granularity: year
+      - name: industry
+        type: categorical
+        expr: industry
+      - name: sector
+        type: categorical
+        expr: sector
+      - name: decarbonization_status
+        type: categorical
+        expr: decarbonization_status
+      - name: talent_stability_status
+        type: categorical
+        expr: talent_stability_status
+      - name: governance_status
+        type: categorical
+        expr: governance_status
+    
+    measures:
+      - name: avg_emissions_yoy
+        agg: average
+        expr: emissions_yoy_pct
+        description: "Average YoY emissions change %"
+      - name: avg_decarbonization_gap
+        agg: average
+        expr: decarbonization_gap
+        description: "Average gap vs industry decarbonization"
+      - name: avg_turnover_rate
+        agg: average
+        expr: company_turnover_rate
+      - name: avg_talent_gap
+        agg: average
+        expr: talent_stability_gap
+        description: "Average gap vs industry turnover"
+      - name: avg_board_independence
+        agg: average
+        expr: company_board_independence
+      - name: avg_board_yoy
+        agg: average
+        expr: board_independence_yoy
+        description: "Average YoY board independence change"
+      - name: company_count
+        agg: count_distinct
+        expr: company_id
+
 metrics:
   - name: company_overall_score
     description: "Company's overall ESG score"
@@ -265,48 +385,6 @@ metrics:
     type_params:
       measure: avg_overall_score
 
-  - name: metric_value
-    description: "Normalized metric value (avg)"
-    type: simple
-    label: Metric Value
-    type_params:
-      measure: avg_value
-
-  - name: metric_total
-    description: "Total metric value (sum)"
-    type: simple
-    label: Metric Total
-    type_params:
-      measure: total_value
-
-  - name: emissions_total
-    description: "Total emissions (Scope 1+2+3)"
-    type: simple
-    label: Total Emissions
-    type_params:
-      measure: total_value
-    filter: |
-      {{ Dimension('metric_dim__topic') }} = 'Environmental' AND
-      {{ Dimension('metric_dim__metric_group') }} LIKE '%emission%'
-
-  - name: renewable_energy_total
-    description: "Total renewable energy consumption"
-    type: simple
-    label: Renewable Energy
-    type_params:
-      measure: total_value
-    filter: |
-      {{ Dimension('metric_dim__metric_group') }} LIKE '%renewable%'
-
-  - name: water_consumption_total
-    description: "Total water consumption"
-    type: simple
-    label: Water Consumption
-    type_params:
-      measure: total_value
-    filter: |
-      {{ Dimension('metric_dim__metric_group') }} LIKE '%water%'
-
   - name: high_risk_companies
     description: "Count of companies with high ESG risk"
     type: simple
@@ -340,3 +418,114 @@ metrics:
       measure: score_company_count
     filter: |
       {{ Dimension('esg_scores__avg_overall_score') }} < 50
+
+  - name: wba_global_rank
+    description: "Company's WBA global rank"
+    type: simple
+    label: WBA Global Rank
+    type_params:
+      measure: global_rank_value
+
+  - name: wba_governance_rank
+    description: "Company's WBA governance strategy rank"
+    type: simple
+    label: WBA Governance Rank
+    type_params:
+      measure: governance_rank_value
+
+  - name: wba_environment_rank
+    description: "Company's WBA environment & biodiversity rank"
+    type: simple
+    label: WBA Environment Rank
+    type_params:
+      measure: environment_rank_value
+
+  - name: wba_social_rank
+    description: "Company's WBA social & community rank"
+    type: simple
+    label: WBA Social Rank
+    type_params:
+      measure: social_rank_value
+
+  - name: wba_industry_rank
+    description: "Company's rank within industry"
+    type: simple
+    label: WBA Industry Rank
+    type_params:
+      measure: industry_rank_value
+
+  - name: wba_sector_rank
+    description: "Company's rank within sector"
+    type: simple
+    label: WBA Sector Rank
+    type_params:
+      measure: sector_rank_value
+
+  - name: wba_industry_percentile
+    description: "Industry percentile rank (0-100)"
+    type: simple
+    label: Industry Percentile
+    type_params:
+      measure: industry_percentile
+
+  - name: wba_sector_percentile
+    description: "Sector percentile rank (0-100)"
+    type: simple
+    label: Sector Percentile
+    type_params:
+      measure: sector_percentile
+
+  - name: emissions_yoy_change
+    description: "YoY emissions change percentage"
+    type: simple
+    label: Emissions YoY %
+    type_params:
+      measure: avg_emissions_yoy
+
+  - name: decarbonization_gap
+    description: "Company vs industry decarbonization rate"
+    type: simple
+    label: Decarbonization Gap
+    type_params:
+      measure: avg_decarbonization_gap
+
+  - name: talent_stability_gap
+    description: "Company vs industry turnover rate"
+    type: simple
+    label: Talent Stability Gap
+    type_params:
+      measure: avg_talent_gap
+
+  - name: board_independence_yoy
+    description: "YoY change in board independence"
+    type: simple
+    label: Board Independence YoY
+    type_params:
+      measure: avg_board_yoy
+
+  - name: leading_decarbonizers
+    description: "Companies ahead of industry in emissions reduction"
+    type: simple
+    label: Leading Decarbonizers
+    type_params:
+      measure: company_count
+    filter: |
+      {{ Dimension('esg_derived__decarbonization_status') }} IN ('Leading Decarbonization', 'Above Industry Avg')
+
+  - name: excellent_retention_companies
+    description: "Companies with excellent employee retention"
+    type: simple
+    label: Excellent Retention
+    type_params:
+      measure: company_count
+    filter: |
+      {{ Dimension('esg_derived__talent_stability_status') }} IN ('Excellent Retention', 'Better Than Industry')
+
+  - name: improving_governance_companies
+    description: "Companies improving governance over time"
+    type: simple
+    label: Improving Governance
+    type_params:
+      measure: company_count
+    filter: |
+      {{ Dimension('esg_derived__governance_status') }} IN ('Improving Governance', 'Slight Improvement')

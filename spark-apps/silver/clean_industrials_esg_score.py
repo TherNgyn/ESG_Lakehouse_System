@@ -12,12 +12,19 @@ spark = SparkSession.builder \
     .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
     .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
     .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+    .config("spark.sql.legacy.timeParserPolicy", "LEGACY") \
     .getOrCreate()
 
 BRONZE_PATH = "s3a://bronze/raw/esg_score/Industrials_sector_ESG_and_score_data.csv"
 SILVER_PATH = "s3a://silver/clean_industrials_esg_score"
 
+print("="*60)
+print("Reading data from Bronze...")
+print("="*60)
 df = spark.read.option("header", "true").csv(BRONZE_PATH)
+
+print(f"Total rows: {df.count()}")
+print(f"Total columns: {len(df.columns)}")
 
 df = df.dropDuplicates()
 
@@ -39,9 +46,19 @@ for col_name in categorical_cols:
     else:
         df = df.withColumn(col_name, when(col(col_name).isNull(), lit("Unknown")).otherwise(col(col_name)))
 
+# ✅ SKIP DATE PARSING - Keep as string, parse later in Trino/dbt
+print("\n" + "="*60)
+print("Skipping date column parsing (will parse in SQL layer)...")
+print("="*60)
+
+# Just show date columns found
 date_cols = [c for c in df.columns if "date" in c.lower()]
-for c in date_cols:
-    df = df.withColumn(c, to_date(col(c)))
+if date_cols:
+    print(f"Date columns found: {date_cols}")
+    for c in date_cols:
+        sample_values = df.select(c).limit(5).collect()
+        print(f"  {c}: {[row[0] for row in sample_values]}")
+    print("These will be kept as strings and parsed in SQL layer")
 
 for c in ["Volume", "Market Cap"]:
     if c in df.columns:
@@ -60,6 +77,10 @@ if "Country" in df.columns:
         is_country_invalid = False
 
 if "Address" in df.columns and is_country_invalid:
+    print("\n" + "="*60)
+    print("Parsing address to extract country/city...")
+    print("="*60)
+    
     df = df.withColumn("Addr_Clean", regexp_replace(col("Address"), r"[\"\r\t]+", " "))
     df = df.withColumn("Addr_Clean", regexp_replace(col("Addr_Clean"), r"\n", " "))
     df = df.withColumn("Addr_Clean", regexp_replace(col("Addr_Clean"), r"\s+", " "))
@@ -188,12 +209,26 @@ if "Address" in df.columns and is_country_invalid:
                 "has_postal_at_end", "has_state_code",
                 "city_idx", "city_from_idx", "city_pattern_regex")
 
+# Clean column names (replace special characters with underscores)
+print("\n" + "="*60)
+print("Cleaning column names...")
+print("="*60)
 df = df.select([col(c).alias(re.sub(r"[ ,;{}()\n\t=]", "_", c)) for c in df.columns])
 
+print("\nFinal columns:")
+for c in df.columns:
+    print(f"  - {c}")
+
+print("\n" + "="*60)
+print("Writing to Silver layer...")
+print("="*60)
 df.write \
     .format("delta") \
     .mode("overwrite") \
     .option("overwriteSchema", "true") \
     .save(SILVER_PATH)
+
+print("✅ Successfully saved to Silver!")
+print(f"Path: {SILVER_PATH}")
 
 spark.stop()

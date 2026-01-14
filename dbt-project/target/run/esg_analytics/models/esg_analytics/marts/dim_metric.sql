@@ -2,7 +2,7 @@
   
     
 
-    create table "delta"."default_marts"."dim_metric"
+    create table "delta"."default_marts"."dim_metric__dbt_tmp"
       
       
     as (

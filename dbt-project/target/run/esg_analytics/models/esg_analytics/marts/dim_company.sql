@@ -2,7 +2,7 @@
   
     
 
-    create table "delta"."default_marts"."dim_company"
+    create table "delta"."default_marts"."dim_company__dbt_tmp"
       
       
     as (
@@ -26,7 +26,7 @@ with companies as (
         upper(substring(country_norm, 1, 1)) || lower(substring(country_norm, 2)) as country_norm_init,
         isin_valid,
         row_number() over (
-            partition by lower(trim(name_norm)) -- ĐỔI TẠI ĐÂY: Chặn trùng theo tên chuẩn hóa
+            partition by lower(trim(name_norm)) 
             order by 
             case 
                 when isin_valid = true then 1
@@ -34,7 +34,7 @@ with companies as (
                 when industry is not null then 3
                 else 4
             end,
-            matched_company_id asc -- Đảm bảo tính ổn định của bản ghi được chọn
+            matched_company_id asc
         ) as rn
     from "delta"."default"."staging_companies_mapping"
 ),

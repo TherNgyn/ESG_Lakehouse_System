@@ -20,6 +20,7 @@ dag = DAG(
     catchup=False,
 )
 
+# Dimension tables
 dbt_dim_company = BashOperator(
     task_id='dbt_dim_company',
     bash_command='docker exec dbt dbt run --models dim_company --full-refresh --project-dir /usr/app',
@@ -44,6 +45,7 @@ dbt_dim_date = BashOperator(
     dag=dag,
 )
 
+# Fact tables
 dbt_fact_esg_metric = BashOperator(
     task_id='dbt_fact_esg_metric',
     bash_command='docker exec dbt dbt run --models fact_esg_metric --full-refresh --project-dir /usr/app',
@@ -56,6 +58,26 @@ dbt_fact_esg_score = BashOperator(
     dag=dag,
 )
 
+dbt_fact_esg_rank = BashOperator(
+    task_id='dbt_fact_esg_rank',
+    bash_command='docker exec dbt dbt run --models fact_esg_rank --full-refresh --project-dir /usr/app',
+    dag=dag,
+)
+
+dbt_fact_esg_metric_cal = BashOperator(
+    task_id='dbt_fact_esg_metric_cal',
+    bash_command='docker exec dbt dbt run --models fact_esg_metric_cal --full-refresh --project-dir /usr/app',
+    dag=dag,
+)
+
+# Test task
+dbt_test = BashOperator(
+    task_id='dbt_test',
+    bash_command='docker exec dbt dbt test --project-dir /usr/app',
+    dag=dag,
+)
+
+# Verify task
 def verify_gold_layer(**context):
     from trino.dbapi import connect
     
@@ -94,6 +116,9 @@ verify_gold = PythonOperator(
     dag=dag,
 )
 
+# Task dependencies
 [dbt_dim_company, dbt_dim_metric, dbt_dim_unit, dbt_dim_date] >> dbt_fact_esg_metric
 [dbt_dim_company, dbt_dim_metric, dbt_dim_unit, dbt_dim_date] >> dbt_fact_esg_score
-[dbt_fact_esg_metric, dbt_fact_esg_score] >> dbt_test >> verify_gold
+[dbt_dim_company, dbt_dim_metric, dbt_dim_unit, dbt_dim_date] >> dbt_fact_esg_rank
+[dbt_fact_esg_metric] >> dbt_fact_esg_metric_cal
+[dbt_fact_esg_metric, dbt_fact_esg_score, dbt_fact_esg_rank, dbt_fact_esg_metric_cal] >> dbt_test >> verify_gold

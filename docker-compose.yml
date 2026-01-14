@@ -150,6 +150,7 @@ services:
       - ./airflow/dags:/opt/airflow/dags
       - ./spark-apps:/opt/airflow/spark-apps
       - ./airflow/logs:/opt/airflow/logs
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "${AIRFLOW_PORT}:8080"
     command: standalone
@@ -174,21 +175,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-  jupyter:
-    image: jupyter/pyspark-notebook:latest
-    container_name: jupyter
-    ports:
-      - "${JUPYTER_PORT}:8888"
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
-      - GRANT_SUDO=yes
-    volumes:
-      - ./notebooks:/home/jovyan/work
-      - ./datasets:/home/jovyan/data    
-    command: start-notebook.sh --NotebookApp.token='esg123'
-    networks:
-      - esg-network
 
   dbt:
     image: ghcr.io/dbt-labs/dbt-postgres:1.8.latest
@@ -228,13 +214,13 @@ services:
       trino:
         condition: service_healthy
     environment:
-      - DBT_PROJECT_DIR=/usr/app
-      - DBT_PROFILES_DIR=/usr/app
+      - DBT_PROJECT_DIR=/usr/dbt-project
+      - DBT_PROFILES_DIR=/usr/dbt-project
     volumes:
-      - ./dbt-profiles:/usr/app
-      - ./dbt-project:/usr/app
-      - ./metricflow:/usr/app
-    working_dir: /usr/app
+      - ./dbt-profiles:/usr/dbt-profiles
+      - ./dbt-project:/usr/dbt-project
+      - ./metricflow:/usr/metricflow
+    working_dir: /usr/dbt-project
     ports:
       - "${METRICFLOW_PORT:-8083}:8080"
     healthcheck:

@@ -23,7 +23,7 @@ df4 = spark.read.format("com.crealytics.spark.excel") \
     .option("inferSchema", "false") \
     .option("dataAddress", "'Scores and ranks'!A1") \
     .option("maxRowsInMemory", 1000) \
-    .load("s3a://bronze/raw/esg_rank/rank_sustainability_2022_2024_company.xlsx")
+    .load("s3a://bronze/raw/esg_rank/rank_sustainability_2022_2024_company.csv")
 
 processed_rank_df = df4.select(
     F.trim(F.col("Company Name")).alias("company_name"),

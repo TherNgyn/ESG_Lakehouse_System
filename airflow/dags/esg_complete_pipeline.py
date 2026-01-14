@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
@@ -23,181 +22,154 @@ dag = DAG(
     max_active_runs=1,
 )
 
-# ============================================================================
-# BRONZE TO SILVER: Data Cleaning & Transformation
-# ============================================================================
-
-clean_esg_score = SparkSubmitOperator(
+clean_esg_score = BashOperator(
     task_id='clean_esg_score',
-    application='/opt/spark-apps/clean_esg_score.py',
-    conn_id='spark_default',
-    conf={
-        'spark.hadoop.fs.s3a.endpoint': 'http://minio:9000',
-        'spark.hadoop.fs.s3a.access.key': 'admin',
-        'spark.hadoop.fs.s3a.secret.key': 'admin123456'
-    },
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_esg_score.py',
     dag=dag,
 )
 
-clean_industrials_esg = SparkSubmitOperator(
+clean_industrials_esg = BashOperator(
     task_id='clean_industrials_esg',
-    application='/opt/spark-apps/clean_industrials_esg_score.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_industrials_esg_score.py',
     dag=dag,
 )
 
-clean_rank = SparkSubmitOperator(
+clean_rank = BashOperator(
     task_id='clean_rank',
-    application='/opt/spark-apps/clean_rank.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_rank.py',
     dag=dag,
 )
 
-clean_rank_risk = SparkSubmitOperator(
+clean_rank_risk = BashOperator(
     task_id='clean_rank_risk',
-    application='/opt/spark-apps/clean_rank_risk.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_rank_risk.py',
     dag=dag,
 )
 
-# KPI Extraction & Cleaning
-extract_kpi_pdf = SparkSubmitOperator(
+extract_kpi_pdf = BashOperator(
     task_id='extract_kpi_pdf',
-    application='/opt/spark-apps/extract_kpi_pdf.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/extract_kpi_pdf.py',
     dag=dag,
 )
 
-extract_kpi_xlsx = SparkSubmitOperator(
+extract_kpi_xlsx = BashOperator(
     task_id='extract_kpi_xlsx',
-    application='/opt/spark-apps/extract_kpi_xlsx.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/extract_kpi_xlsx.py',
     dag=dag,
 )
 
-clean_kpi_csv = SparkSubmitOperator(
+clean_kpi_csv = BashOperator(
     task_id='clean_kpi_csv',
-    application='/opt/spark-apps/clean_kpi_csv.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_kpi_csv.py',
     dag=dag,
 )
 
-clean_kpi_excel = SparkSubmitOperator(
+clean_kpi_excel = BashOperator(
     task_id='clean_kpi_excel',
-    application='/opt/spark-apps/clean_kpi_excel.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_kpi_excel.py',
     dag=dag,
 )
 
-clean_kpi_pdf = SparkSubmitOperator(
+clean_kpi_pdf = BashOperator(
     task_id='clean_kpi_pdf',
-    application='/opt/spark-apps/clean_kpi_pdf.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/clean_kpi_pdf.py',
     dag=dag,
 )
 
-# Merge all KPI sources
-merge_kpi = SparkSubmitOperator(
+merge_kpi = BashOperator(
     task_id='merge_kpi_data',
-    application='/opt/spark-apps/merge_kpi_data.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/merge_kpi_data.py',
     dag=dag,
 )
 
-# ============================================================================
-# SILVER: Semantic Classification & Normalization
-# ============================================================================
-
-classify_metrics = SparkSubmitOperator(
+classify_metrics = BashOperator(
     task_id='classify_metrics',
-    application='/opt/spark-apps/classified_kpi.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/classified_kpi.py',
     dag=dag,
 )
 
-semantic_classification = SparkSubmitOperator(
+semantic_classification = BashOperator(
     task_id='semantic_classification',
-    application='/opt/spark-apps/sematic.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/sematic.py',
     dag=dag,
 )
 
-normalize_kpi = SparkSubmitOperator(
+normalize_kpi = BashOperator(
     task_id='normalize_kpi',
-    application='/opt/spark-apps/normalize_kpi.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/normalize_kpi.py',
     dag=dag,
 )
 
-normalize_final = SparkSubmitOperator(
+normalize_final = BashOperator(
     task_id='normalize_final',
-    application='/opt/spark-apps/normalize_final.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/normalize_final.py',
     dag=dag,
 )
 
-# ============================================================================
-# SILVER: Staging Tables (Dimensions Preparation)
-# ============================================================================
-
-staging_companies = SparkSubmitOperator(
+staging_companies = BashOperator(
     task_id='staging_companies_mapping',
-    application='/opt/spark-apps/staging_companies_mapping.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/staging_companies_mapping.py',
     dag=dag,
 )
 
-staging_metrics = SparkSubmitOperator(
+staging_metrics = BashOperator(
     task_id='staging_metric_mapping',
-    application='/opt/spark-apps/staging_metric_mapping.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/staging_metric_mapping.py',
     dag=dag,
 )
 
-staging_units = SparkSubmitOperator(
+staging_units = BashOperator(
     task_id='staging_unit_mapping',
-    application='/opt/spark-apps/staging_unit_mapping.py',
-    conn_id='spark_default',
+    bash_command='docker exec spark-submit /opt/spark/bin/spark-submit /opt/spark-apps/silver/staging_unit_mapping.py',
     dag=dag,
 )
 
-# ============================================================================
-# GOLD: dbt Dimensional Models
-# ============================================================================
+drop_gold_tables = BashOperator(
+    task_id='drop_gold_tables',
+    bash_command='''docker exec trino trino --execute "
+        DROP TABLE IF EXISTS delta.gold_marts.dim_company;
+        DROP TABLE IF EXISTS delta.gold_marts.dim_metric;
+        DROP TABLE IF EXISTS delta.gold_marts.dim_unit;
+        DROP TABLE IF EXISTS delta.gold_marts.dim_date;
+        DROP TABLE IF EXISTS delta.gold_marts.fact_esg_metric;
+        DROP TABLE IF EXISTS delta.gold_marts.fact_esg_score_risk;
+    "''',
+    dag=dag,
+)
 
 dbt_dim_company = BashOperator(
     task_id='dbt_dim_company',
-    bash_command='docker exec dbt dbt run --models dim_company --full-refresh --project-dir /usr/app',
+    bash_command='docker exec dbt dbt run --models dim_company --project-dir /usr/app',
     dag=dag,
 )
 
 dbt_dim_metric = BashOperator(
     task_id='dbt_dim_metric',
-    bash_command='docker exec dbt dbt run --models dim_metric --full-refresh --project-dir /usr/app',
+    bash_command='docker exec dbt dbt run --models dim_metric --project-dir /usr/app',
     dag=dag,
 )
 
 dbt_dim_unit = BashOperator(
     task_id='dbt_dim_unit',
-    bash_command='docker exec dbt dbt run --models dim_unit --full-refresh --project-dir /usr/app',
+    bash_command='docker exec dbt dbt run --models dim_unit --project-dir /usr/app',
     dag=dag,
 )
 
 dbt_dim_date = BashOperator(
     task_id='dbt_dim_date',
-    bash_command='docker exec dbt dbt run --models dim_date --full-refresh --project-dir /usr/app',
+    bash_command='docker exec dbt dbt run --models dim_date --project-dir /usr/app',
     dag=dag,
 )
 
 dbt_fact_esg_metric = BashOperator(
     task_id='dbt_fact_esg_metric',
-    bash_command='docker exec dbt dbt run --models fact_esg_metric --full-refresh --project-dir /usr/app',
+    bash_command='docker exec dbt dbt run --models fact_esg_metric --project-dir /usr/app',
     dag=dag,
 )
 
 dbt_fact_esg_score_risk = BashOperator(
     task_id='dbt_fact_esg_score_risk',
-    bash_command='docker exec dbt dbt run --models fact_esg_score_risk --full-refresh --project-dir /usr/app',
+    bash_command='docker exec dbt dbt run --models fact_esg_score_risk --project-dir /usr/app',
     dag=dag,
 )
 
@@ -207,10 +179,6 @@ dbt_test = BashOperator(
     dag=dag,
 )
 
-# ============================================================================
-# DATA QUALITY CHECKS
-# ============================================================================
-
 def check_data_quality(**context):
     from trino.dbapi import connect
     
@@ -219,7 +187,7 @@ def check_data_quality(**context):
         port=8080,
         user='user',
         catalog='delta',
-        schema='default_marts'
+        schema='gold_marts'
     )
     cursor = conn.cursor()
     
@@ -262,19 +230,11 @@ data_quality_check = PythonOperator(
     dag=dag,
 )
 
-# ============================================================================
-# REFRESH ANALYTICS DASHBOARDS
-# ============================================================================
-
 refresh_streamlit = BashOperator(
     task_id='refresh_streamlit_cache',
     bash_command='docker exec streamlit-app python -c "import streamlit.web.cli as stcli"',
     dag=dag,
 )
-
-# ============================================================================
-# TASK DEPENDENCIES
-# ============================================================================
 
 # Bronze to Silver - Parallel Cleaning
 [clean_esg_score, clean_industrials_esg, clean_rank, clean_rank_risk] >> staging_companies
@@ -293,11 +253,14 @@ merge_kpi >> classify_metrics >> semantic_classification >> normalize_kpi >> nor
 normalize_final >> staging_metrics
 normalize_final >> staging_units
 
-# Dimensions (parallel)
-staging_companies >> dbt_dim_company
-staging_metrics >> dbt_dim_metric
-staging_units >> dbt_dim_unit
-staging_companies >> dbt_dim_date
+# Drop tables before creating dimensions
+[staging_companies, staging_metrics, staging_units] >> drop_gold_tables
+
+# Dimensions (parallel, after drop)
+drop_gold_tables >> dbt_dim_company
+drop_gold_tables >> dbt_dim_metric
+drop_gold_tables >> dbt_dim_unit
+drop_gold_tables >> dbt_dim_date
 
 # Facts (after all dimensions ready)
 [dbt_dim_company, dbt_dim_metric, dbt_dim_unit, dbt_dim_date] >> dbt_fact_esg_metric

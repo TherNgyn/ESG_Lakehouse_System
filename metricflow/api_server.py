@@ -2,11 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import trino
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
 
-# Trino connection config
 TRINO_HOST = os.getenv('TRINO_HOST', 'trino')
 TRINO_PORT = int(os.getenv('TRINO_PORT', 8080))
 TRINO_USER = os.getenv('TRINO_USER', 'user')
@@ -14,7 +14,6 @@ TRINO_CATALOG = os.getenv('TRINO_CATALOG', 'delta')
 TRINO_SCHEMA = os.getenv('TRINO_SCHEMA', 'default_marts')
 
 def get_trino_connection():
-    """Get Trino connection"""
     return trino.dbapi.connect(
         host=TRINO_HOST,
         port=TRINO_PORT,
@@ -24,19 +23,15 @@ def get_trino_connection():
     )
 
 def execute_query(sql):
-    """Execute SQL query on Trino"""
     conn = get_trino_connection()
     cursor = conn.cursor()
     try:
         cursor.execute(sql)
         columns = [desc[0] for desc in cursor.description]
         rows = cursor.fetchall()
-        
-        # Convert to list of dicts
         result = []
         for row in rows:
             result.append(dict(zip(columns, row)))
-        
         return result
     finally:
         cursor.close()
@@ -44,9 +39,7 @@ def execute_query(sql):
 
 @app.route('/health', methods=['GET'])
 def health():
-    """Health check"""
     try:
-        # Test Trino connection
         conn = get_trino_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT 1")
@@ -56,321 +49,425 @@ def health():
         
         return jsonify({
             "status": "healthy",
-            "service": "MetricFlow API",
+            "service": "MetricFlow API - Power BI Enhanced",
             "trino": f"{TRINO_HOST}:{TRINO_PORT}",
             "catalog": TRINO_CATALOG,
-            "schema": TRINO_SCHEMA
+            "schema": TRINO_SCHEMA,
+            "timestamp": datetime.now().isoformat()
         }), 200
     except Exception as e:
-        return jsonify({
-            "status": "unhealthy",
-            "error": str(e)
-        }), 500
+        return jsonify({"status": "unhealthy", "error": str(e)}), 500
 
-@app.route('/api/v1/metrics', methods=['GET'])
-def list_metrics():
-    """
-    List all available metrics
-    Returns predefined metric definitions
-    """
-    metrics = [
-        {
-            "name": "company_overall_score",
-            "description": "Company's overall ESG score",
-            "type": "simple",
-            "measure": "AVG(overall_score)",
-            "table": "fact_esg_score_risk"
-        },
-        {
-            "name": "company_esg_pulse",
-            "description": "Company's ESG pulse (Industrials source)",
-            "type": "simple",
-            "measure": "AVG(esg_pulse)",
-            "table": "fact_esg_score_risk",
-            "filter": "source = 'industrials'"
-        },
-        {
-            "name": "company_risk_score",
-            "description": "Company's total ESG risk",
-            "type": "simple",
-            "measure": "AVG(total_esg_risk_score)",
-            "table": "fact_esg_score_risk",
-            "filter": "source = 'sp500_risk'"
-        },
-        {
-            "name": "industry_avg_score",
-            "description": "Industry average ESG score",
-            "type": "simple",
-            "measure": "AVG(overall_score)",
-            "table": "fact_esg_score_risk"
-        },
-        {
-            "name": "high_risk_companies",
-            "description": "Count of high risk companies",
-            "type": "simple",
-            "measure": "COUNT(DISTINCT company_id)",
-            "table": "fact_esg_score_risk",
-            "filter": "esg_risk_level = 'high'"
-        }
-    ]
-    
-    return jsonify({
-        "metrics": metrics,
-        "count": len(metrics)
-    }), 200
+# ============================================================================
+# POWER BI OPTIMIZED ENDPOINTS
+# ============================================================================
 
-@app.route('/api/v1/dimensions', methods=['GET'])
-def list_dimensions():
-    """List available dimensions"""
-    dimensions = [
-        {
-            "name": "company__company_name",
-            "type": "categorical",
-            "table": "dim_company",
-            "column": "company_name"
-        },
-        {
-            "name": "company__sector",
-            "type": "categorical",
-            "table": "dim_company",
-            "column": "sector_normalized"
-        },
-        {
-            "name": "company__industry",
-            "type": "categorical",
-            "table": "dim_company",
-            "column": "industry_normalized"
-        },
-        {
-            "name": "company__country",
-            "type": "categorical",
-            "table": "dim_company",
-            "column": "country_normalized"
-        },
-        {
-            "name": "esg_scores__year",
-            "type": "time",
-            "table": "fact_esg_score_risk",
-            "column": "year"
-        },
-        {
-            "name": "esg_scores__source",
-            "type": "categorical",
-            "table": "fact_esg_score_risk",
-            "column": "source"
-        },
-        {
-            "name": "esg_scores__total_grade",
-            "type": "categorical",
-            "table": "fact_esg_score_risk",
-            "column": "total_grade"
-        },
-        {
-            "name": "esg_scores__esg_risk_level",
-            "type": "categorical",
-            "table": "fact_esg_score_risk",
-            "column": "esg_risk_level"
-        }
-    ]
-    
-    return jsonify({
-        "dimensions": dimensions,
-        "count": len(dimensions)
-    }), 200
-
-@app.route('/api/v1/query', methods=['POST'])
-def query_metrics():
+@app.route('/api/powerbi/companies', methods=['GET', 'POST'])
+def powerbi_companies():
     """
-    Execute metric query
-    
-    Request body:
-    {
-        "metrics": ["company_overall_score"],
-        "group_by": ["company__company_name", "company__sector"],
-        "where": ["company__sector = 'Technology'"],
-        "order_by": ["-company_overall_score"],
-        "limit": 100
-    }
+    Complete company master table for Power BI
+    Filters: sector, industry, country, has_valid_isin
     """
     try:
-        data = request.get_json()
+        filters = request.get_json() if request.method == 'POST' else {}
         
-        metrics = data.get('metrics', [])
-        group_by = data.get('group_by', [])
-        where = data.get('where', [])
-        order_by = data.get('order_by', [])
-        limit = data.get('limit', 100)
+        where_clauses = []
+        if filters.get('sector'):
+            where_clauses.append(f"sector_normalized = '{filters['sector']}'")
+        if filters.get('industry'):
+            where_clauses.append(f"industry_normalized = '{filters['industry']}'")
+        if filters.get('country'):
+            where_clauses.append(f"country_normalized = '{filters['country']}'")
+        if filters.get('has_valid_isin') is not None:
+            where_clauses.append(f"has_valid_isin = {filters['has_valid_isin']}")
         
-        if not metrics:
-            return jsonify({"error": "No metrics specified"}), 400
+        where_clause = "WHERE " + " AND ".join(where_clauses) if where_clauses else ""
         
-        # Build SQL query
-        sql = build_sql_query(metrics, group_by, where, order_by, limit)
+        sql = f"""
+        SELECT
+            company_key as CompanyKey,
+            company_name as CompanyName,
+            symbol as StockSymbol,
+            isin as ISIN,
+            sector as Sector,
+            industry as Industry,
+            sub_industry as SubIndustry,
+            city as City,
+            country as Country,
+            region as Region,
+            sector_normalized as SectorNormalized,
+            industry_normalized as IndustryNormalized,
+            country_normalized as CountryNormalized,
+            has_valid_isin as HasValidISIN
+        FROM dim_company
+        {where_clause}
+        ORDER BY company_name
+        """
         
-        # Execute query
         result = execute_query(sql)
         
         return jsonify({
             "data": result,
             "count": len(result),
-            "sql": sql,
-            "query": {
-                "metrics": metrics,
-                "group_by": group_by,
-                "where": where,
-                "limit": limit
-            }
+            "table": "dim_company",
+            "timestamp": datetime.now().isoformat()
         }), 200
         
     except Exception as e:
-        return jsonify({
-            "error": str(e),
-            "type": type(e).__name__
-        }), 500
+        return jsonify({"error": str(e), "table": "dim_company"}), 500
 
-def build_sql_query(metrics, group_by, where, order_by, limit):
-    """Build SQL query from metric request"""
-    
-    # Metric definitions
-    metric_defs = {
-        "company_overall_score": {
-            "sql": "AVG(s.overall_score) as company_overall_score",
-            "table": "fact_esg_score_risk",
-            "filter": None
-        },
-        "company_esg_pulse": {
-            "sql": "AVG(s.esg_pulse) as company_esg_pulse",
-            "table": "fact_esg_score_risk",
-            "filter": "s.source = 'industrials'"
-        },
-        "company_risk_score": {
-            "sql": "AVG(s.total_esg_risk_score) as company_risk_score",
-            "table": "fact_esg_score_risk",
-            "filter": "s.source = 'sp500_risk'"
-        },
-        "industry_avg_score": {
-            "sql": "AVG(s.overall_score) as industry_avg_score",
-            "table": "fact_esg_score_risk",
-            "filter": None
-        },
-        "high_risk_companies": {
-            "sql": "COUNT(DISTINCT s.company_id) as high_risk_companies",
-            "table": "fact_esg_score_risk",
-            "filter": "s.esg_risk_level = 'high'"
-        }
-    }
-    
-    # Dimension mapping
-    dim_mapping = {
-        "company__company_name": "c.company_name",
-        "company__sector": "c.sector_normalized",
-        "company__industry": "c.industry_normalized",
-        "company__country": "c.country_normalized",
-        "esg_scores__year": "s.year",
-        "esg_scores__source": "s.source",
-        "esg_scores__total_grade": "s.total_grade",
-        "esg_scores__esg_risk_level": "s.esg_risk_level"
-    }
-    
-    # Build SELECT clause
-    select_parts = []
-    for metric in metrics:
-        if metric in metric_defs:
-            select_parts.append(metric_defs[metric]["sql"])
-    
-    for dim in group_by:
-        if dim in dim_mapping:
-            select_parts.append(dim_mapping[dim])
-    
-    select_clause = ",\n    ".join(select_parts)
-    
-    # Build FROM clause (always use fact_esg_score_risk + dim_company)
-    from_clause = """fact_esg_score_risk s
-    JOIN dim_company c ON s.company_id = c.company_key"""
-    
-    # Build WHERE clause
-    where_parts = []
-    
-    # Add metric filters
-    for metric in metrics:
-        if metric in metric_defs and metric_defs[metric]["filter"]:
-            where_parts.append(metric_defs[metric]["filter"])
-    
-    # Add user filters
-    for w in where:
-        # Replace dimension names with column names
-        sql_filter = w
-        for dim, col in dim_mapping.items():
-            sql_filter = sql_filter.replace(dim, col)
-        where_parts.append(sql_filter)
-    
-    where_clause = ""
-    if where_parts:
-        where_clause = "WHERE " + " AND ".join(where_parts)
-    
-    # Build GROUP BY clause
-    group_clause = ""
-    if group_by:
-        group_cols = [dim_mapping.get(dim, dim) for dim in group_by]
-        group_clause = "GROUP BY " + ", ".join(group_cols)
-    
-    # Build ORDER BY clause
-    order_clause = ""
-    if order_by:
-        order_parts = []
-        for o in order_by:
-            if o.startswith('-'):
-                # Descending
-                col = o[1:]
-                if col in dim_mapping:
-                    order_parts.append(f"{dim_mapping[col]} DESC")
-                else:
-                    order_parts.append(f"{col} DESC")
-            else:
-                # Ascending
-                if o in dim_mapping:
-                    order_parts.append(f"{dim_mapping[o]} ASC")
-                else:
-                    order_parts.append(f"{o} ASC")
-        order_clause = "ORDER BY " + ", ".join(order_parts)
-    
-    # Build complete SQL
-    sql = f"""
-SELECT
-    {select_clause}
-FROM {from_clause}
-{where_clause}
-{group_clause}
-{order_clause}
-LIMIT {limit}
-    """.strip()
-    
-    return sql
-
-@app.route('/api/v1/explain', methods=['POST'])
-def explain_query():
-    """Show SQL that would be generated"""
+@app.route('/api/powerbi/esg-scores', methods=['GET', 'POST'])
+def powerbi_esg_scores():
+    """
+    ESG scores fact table - optimized for Power BI
+    Join with dim_company for filtering
+    """
     try:
-        data = request.get_json()
+        filters = request.get_json() if request.method == 'POST' else {}
         
-        metrics = data.get('metrics', [])
-        group_by = data.get('group_by', [])
-        where = data.get('where', [])
-        order_by = data.get('order_by', [])
-        limit = data.get('limit', 100)
+        where_clauses = []
+        if filters.get('year'):
+            where_clauses.append(f"s.year = {filters['year']}")
+        if filters.get('source'):
+            where_clauses.append(f"s.source = '{filters['source']}'")
+        if filters.get('min_score'):
+            where_clauses.append(f"s.overall_score >= {filters['min_score']}")
+        if filters.get('risk_level'):
+            where_clauses.append(f"s.esg_risk_level = '{filters['risk_level']}'")
         
-        sql = build_sql_query(metrics, group_by, where, order_by, limit)
+        where_clause = "WHERE " + " AND ".join(where_clauses) if where_clauses else ""
+        
+        sql = f"""
+        SELECT
+            s.score_key as ScoreKey,
+            s.company_id as CompanyKey,
+            c.company_name as CompanyName,
+            c.sector_normalized as Sector,
+            c.industry_normalized as Industry,
+            c.country_normalized as Country,
+            s.year as Year,
+            s.source as DataSource,
+            s.overall_score as OverallScore,
+            s.esg_pulse as ESGPulse,
+            s.total_level as TotalLevel,
+            s.total_grade as TotalGrade,
+            s.total_esg_risk_score as TotalRiskScore,
+            s.esg_risk_level as RiskLevel,
+            s.esg_risk_percentile as RiskPercentile,
+            s.controversy_score as ControversyScore,
+            s.controversy_level as ControversyLevel
+        FROM fact_esg_score_risk s
+        JOIN dim_company c ON s.company_id = c.company_key
+        {where_clause}
+        ORDER BY c.company_name, s.year DESC
+        """
+        
+        result = execute_query(sql)
         
         return jsonify({
-            "sql": sql,
-            "query": {
-                "metrics": metrics,
-                "group_by": group_by,
-                "where": where,
-                "limit": limit
-            }
+            "data": result,
+            "count": len(result),
+            "table": "fact_esg_score_risk",
+            "timestamp": datetime.now().isoformat()
         }), 200
         
+    except Exception as e:
+        return jsonify({"error": str(e), "table": "fact_esg_score_risk"}), 500
+
+@app.route('/api/powerbi/esg-metrics', methods=['GET', 'POST'])
+def powerbi_esg_metrics():
+    """
+    ESG metrics fact table with full dimension joins
+    Optimized for Power BI performance
+    """
+    try:
+        filters = request.get_json() if request.method == 'POST' else {}
+        
+        where_clauses = []
+        if filters.get('year'):
+            where_clauses.append(f"f.year = {filters['year']}")
+        if filters.get('topic'):
+            where_clauses.append(f"m.topic = '{filters['topic']}'")
+        if filters.get('metric_group'):
+            where_clauses.append(f"m.metric_group = '{filters['metric_group']}'")
+        if filters.get('company_id'):
+            where_clauses.append(f"f.company_id = '{filters['company_id']}'")
+        
+        where_clause = "WHERE " + " AND ".join(where_clauses) if where_clauses else ""
+        limit = filters.get('limit', 10000)
+        
+        sql = f"""
+        SELECT
+            f.metric_key as MetricKey,
+            f.company_id as CompanyKey,
+            c.company_name as CompanyName,
+            c.sector_normalized as Sector,
+            c.industry_normalized as Industry,
+            f.metric_id as MetricKey_Dim,
+            m.metric_name as MetricName,
+            m.metric_group as MetricGroup,
+            m.topic as Topic,
+            f.unit_id as UnitKey,
+            u.original_unit as OriginalUnit,
+            u.standard_unit as StandardUnit,
+            f.year as Year,
+            f.original_value as OriginalValue,
+            f.normalized_value as NormalizedValue
+        FROM fact_esg_metric f
+        JOIN dim_company c ON f.company_id = c.company_key
+        JOIN dim_metric m ON f.metric_id = m.metric_key
+        LEFT JOIN dim_unit u ON f.unit_id = u.unit_key
+        {where_clause}
+        ORDER BY c.company_name, f.year DESC, m.metric_name
+        LIMIT {limit}
+        """
+        
+        result = execute_query(sql)
+        
+        return jsonify({
+            "data": result,
+            "count": len(result),
+            "table": "fact_esg_metric",
+            "timestamp": datetime.now().isoformat()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e), "table": "fact_esg_metric"}), 500
+
+@app.route('/api/powerbi/aggregated/company-scores', methods=['GET'])
+def powerbi_agg_company_scores():
+    """
+    Pre-aggregated company scores for dashboard KPIs
+    """
+    try:
+        sql = """
+        SELECT
+            c.company_key as CompanyKey,
+            c.company_name as CompanyName,
+            c.sector_normalized as Sector,
+            c.industry_normalized as Industry,
+            c.country_normalized as Country,
+            MAX(s.year) as LatestYear,
+            AVG(CASE WHEN s.source = 'esg_level' THEN s.overall_score END) as AvgESGScore,
+            AVG(CASE WHEN s.source = 'industrials' THEN s.esg_pulse END) as AvgESGPulse,
+            AVG(CASE WHEN s.source = 'sp500_risk' THEN s.total_esg_risk_score END) as AvgRiskScore,
+            MAX(CASE WHEN s.source = 'sp500_risk' THEN s.esg_risk_level END) as CurrentRiskLevel,
+            MAX(CASE WHEN s.source = 'esg_level' THEN s.total_grade END) as CurrentGrade,
+            COUNT(DISTINCT s.source) as DataSourceCount
+        FROM dim_company c
+        LEFT JOIN fact_esg_score_risk s ON c.company_key = s.company_id
+        GROUP BY c.company_key, c.company_name, c.sector_normalized, c.industry_normalized, c.country_normalized
+        ORDER BY c.company_name
+        """
+        
+        result = execute_query(sql)
+        
+        return jsonify({
+            "data": result,
+            "count": len(result),
+            "description": "Aggregated company ESG scores",
+            "timestamp": datetime.now().isoformat()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/aggregated/sector-benchmarks', methods=['GET'])
+def powerbi_sector_benchmarks():
+    """
+    Sector-level benchmarks for comparison
+    """
+    try:
+        sql = """
+        SELECT
+            c.sector_normalized as Sector,
+            COUNT(DISTINCT c.company_key) as CompanyCount,
+            AVG(s.overall_score) as AvgOverallScore,
+            MIN(s.overall_score) as MinScore,
+            MAX(s.overall_score) as MaxScore,
+            APPROX_PERCENTILE(s.overall_score, 0.5) as MedianScore,
+            AVG(s.total_esg_risk_score) as AvgRiskScore,
+            COUNT(DISTINCT CASE WHEN s.esg_risk_level = 'high' THEN s.company_id END) as HighRiskCount,
+            COUNT(DISTINCT CASE WHEN s.esg_risk_level = 'low' THEN s.company_id END) as LowRiskCount
+        FROM dim_company c
+        LEFT JOIN fact_esg_score_risk s ON c.company_key = s.company_id
+        WHERE c.sector_normalized IS NOT NULL
+        GROUP BY c.sector_normalized
+        ORDER BY AvgOverallScore DESC
+        """
+        
+        result = execute_query(sql)
+        
+        return jsonify({
+            "data": result,
+            "count": len(result),
+            "description": "Sector-level ESG benchmarks",
+            "timestamp": datetime.now().isoformat()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/aggregated/metric-summary', methods=['GET', 'POST'])
+def powerbi_metric_summary():
+    """
+    Metric summary by topic and group
+    """
+    try:
+        filters = request.get_json() if request.method == 'POST' else {}
+        
+        where_clauses = []
+        if filters.get('topic'):
+            where_clauses.append(f"m.topic = '{filters['topic']}'")
+        if filters.get('year'):
+            where_clauses.append(f"f.year = {filters['year']}")
+        
+        where_clause = "WHERE " + " AND ".join(where_clauses) if where_clauses else ""
+        
+        sql = f"""
+        SELECT
+            m.topic as Topic,
+            m.metric_group as MetricGroup,
+            COUNT(DISTINCT f.company_id) as CompanyCount,
+            COUNT(DISTINCT f.metric_id) as UniqueMetrics,
+            AVG(f.normalized_value) as AvgValue,
+            MIN(f.normalized_value) as MinValue,
+            MAX(f.normalized_value) as MaxValue,
+            COUNT(*) as RecordCount
+        FROM fact_esg_metric f
+        JOIN dim_metric m ON f.metric_id = m.metric_key
+        {where_clause}
+        GROUP BY m.topic, m.metric_group
+        ORDER BY m.topic, CompanyCount DESC
+        """
+        
+        result = execute_query(sql)
+        
+        return jsonify({
+            "data": result,
+            "count": len(result),
+            "description": "Metric coverage summary",
+            "timestamp": datetime.now().isoformat()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/time-series/esg-trend', methods=['POST'])
+def powerbi_esg_trend():
+    """
+    ESG score time series for trend analysis
+    """
+    try:
+        data = request.get_json()
+        company_id = data.get('company_id')
+        
+        where_clause = f"WHERE s.company_id = '{company_id}'" if company_id else ""
+        
+        sql = f"""
+        SELECT
+            c.company_name as CompanyName,
+            c.sector_normalized as Sector,
+            s.year as Year,
+            s.source as DataSource,
+            s.overall_score as OverallScore,
+            s.esg_pulse as ESGPulse,
+            s.total_esg_risk_score as RiskScore,
+            s.esg_risk_level as RiskLevel
+        FROM fact_esg_score_risk s
+        JOIN dim_company c ON s.company_id = c.company_key
+        {where_clause}
+        ORDER BY c.company_name, s.year
+        """
+        
+        result = execute_query(sql)
+        
+        return jsonify({
+            "data": result,
+            "count": len(result),
+            "description": "ESG score time series",
+            "timestamp": datetime.now().isoformat()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+# ============================================================================
+# UTILITY ENDPOINTS
+# ============================================================================
+
+@app.route('/api/powerbi/filters/sectors', methods=['GET'])
+def get_sectors():
+    """Get unique sectors for filter"""
+    try:
+        sql = """
+        SELECT DISTINCT sector_normalized as Sector
+        FROM dim_company
+        WHERE sector_normalized IS NOT NULL
+        ORDER BY sector_normalized
+        """
+        result = execute_query(sql)
+        return jsonify({"data": result, "count": len(result)}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/filters/industries', methods=['GET'])
+def get_industries():
+    """Get unique industries for filter"""
+    try:
+        sql = """
+        SELECT DISTINCT industry_normalized as Industry
+        FROM dim_company
+        WHERE industry_normalized IS NOT NULL
+        ORDER BY industry_normalized
+        """
+        result = execute_query(sql)
+        return jsonify({"data": result, "count": len(result)}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/filters/countries', methods=['GET'])
+def get_countries():
+    """Get unique countries for filter"""
+    try:
+        sql = """
+        SELECT DISTINCT country_normalized as Country
+        FROM dim_company
+        WHERE country_normalized IS NOT NULL
+        ORDER BY country_normalized
+        """
+        result = execute_query(sql)
+        return jsonify({"data": result, "count": len(result)}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/filters/years', methods=['GET'])
+def get_years():
+    """Get available years"""
+    try:
+        sql = """
+        SELECT DISTINCT year as Year
+        FROM fact_esg_score_risk
+        WHERE year IS NOT NULL
+        ORDER BY year DESC
+        """
+        result = execute_query(sql)
+        return jsonify({"data": result, "count": len(result)}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/powerbi/filters/topics', methods=['GET'])
+def get_topics():
+    """Get ESG topics"""
+    try:
+        sql = """
+        SELECT DISTINCT topic as Topic
+        FROM dim_metric
+        WHERE topic IS NOT NULL
+        ORDER BY topic
+        """
+        result = execute_query(sql)
+        return jsonify({"data": result, "count": len(result)}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

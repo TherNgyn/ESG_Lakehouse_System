@@ -3,21 +3,21 @@ version: 2
 models:
   - name: dim_company
     columns:
-      - name: company_id
+      - name: company_key
         tests:
           - unique
           - not_null
           
   - name: dim_unit
     columns:
-      - name: unit_id
+      - name: unit_key
         tests:
           - unique
           - not_null
   
   - name: dim_metric
     columns:
-      - name: metric_id
+      - name: metric_key
         tests:
           - unique
           - not_null
@@ -41,7 +41,7 @@ models:
           - relationships:
               arguments:
                 to: ref('dim_company')
-                field: company_id
+                field: company_key
               
   - name: fact_esg_score_risk
     description: "ESG scores and risk ratings from multiple sources"
@@ -57,4 +57,16 @@ models:
             arguments:
               to: ref('dim_company')
               field: company_key
-      
+  - name: fact_esg_rank
+    description: "Detailed rankings from World Benchmarking Alliance (WBA)"
+    columns:
+      - name: benchmark_key
+        tests:
+          - unique
+          - not_null
+      - name: company_id
+        tests:
+          - not_null
+          - relationships:
+              field: company_key
+              to: ref('dim_company')

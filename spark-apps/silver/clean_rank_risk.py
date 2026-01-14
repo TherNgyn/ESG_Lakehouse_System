@@ -21,6 +21,7 @@ df1 = spark.read.csv("s3a://bronze/raw/esg_rank/company_rank_esg.csv", header=Tr
 esg_rank_score_df = df1.select(
     upper(col("ticker")).alias("ticker"),
     trim(col("name")).alias("company_name"),
+    col("logo").alias("logo_url"),
     trim(col("industry")).alias("industry"),
     col("environment_grade"), col("social_grade"), col("governance_grade"),
     lower(col("environment_level")).alias("environment_level"),

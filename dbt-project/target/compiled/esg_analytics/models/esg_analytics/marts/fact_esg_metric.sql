@@ -9,6 +9,8 @@ with source_data as (
         units as original_unit
     from "delta"."default"."metric_norm_final"
     
+    where year >= (select coalesce(max(year), 1900) - 1 from "delta"."default_marts"."fact_esg_metric")
+    
 ),
 
 -- STEP 1: Deduplicate source data
